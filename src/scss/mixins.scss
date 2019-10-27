@@ -1,0 +1,23 @@
+@import "variables"; 
+
+@mixin mediaQuery ($arg) {
+	@media screen and (min-width: $arg) {
+		@content;
+	}
+}
+
+@mixin button {
+    width: 90%;
+    height: auto;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid $buttonsBorder;
+}
+
+@mixin buttonClose {
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+

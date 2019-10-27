@@ -1,0 +1,29 @@
+@import "variables"; 
+// @import "mixins"; 
+
+body {
+    margin: 0;
+    padding: 0;
+    // background-color: $background-color;
+}
+
+.app {
+    background: $background-color-menu;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    position: relative;
+}
+
+.hidden {
+    transform: translateX(-100%);
+    z-index: 1;
+}
+
+.visible {
+    transform: translateX(0);
+    z-index: 15;
+}
+
+@import "menu";
+@import "main";

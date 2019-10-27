@@ -1,0 +1,56 @@
+@import "variables"; 
+@import "mixins"; 
+
+.menu {
+    width: 100vw;
+    //z-index: 6;
+    position: relative;
+
+    @include mediaQuery(700px) {
+        position: static;
+        width: 300px;
+    }
+
+    .header {
+        padding-top:5px;
+        height: 50px;
+    }
+
+    .settings {
+        position: absolute;
+        top: 0;
+        width: $settingsWidth;
+        height: 100%;
+        z-index: 10;
+        background-color: yellow;
+    }
+
+    .showSettings {
+        position: absolute;
+        top: 0;
+        padding: 10px 15px;
+        border: 1px solid $buttonsBorder;
+        border-radius: 0 5px 5px 0;
+        color: red;
+        // z-index: 15;
+    }
+
+    .settingsOpened {
+        left: $settingsWidth;
+        z-index: 15;
+    }
+
+    .ovlp {
+        padding: 50px 0;
+        text-align: center;
+        text-transform: uppercase;
+        background: $background-color-ovlp;
+        cursor: pointer;
+        //box-shadow: inset 0 0 2px #fff;
+
+        &:hover {
+            //background: rgba(255, 255, 255, 0.3);
+            background: $background-color-ovlp-hover; 
+        }
+    }
+}
