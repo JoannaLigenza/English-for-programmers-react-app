@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import speaker from '../img/speaker.svg';
 import noteyellow from '../img/noteyellow.svg';
 import { DictionaryContext } from '../contexts/DictionaryContext.js';
@@ -23,19 +23,31 @@ const Lessons = () => {
     const backgroundColor = "white";
     const getDictionary = useContext(DictionaryContext);
     console.log(getDictionary.dictionary[0]);
+    const [words, setWords] = useState({
+        currentWord: 1,
+    });
+    const changeWord = (action) => {
+        if (action === "prev") {
+            setWords({currentWord: words.currentWord - 1 })
+        }
+        if (action === "next") {
+            setWords({currentWord: words.currentWord + 1 })
+        }
+    }
+    console.log("words ", words)
     return (
         <div className="mainContent lessons" style={{backgroundColor: `${backgroundColor}`}}>
             <h2 className="mainContent__ovlpTitle">Lesson</h2>
             <div className="mainContent__imageContainer" style={{backgroundImage: `url(${noteyellow})`}}>
-                <h3 className="mainContent__englishWord">{getDictionary.dictionary[0].word}</h3>
-                <div className="mainContent__polishWord">{getDictionary.dictionary[0].translation}</div>
-                <div className="mainContent__spelling">{getDictionary.dictionary[0].spelling}</div>
+                <h3 className="mainContent__englishWord">{getDictionary.dictionary[words.currentWord].word}</h3>
+                <div className="mainContent__polishWord">{getDictionary.dictionary[words.currentWord].translation}</div>
+                <div className="mainContent__spelling">{getDictionary.dictionary[words.currentWord].spelling}</div>
                 <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
-                    onClick={() => speak(getDictionary.dictionary[0].word, "en-GB", "fast")}/>
+                    onClick={() => speak(getDictionary.dictionary[words.currentWord].word, "en-GB", "fast")}/>
             </div>
             <div className="navigation">
-                <div className="navigation--left" onClick={() => console.log('left')}>Prev</div>
-                <div className="navigation--right" onClick={() => console.log('right')}>Next</div>
+                <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord === 0 ? "hidden" : "visible"}}>Prev</div>
+                <div className="navigation--right" onClick={() => changeWord("next")} style={{visibility: words.currentWord === 2 ? "hidden" : "visible"}}>Next</div>
             </div>
         </div>
     )
