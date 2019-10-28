@@ -2,7 +2,7 @@ import React from 'react';
 
 const Writing = () => {
     return (
-        <div className="lessons" >
+        <div className="mainContent writing" >
             Writing is fun jea
         </div>
     )

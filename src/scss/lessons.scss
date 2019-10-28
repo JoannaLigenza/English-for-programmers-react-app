@@ -1,0 +1,80 @@
+@import "variables"; 
+@import "mixins"; 
+
+
+.mainContent {
+    text-align: center;
+    padding: 2px;
+
+    &__ovlpTitle {
+        font-size: 2em;
+    }
+
+    &__imageContainer {
+        width: 340px;
+        height: 348px;
+        margin: 0 auto;
+        position: relative;
+
+        @include mediaQuery(460px) {
+            width: 440px;
+            height: 450px;
+        }
+        @include mediaQuery(700px) {
+            width: 340px;
+            height: 348px;
+        }
+        @include mediaQuery(760px) {
+            width: 440px;
+            height: 450px;
+        }
+        @include mediaQuery(1900px) {
+            width: 550px;
+            height: 563px;
+        }
+        @include mediaQuery(2000px) {
+            width: 600px;
+            height: 614px;
+        }
+        @include mediaQuery(3600px) {
+            width: 1000px;
+            height: 1023px;
+        }
+
+        .mainContent__englishWord {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.7em;
+        }
+
+        .mainContent__polishWord {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2em;
+        }
+
+        .mainContent__spelling {
+            position: absolute;
+            bottom: 25%;
+            left: 20%;
+            font-size: 1.2em;
+        }
+
+        .mainContent__speaker-icon {
+            position: absolute;
+            bottom: 20%;
+            right: 15%;
+        }
+    }
+
+    
+}
+
+.lessons {
+    min-height: 100vh;
+    // background-color: red;
+}

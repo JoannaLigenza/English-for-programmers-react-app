@@ -2,7 +2,7 @@ import React from 'react';
 
 const Listening = () => {
     return (
-        <div className="lessons" >
+        <div className="mainContent listening" >
             Listening is fun listening
         </div>
     )

@@ -7,6 +7,10 @@ body {
     // background-color: $background-color;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .app {
     background: $background-color-menu;
     min-height: 100vh;
@@ -27,3 +31,4 @@ body {
 
 @import "menu";
 @import "main";
+@import "lessons";
