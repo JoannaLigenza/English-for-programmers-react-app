@@ -9,6 +9,7 @@ import TestOvlp from './ovlpTest.js';
 
 const Menu = () => {
     const visibility = useContext(VisibilityContext);
+    console.log(visibility.isVisible)
     return (
         <div className="menu">
             <header className="header">

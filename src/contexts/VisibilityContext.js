@@ -6,13 +6,17 @@ const VisibilityContextProvider = (props) => {
     const [isVisible, setVisibility] = useState( {
         isOptionsVisible: false,
         isMainVisible: false,
+        activeOverlap: "none"
     });
-    const changeVisibility = (option) => {
+    const changeVisibility = (option, activeOverlap) => {
         if (option === "settings") {
             setVisibility({...isVisible, isOptionsVisible: !isVisible.isOptionsVisible});
         }
         if (option === "main") {
             setVisibility({...isVisible, isMainVisible: !isVisible.isMainVisible});
+        }
+        if (option === "activeOverlap") {
+            setVisibility({...isVisible, activeOverlap: activeOverlap});
         }
     }
     return (

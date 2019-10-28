@@ -31,12 +31,12 @@
         padding: 10px 15px;
         border: 1px solid $buttonsBorder;
         border-radius: 0 5px 5px 0;
-        color: red;
-        // z-index: 15;
+        color: $buttonsBorder;
     }
 
     .settingsOpened {
         left: $settingsWidth;
+        color: black;
         z-index: 15;
     }
 
@@ -52,5 +52,9 @@
             //background: rgba(255, 255, 255, 0.3);
             background: $background-color-ovlp-hover; 
         }
+    }
+
+    .ovlp--active {
+        background: $background-color-ovlp-hover;
     }
 }
