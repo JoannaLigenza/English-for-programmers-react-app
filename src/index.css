@@ -197,6 +197,9 @@ body {
   bottom: 20%;
   right: 15%;
 }
+.mainContent__imageContainer .mainContent__speaker-icon:active {
+  transform: scale(1.1);
+}
 
 .lessons {
   min-height: 100vh;

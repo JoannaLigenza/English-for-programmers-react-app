@@ -68,6 +68,10 @@
             position: absolute;
             bottom: 20%;
             right: 15%;
+
+            &:active {
+                transform: scale(1.1);
+            }
         }
     }
 
