@@ -75,7 +75,57 @@
         }
     }
 
-    
+    .navigation {
+        margin: 10% 0;
+        display: flex;
+        justify-content: space-around;
+
+        &--left, &--right{
+            padding: 15px;
+            background-color: #A3C6FF;
+            position: relative;
+
+            &:active{
+                transform: scale(1.1);
+            }
+        }
+
+        &--left::before {
+            content: ''; 
+            position: absolute;
+            top: -35px;
+            left: -55px;
+            width: 0;
+            height: 0;
+            border-top: 60px solid transparent;
+            border-bottom: 60px solid transparent; 
+            border-right: 55px solid #A3C6FF; 
+        }
+
+        &--right::after {
+            content: ''; 
+            position: absolute;
+            top: -35px;
+            left: 55px;
+            width: 0;
+            height: 0;
+            border-top: 60px solid transparent;
+            border-bottom: 60px solid transparent; 
+            border-left: 55px solid #A3C6FF; 
+        }
+    }
+
+    // .navigation--left::before {
+    //     content: ''; 
+    //     position: relative;
+    //     right: 50px;
+    //     width: 0;
+    //     height: 0;
+    //     border-top: 60px solid red;
+    //     border-bottom: 60px solid blue; 
+    //     border-right: 55px solid #A3C6FF; 
+    //     border-left: 55px solid yellow; 
+    // }
 }
 
 .lessons {
