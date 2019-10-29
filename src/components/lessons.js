@@ -22,19 +22,20 @@ const speak = (text, lang, speed) => {
 const Lessons = () => {
     const backgroundColor = "white";
     const getDictionary = useContext(DictionaryContext);
-    console.log(getDictionary.dictionary[0]);
+    //console.log(getDictionary.dictionary[0]);
     const [words, setWords] = useState({
         currentWord: 1,
+        wordsInLesson: 2    // read this value from settings
     });
     const changeWord = (action) => {
         if (action === "prev") {
-            setWords({currentWord: words.currentWord - 1 })
+            setWords({...words, currentWord: words.currentWord - 1 })
         }
         if (action === "next") {
-            setWords({currentWord: words.currentWord + 1 })
+            setWords({...words, currentWord: words.currentWord + 1 })
         }
     }
-    console.log("words ", words)
+    //console.log("words ", words)
     return (
         <div className="mainContent lessons" style={{backgroundColor: `${backgroundColor}`}}>
             <h2 className="mainContent__ovlpTitle">Lesson</h2>
@@ -47,7 +48,7 @@ const Lessons = () => {
             </div>
             <div className="navigation">
                 <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord === 0 ? "hidden" : "visible"}}>Prev</div>
-                <div className="navigation--right" onClick={() => changeWord("next")} style={{visibility: words.currentWord === 2 ? "hidden" : "visible"}}>Next</div>
+                <div className="navigation--right" onClick={() => changeWord("next")} style={{visibility: words.currentWord === words.wordsInLesson ? "hidden" : "visible"}}>Next</div>
             </div>
         </div>
     )
