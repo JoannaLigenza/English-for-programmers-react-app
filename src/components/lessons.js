@@ -2,7 +2,9 @@ import React, { useContext, useState } from 'react';
 import speaker from '../img/speaker.svg';
 import noteyellow from '../img/noteyellow.svg';
 import { DictionaryContext } from '../contexts/DictionaryContext.js';
+import { SettingsContext } from '../contexts/SettingsContext.js';
 
+// set speaking
 const speak = (text, lang, speed) => {
     // if speaking is in progress don't invoke utterance again
     if (speechSynthesis.speaking) {
@@ -20,12 +22,20 @@ const speak = (text, lang, speed) => {
 }
 
 const Lessons = () => {
+    const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
     const backgroundColor = "white";
     const getDictionary = useContext(DictionaryContext);
-    //console.log(getDictionary.dictionary[0]);
+    const getSettings = useContext(SettingsContext);
+    const dictionary = getDictionary.dictionaryData.dictionary;
+    // display words depends on lesson number
+    const wordsInLesson = getSettings.settings.wordsInLesson;
+    const displayFrom = (lessonNumber-1)*wordsInLesson;
+    let displayTo = (displayFrom + wordsInLesson)-1;
+    if ( displayTo > (dictionary.length)-1 ) {
+        displayTo = dictionary.length-1;
+    }
     const [words, setWords] = useState({
-        currentWord: 1,
-        wordsInLesson: 2    // read this value from settings
+        currentWord: (lessonNumber-1)*wordsInLesson,
     });
     const changeWord = (action) => {
         if (action === "prev") {
@@ -35,20 +45,20 @@ const Lessons = () => {
             setWords({...words, currentWord: words.currentWord + 1 })
         }
     }
-    //console.log("words ", words)
+
     return (
         <div className="mainContent lessons" style={{backgroundColor: `${backgroundColor}`}}>
             <h2 className="mainContent__ovlpTitle">Lesson</h2>
             <div className="mainContent__imageContainer" style={{backgroundImage: `url(${noteyellow})`}}>
-                <h3 className="mainContent__englishWord">{getDictionary.dictionary[words.currentWord].word}</h3>
-                <div className="mainContent__polishWord">{getDictionary.dictionary[words.currentWord].translation}</div>
-                <div className="mainContent__spelling">{getDictionary.dictionary[words.currentWord].spelling}</div>
+                <h3 className="mainContent__englishWord">{dictionary[words.currentWord].word}</h3>
+                <div className="mainContent__polishWord">{dictionary[words.currentWord].translation}</div>
+                <div className="mainContent__spelling">{dictionary[words.currentWord].spelling}</div>
                 <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
-                    onClick={() => speak(getDictionary.dictionary[words.currentWord].word, "en-GB", "fast")}/>
+                    onClick={() => speak(dictionary[words.currentWord].word, "en-GB", "fast")}/>
             </div>
             <div className="navigation">
-                <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord === 0 ? "hidden" : "visible"}}>Prev</div>
-                <div className="navigation--right" onClick={() => changeWord("next")} style={{visibility: words.currentWord === words.wordsInLesson ? "hidden" : "visible"}}>Next</div>
+                <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord <= displayFrom ? "hidden" : "visible"}}>Prev</div>
+                <div className="navigation--right" onClick={() => changeWord("next")} style={{visibility: words.currentWord >= displayTo ? "hidden" : "visible"}}>Next</div>
             </div>
         </div>
     )

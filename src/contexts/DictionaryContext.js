@@ -2,6 +2,8 @@ import React, { createContext, useState, useEffect } from 'react';
 import Data from '../data/dictionary.json';
 
 export const DictionaryContext = createContext();
+
+// get data from json file and shuffle it
 const data = () => {
     const getDataFromJson = Data.slice();
     const shuffledData = [];
@@ -13,19 +15,30 @@ const data = () => {
     }
     return shuffledData;
 };
+
 const shuffledData = data();
-const saveSortedDataInStorage = () => {
+
+// save data in localstorage
+const saveDataInStorage = () => {
     if (localStorage.getItem("dictionary") === null) {
         localStorage.setItem("dictionary", JSON.stringify(shuffledData));
     }
-    console.log(localStorage.getItem("dictionary"))
+    if (localStorage.getItem("lessonNumber") === null) {
+        localStorage.setItem("lessonNumber", JSON.stringify(1));
+    }
 }
-saveSortedDataInStorage();
-const getDataFromStorage = JSON.parse(localStorage.getItem("dictionary"))
+saveDataInStorage();
+
+// get data from localstorage
+const getDataFromStorage = JSON.parse(localStorage.getItem("dictionary"));
+const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
 
 
 const DictionaryContextProvider = (props) => {
-    const [dictionary, setDictionary] = useState(getDataFromStorage);
+    const [dictionaryData, setDictionary] = useState({
+        dictionary: getDataFromStorage,
+        lessonNumber: lessonNumber,
+    });
     // const setDictionaryData = (content) => {
     //     setDictionary( content );
     // }
@@ -42,7 +55,7 @@ const DictionaryContextProvider = (props) => {
     // }, [setDictionary])
     
     return (
-        <DictionaryContext.Provider value={{ dictionary }} >
+        <DictionaryContext.Provider value={{ dictionaryData }} >
             {props.children}
         </DictionaryContext.Provider>
     )
