@@ -213,6 +213,9 @@ body {
 .mainContent .navigation--left:active, .mainContent .navigation--right:active {
   transform: scale(1.1);
 }
+.mainContent .navigation--left:hover, .mainContent .navigation--right:hover {
+  cursor: pointer;
+}
 .mainContent .navigation--left::before {
   content: "";
   position: absolute;
@@ -234,6 +237,23 @@ body {
   border-top: 60px solid transparent;
   border-bottom: 60px solid transparent;
   border-left: 55px solid #A3C6FF;
+}
+.mainContent .navigation .button--goToTest {
+  position: absolute;
+  left: 40%;
+  width: 150px;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: green;
+  color: #fff;
+}
+.mainContent .navigation .button--goToTest:active {
+  transform: translate(2px, 2px);
+}
+@media screen and (min-width: 460px) {
+  .mainContent .navigation .button--goToTest {
+    left: 60%;
+  }
 }
 
 .lessons {

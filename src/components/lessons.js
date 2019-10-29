@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import speaker from '../img/speaker.svg';
 import noteyellow from '../img/noteyellow.svg';
+import { VisibilityContext } from '../contexts/VisibilityContext.js';
+import { MainContentContext } from '../contexts/MainContentContext.js';
 import { DictionaryContext } from '../contexts/DictionaryContext.js';
 import { SettingsContext } from '../contexts/SettingsContext.js';
 
@@ -24,6 +26,8 @@ const speak = (text, lang, speed) => {
 const Lessons = () => {
     const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
     const backgroundColor = "white";
+    const visibility = useContext(VisibilityContext);
+    const setContent = useContext(MainContentContext);
     const getDictionary = useContext(DictionaryContext);
     const getSettings = useContext(SettingsContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
@@ -48,7 +52,7 @@ const Lessons = () => {
 
     return (
         <div className="mainContent lessons" style={{backgroundColor: `${backgroundColor}`}}>
-            <h2 className="mainContent__ovlpTitle">Lesson</h2>
+            <h2 className="mainContent__ovlpTitle">Lesson {lessonNumber}</h2>
             <div className="mainContent__imageContainer" style={{backgroundImage: `url(${noteyellow})`}}>
                 <h3 className="mainContent__englishWord">{dictionary[words.currentWord].word}</h3>
                 <div className="mainContent__polishWord">{dictionary[words.currentWord].translation}</div>
@@ -58,8 +62,16 @@ const Lessons = () => {
             </div>
             <div className="navigation">
                 <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord <= displayFrom ? "hidden" : "visible"}}>Prev</div>
+                <div className="button button--goToTest" style={{display: words.currentWord >= displayTo ? "block" : "none"}}
+                    onClick={() => {
+                        setContent.changeContent("Test");
+                        visibility.changeVisibility("activeOverlap", "Test");
+                    }}>
+                    Zrób test
+                </div>
                 <div className="navigation--right" onClick={() => changeWord("next")} style={{visibility: words.currentWord >= displayTo ? "hidden" : "visible"}}>Next</div>
             </div>
+            
         </div>
     )
 }

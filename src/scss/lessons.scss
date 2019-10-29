@@ -88,6 +88,10 @@
             &:active{
                 transform: scale(1.1);
             }
+
+            &:hover{
+                cursor: pointer;
+            }
         }
 
         &--left::before {
@@ -113,19 +117,25 @@
             border-bottom: 60px solid transparent; 
             border-left: 55px solid #A3C6FF; 
         }
-    }
 
-    // .navigation--left::before {
-    //     content: ''; 
-    //     position: relative;
-    //     right: 50px;
-    //     width: 0;
-    //     height: 0;
-    //     border-top: 60px solid red;
-    //     border-bottom: 60px solid blue; 
-    //     border-right: 55px solid #A3C6FF; 
-    //     border-left: 55px solid yellow; 
-    // }
+        .button--goToTest {
+            position: absolute;
+            left: 40%;
+            width: 150px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: green;
+            color: $whiteText;
+
+            &:active{
+                transform: translate(2px, 2px);
+            }
+            
+            @include mediaQuery(460px) {
+                left: 60%;
+            }
+        }
+    }
 }
 
 .lessons {
