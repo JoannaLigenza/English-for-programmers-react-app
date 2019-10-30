@@ -10,18 +10,22 @@ const saveDataInStorage = () => {
     if (localStorage.getItem("speakRate") === null) {
         localStorage.setItem("speakRate", JSON.stringify("normal"));
     }
+    if (localStorage.getItem("wordsInLesson") === null) {
+        localStorage.setItem("wordsInLesson", JSON.stringify(5));
+    }
 }
 saveDataInStorage();
 
 // get data from localstorage
 const language = JSON.parse(localStorage.getItem("language"));
 const speakRate = JSON.parse(localStorage.getItem("speakRate"));
+const wordsInLesson = JSON.parse(localStorage.getItem("wordsInLesson"));
 
 const SettingsContextProvider = (props) => {
     const [settings, changeSettings] = useState({
         language: language,
         speakRate: speakRate,
-        wordsInLesson: 5,
+        wordsInLesson: wordsInLesson,
     });
     const setSettings = (option, set) => {
         if (option === "language") {
@@ -33,6 +37,7 @@ const SettingsContextProvider = (props) => {
             return changeSettings({...settings, speakRate: set});
         }
         if (option === "wordsInLesson") {
+            localStorage.setItem("wordsInLesson", JSON.stringify(set));
             return changeSettings({...settings, wordsInLesson: set});
         }
     }

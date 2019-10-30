@@ -31,11 +31,16 @@ const Settings = () => {
             </div>
             <div className="settings__word-number">
                 <h3>Ilość słów w lekcji</h3>
-                <div>3</div>
-                <div>5</div>
-                <div>10</div>
-                <div>20</div>
-                <div>30</div>
+                <div className={ getSettings.settings.wordsInLesson === 3 ? "settings-button settings-button--pressed" : "settings-button"}
+                    onClick={() => getSettings.setSettings("wordsInLesson", 3)}>3</div>
+                <div className={ getSettings.settings.wordsInLesson === 5 ? "settings-button settings-button--pressed" : "settings-button"}
+                    onClick={() => getSettings.setSettings("wordsInLesson", 5)}>5</div>
+                <div className={ getSettings.settings.wordsInLesson === 10 ? "settings-button settings-button--pressed" : "settings-button"}
+                    onClick={() => getSettings.setSettings("wordsInLesson", 10)}>10</div>
+                <div className={ getSettings.settings.wordsInLesson === 20 ? "settings-button settings-button--pressed" : "settings-button"}
+                    onClick={() => getSettings.setSettings("wordsInLesson", 20)}>20</div>
+                <div className={ getSettings.settings.wordsInLesson === 30 ? "settings-button settings-button--pressed" : "settings-button"}
+                    onClick={() => getSettings.setSettings("wordsInLesson", 30)}>30</div>
             </div>
         </div>
     )
