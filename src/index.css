@@ -52,6 +52,31 @@ body {
   height: 100%;
   z-index: 10;
   background: linear-gradient(to right, #23dba1 0%, #66f5a6 28%, #66f5a6 51%, #66f5a6 73%, #23dba1 100%);
+  padding: 25px 0;
+  text-align: center;
+}
+.menu .settings .settings-button {
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #fff;
+  width: 100px;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #fff;
+  user-select: none;
+}
+.menu .settings .settings-button:active {
+  transform: translate(2px, 2px);
+}
+.menu .settings .settings-button--pressed {
+  box-shadow: inset 2px 2px 2px #7e7e7e;
+}
+.menu .settings .settings-button--pressed:active {
+  transform: unset;
 }
 .menu .showSettings {
   position: absolute;

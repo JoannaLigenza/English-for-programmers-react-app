@@ -21,3 +21,25 @@
     border-radius: 5px;
 }
 
+@mixin settings-button {
+    @include button;
+    width: 100px;
+    display: inline-block;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px #fff;
+    user-select: none;
+
+    &:active{
+        transform: translate(2px, 2px);
+    }
+}
+
+@mixin settings-button--pressed {
+    box-shadow: inset 2px 2px 2px $buttonShadowInset;
+
+    &:active{
+        transform: unset;
+    }
+}

@@ -32,6 +32,7 @@ const Lessons = () => {
     const getDictionary = useContext(DictionaryContext);
     const getSettings = useContext(SettingsContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
+    const language = getSettings.settings.language;
     // display words depends on lesson number
     const wordsInLesson = getSettings.settings.wordsInLesson;
     const displayFrom = (lessonNumber-1)*wordsInLesson;
@@ -60,7 +61,7 @@ const Lessons = () => {
                     <div className="mainContent__polishWord">{dictionary[words.currentWord].translation}</div>
                     <div className="mainContent__spelling">{dictionary[words.currentWord].spelling}</div>
                     <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
-                        onClick={() => speak(dictionary[words.currentWord].word, "en-GB", "fast")}/>
+                        onClick={() => speak(dictionary[words.currentWord].word, language, "fast")}/>
                 </div>
                 <div className="navigation">
                     <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord <= displayFrom ? "hidden" : "visible"}}>Prev</div>

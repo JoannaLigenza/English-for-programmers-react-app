@@ -24,6 +24,16 @@
         height: 100%;
         z-index: 10;
         background: $background-color-advanced-options-col;
+        padding: 25px 0;
+        text-align: center;
+
+        .settings-button {
+            @include settings-button;
+        }
+
+        .settings-button--pressed {
+            @include settings-button--pressed;
+        }
     }
 
     .showSettings {
@@ -59,3 +69,4 @@
         background: $background-color-ovlp-hover;
     }
 }
+
