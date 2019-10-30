@@ -5,7 +5,6 @@ import { SettingsContext } from '../contexts/SettingsContext.js';
 const Settings = () => {
     const visibility = useContext(VisibilityContext);
     const getSettings = useContext(SettingsContext);
-    console.log("visible ", visibility.isVisible)
     return (
         <div className={visibility.isVisible.isOptionsVisible ? "settings visible" : "settings hidden"}>
             <div className="settings__language-options">

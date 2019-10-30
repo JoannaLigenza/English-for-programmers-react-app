@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState} from 'react';
 import Data from '../data/dictionary.json';
 
 export const DictionaryContext = createContext();
@@ -32,28 +32,13 @@ saveDataInStorage();
 // get data from localstorage
 const getDataFromStorage = JSON.parse(localStorage.getItem("dictionary"));
 const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
-console.log("less ", lessonNumber)
 
 
 const DictionaryContextProvider = (props) => {
-    const [dictionaryData, setDictionary] = useState({
+    const [dictionaryData] = useState({
         dictionary: getDataFromStorage,
         lessonNumber: lessonNumber,
     });
-    // const setDictionaryData = (content) => {
-    //     setDictionary( content );
-    // }
-    
-    // useEffect(() => {
-    //     // set shuffled dictionary data only once
-    //     if (localStorage.getItem("dictionary") === null) {
-    //         localStorage.setItem("dictionary", JSON.stringify(shuffledData));
-    //     } else {
-    //         const getDataFromLocalStorge = localStorage.getItem(JSON.parse("dictionary"));
-    //         setDictionary( getDataFromLocalStorge );
-    //         console.log("dict ",getDataFromLocalStorge);
-    //     }
-    // }, [setDictionary])
     
     return (
         <DictionaryContext.Provider value={{ dictionaryData }} >

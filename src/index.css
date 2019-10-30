@@ -257,6 +257,7 @@ body {
   padding: 15px;
   background-color: #A3C6FF;
   position: relative;
+  user-select: none;
 }
 .mainContent .navigation--left:active, .mainContent .navigation--right:active {
   transform: scale(1.1);
@@ -294,6 +295,7 @@ body {
   border-radius: 5px;
   background-color: #23dba2;
   color: #fff;
+  user-select: none;
 }
 .mainContent .navigation .button--goToTest:active {
   transform: translate(2px, 2px);

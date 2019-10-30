@@ -97,6 +97,7 @@
             padding: 15px;
             background-color: #A3C6FF;
             position: relative;
+            user-select: none;
 
             &:active{
                 transform: scale(1.1);
@@ -139,6 +140,7 @@
             border-radius: 5px;
             background-color: $background-color-menu;
             color: $whiteText;
+            user-select: none;
 
             &:active{
                 transform: translate(2px, 2px);
