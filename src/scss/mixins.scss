@@ -6,6 +6,12 @@
 	}
 }
 
+@mixin mediaQueryHeight ($arg) {
+	@media screen and (max-height: $arg) {
+		@content;
+	}
+}
+
 @mixin button {
     width: 90%;
     height: auto;
@@ -38,7 +44,7 @@
 }
 
 @mixin settings-button--pressed {
-    box-shadow: inset 2px 2px 2px $buttonShadowInset;
+    box-shadow: inset 2px 2px 2px $buttonShadow;
 
     &:active{
         transform: unset;

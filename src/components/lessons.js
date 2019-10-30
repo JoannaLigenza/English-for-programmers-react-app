@@ -6,6 +6,7 @@ import { MainContentContext } from '../contexts/MainContentContext.js';
 import { DictionaryContext } from '../contexts/DictionaryContext.js';
 import { SettingsContext } from '../contexts/SettingsContext.js';
 import AdvancedOptions from './advancedOptions.js';
+import LessonNavigation from './lessonNavigation.js';
 
 // set speaking
 const speak = (text, lang, speed) => {
@@ -69,17 +70,8 @@ const Lessons = () => {
                     <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
                         onClick={() => speak(dictionary[words.currentWord].word, language, speakRate)}/>
                 </div>
-                <div className="navigation">
-                    <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord <= displayFrom ? "hidden" : "visible"}}>Prev</div>
-                    <div className="button button--goToTest" style={{display: words.currentWord >= displayTo ? "block" : "none"}}
-                        onClick={() => {
-                            setContent.changeContent("Test");
-                            visibility.changeVisibility("activeOverlap", "Test");
-                        }}>
-                        Solve test
-                    </div>
-                    <div className="navigation--right" onClick={() => changeWord("next")} style={{visibility: words.currentWord >= displayTo ? "hidden" : "visible"}}>Next</div>
-                </div>
+                <LessonNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
+                    setContent={setContent} visibility={visibility} goToOverlap="Reading" buttonText="Go practice" displayLeftArrow="yes"/>
             </div>
             <AdvancedOptions wordIndex={words.currentWord}/>
         </div>

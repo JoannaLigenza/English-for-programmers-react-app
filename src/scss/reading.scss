@@ -1,0 +1,58 @@
+@import "variables"; 
+@import "mixins"; 
+
+.readingSection {
+    text-align: center;
+    padding: 20px 0;
+
+    &__word {
+        margin: 10px 0;
+
+        @include mediaQuery(700px) {
+            margin: 20px 0;
+            margin-bottom: 50px;
+        }
+    }
+
+    &__answers {
+        width: 320px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 auto;
+
+        @include mediaQuery(360px) {
+            width: 340px;
+        }
+
+        .oneAnswer-button {
+            @include settings-button;
+            box-shadow: 2px 2px 2px $buttonShadow;
+            width: 130px;
+            height: 130px;
+            padding: 15px;
+            margin: 15px 5px;
+            border: 1px solid $grayTextColor;
+            display: table;
+
+            @include mediaQuery(360px) {
+                width: 150px;
+                margin: 15px 10px;
+            }
+
+            @include mediaQueryHeight(700px) {
+                height: 100px;                      // mQ: max-height 700 px
+            }
+
+            &--pressed {
+                color: red;
+                @include settings-button--pressed;
+            }
+
+            p {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+    }
+}

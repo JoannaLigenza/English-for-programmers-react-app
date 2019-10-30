@@ -1,0 +1,68 @@
+@import "variables"; 
+@import "mixins"; 
+
+.navigation {
+    margin: 50px 0;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+
+    &--left, &--right{
+        padding: 15px;
+        background-color: #A3C6FF;
+        position: relative;
+        user-select: none;
+
+        &:active{
+            transform: scale(1.1);
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    &--left::before {
+        content: ''; 
+        position: absolute;
+        top: -35px;
+        left: -55px;
+        width: 0;
+        height: 0;
+        border-top: 60px solid transparent;
+        border-bottom: 60px solid transparent; 
+        border-right: 55px solid #A3C6FF; 
+    }
+
+    &--right::after {
+        content: ''; 
+        position: absolute;
+        top: -35px;
+        left: 55px;
+        width: 0;
+        height: 0;
+        border-top: 60px solid transparent;
+        border-bottom: 60px solid transparent; 
+        border-left: 55px solid #A3C6FF; 
+    }
+
+    .button--goToTest {
+        position: absolute;
+        left: 40%;
+        width: 150px;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: $background-color-menu;
+        color: $whiteText;
+        user-select: none;
+        cursor: pointer;
+
+        &:active{
+            transform: translate(2px, 2px);
+        }
+        
+        @include mediaQuery(460px) {
+            left: 60%;
+        }
+    }
+}

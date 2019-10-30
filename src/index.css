@@ -50,6 +50,7 @@ body {
   top: 0;
   width: 300px;
   height: 100%;
+  min-height: 100vh;
   z-index: 10;
   background: linear-gradient(to right, #23dba1 0%, #66f5a6 28%, #66f5a6 51%, #66f5a6 73%, #23dba1 100%);
   padding: 25px 0;
@@ -128,19 +129,9 @@ body {
   height: 100%;
   position: relative;
 }
-.main .mainContainer .button {
-  position: absolute;
-  width: 90%;
-  height: auto;
-  padding: 10px;
-  background: transparent;
-  border: 1px solid #fff;
-  right: 0;
-}
-.main .mainContainer .button:hover {
-  cursor: pointer;
-}
 .main .mainContainer .button--close {
+  position: absolute;
+  right: 0;
   width: 90%;
   height: auto;
   padding: 10px;
@@ -156,6 +147,9 @@ body {
   .main .mainContainer .button--close {
     display: none;
   }
+}
+.main .mainContainer .button--close:hover {
+  cursor: pointer;
 }
 
 .mainContent {
@@ -247,25 +241,30 @@ body {
 .mainContent__imageContainer .mainContent__speaker-icon:active {
   transform: scale(1.1);
 }
-.mainContent .navigation {
+
+.lessons {
+  min-height: 100vh;
+}
+
+.navigation {
   margin: 50px 0;
   display: flex;
   justify-content: space-around;
   position: relative;
 }
-.mainContent .navigation--left, .mainContent .navigation--right {
+.navigation--left, .navigation--right {
   padding: 15px;
   background-color: #A3C6FF;
   position: relative;
   user-select: none;
 }
-.mainContent .navigation--left:active, .mainContent .navigation--right:active {
+.navigation--left:active, .navigation--right:active {
   transform: scale(1.1);
 }
-.mainContent .navigation--left:hover, .mainContent .navigation--right:hover {
+.navigation--left:hover, .navigation--right:hover {
   cursor: pointer;
 }
-.mainContent .navigation--left::before {
+.navigation--left::before {
   content: "";
   position: absolute;
   top: -35px;
@@ -276,7 +275,7 @@ body {
   border-bottom: 60px solid transparent;
   border-right: 55px solid #A3C6FF;
 }
-.mainContent .navigation--right::after {
+.navigation--right::after {
   content: "";
   position: absolute;
   top: -35px;
@@ -287,7 +286,7 @@ body {
   border-bottom: 60px solid transparent;
   border-left: 55px solid #A3C6FF;
 }
-.mainContent .navigation .button--goToTest {
+.navigation .button--goToTest {
   position: absolute;
   left: 40%;
   width: 150px;
@@ -296,18 +295,15 @@ body {
   background-color: #23dba2;
   color: #fff;
   user-select: none;
+  cursor: pointer;
 }
-.mainContent .navigation .button--goToTest:active {
+.navigation .button--goToTest:active {
   transform: translate(2px, 2px);
 }
 @media screen and (min-width: 460px) {
-  .mainContent .navigation .button--goToTest {
+  .navigation .button--goToTest {
     left: 60%;
   }
-}
-
-.lessons {
-  min-height: 100vh;
 }
 
 .advancedOptions {
@@ -335,6 +331,79 @@ body {
 }
 .advancedOptions__option--list {
   margin: 0;
+}
+
+.readingSection {
+  text-align: center;
+  padding: 20px 0;
+}
+.readingSection__word {
+  margin: 10px 0;
+}
+@media screen and (min-width: 700px) {
+  .readingSection__word {
+    margin: 20px 0;
+    margin-bottom: 50px;
+  }
+}
+.readingSection__answers {
+  width: 320px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+@media screen and (min-width: 360px) {
+  .readingSection__answers {
+    width: 340px;
+  }
+}
+.readingSection__answers .oneAnswer-button {
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #fff;
+  width: 100px;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #fff;
+  user-select: none;
+  box-shadow: 2px 2px 2px #7e7e7e;
+  width: 130px;
+  height: 130px;
+  padding: 15px;
+  margin: 15px 5px;
+  border: 1px solid #2c2c2c;
+  display: table;
+}
+.readingSection__answers .oneAnswer-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+@media screen and (min-width: 360px) {
+  .readingSection__answers .oneAnswer-button {
+    width: 150px;
+    margin: 15px 10px;
+  }
+}
+@media screen and (max-height: 700px) {
+  .readingSection__answers .oneAnswer-button {
+    height: 100px;
+  }
+}
+.readingSection__answers .oneAnswer-button--pressed {
+  color: red;
+  box-shadow: inset 2px 2px 2px #7e7e7e;
+}
+.readingSection__answers .oneAnswer-button--pressed:active {
+  transform: unset;
+}
+.readingSection__answers .oneAnswer-button p {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 /*# sourceMappingURL=index.css.map */

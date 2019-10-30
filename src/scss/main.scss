@@ -20,23 +20,19 @@
         height: 100%;
         position: relative;
 
-        .button {
-            position: absolute;
-            @include button;
-            right: 0;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
         .button--close {
+            position: absolute;
+            right: 0;
             @include button;
             @include buttonClose;
             border: 1px solid $closeButtonsBorder;
 
             @include mediaQuery(700px) {
                 display: none;
+            }
+
+            &:hover {
+                cursor: pointer;
             }
         }
     }
