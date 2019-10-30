@@ -26,6 +26,7 @@
         background: $background-color-advanced-options-col;
         padding: 25px 0;
         text-align: center;
+        color: $grayTextColor;
 
         .settings-button {
             @include settings-button;
@@ -48,8 +49,8 @@
 
     .settingsOpened {
         left: $settingsWidth;
-        border: 1px solid $advancedOptionsOptionColor;
-        color: $advancedOptionsOptionColor;
+        border: 1px solid $grayTextColor;
+        color: $grayTextColor;
         z-index: 15;
     }
 

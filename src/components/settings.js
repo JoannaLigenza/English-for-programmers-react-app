@@ -16,8 +16,10 @@ const Settings = () => {
             </div>
             <div className="settings__speak-rate-options">
                 <h3>Prędkość mówienia</h3>
-                <div>Normalna</div>
-                <div>Wolna</div>
+                <div className={ getSettings.settings.speakRate === "normal" ? "settings-button settings-button--pressed" : "settings-button"}
+                    onClick={() => getSettings.setSettings("speakRate", "normal")}>Normalna</div>
+                <div className={ getSettings.settings.speakRate === "slow" ? "settings-button settings-button--pressed" : "settings-button"}
+                    onClick={() => getSettings.setSettings("speakRate", "slow")}>Wolna</div>
             </div>
             <div className="settings__advanced-options">
                 <h3>Zaawansowane opcje</h3>

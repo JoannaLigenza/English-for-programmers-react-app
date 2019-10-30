@@ -15,7 +15,12 @@ const speak = (text, lang, speed) => {
     }
     let rate = 1;
     if (speed === "slow") {
-        rate = 0.7;
+        if (lang === "en-GB") {
+            rate = 0.7;
+        }
+        if (lang === "en-US") {
+            rate = 0.4;
+        }
     }
     //speech functionality (utterance - przemowienie)
     const utterance = new SpeechSynthesisUtterance(text);
@@ -33,6 +38,8 @@ const Lessons = () => {
     const getSettings = useContext(SettingsContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
     const language = getSettings.settings.language;
+    const speakRate = getSettings.settings.speakRate;
+    console.log("speakRate ", speakRate)
     // display words depends on lesson number
     const wordsInLesson = getSettings.settings.wordsInLesson;
     const displayFrom = (lessonNumber-1)*wordsInLesson;
@@ -61,7 +68,7 @@ const Lessons = () => {
                     <div className="mainContent__polishWord">{dictionary[words.currentWord].translation}</div>
                     <div className="mainContent__spelling">{dictionary[words.currentWord].spelling}</div>
                     <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
-                        onClick={() => speak(dictionary[words.currentWord].word, language, "fast")}/>
+                        onClick={() => speak(dictionary[words.currentWord].word, language, speakRate)}/>
                 </div>
                 <div className="navigation">
                     <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord <= displayFrom ? "hidden" : "visible"}}>Prev</div>

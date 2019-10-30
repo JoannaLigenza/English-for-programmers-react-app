@@ -6,6 +6,7 @@
     height: 100%;
     padding: 2em 1em;
     background: $background-color-advanced-options-col;
+    color: $grayTextColor;
 
     @include mediaQuery(1100px) {
         width: 500px;
@@ -14,12 +15,11 @@
 
     &__desc {
         padding: 25px 0 0 0;
-        color: $advancedOptionsDescColor;
+        color: $greenTextColor;
     }
 
     &__option {
         padding: 1em 0;
-        color: $advancedOptionsOptionColor;
 
         li {
             text-align: left;

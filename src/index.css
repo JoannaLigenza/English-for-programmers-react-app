@@ -54,6 +54,7 @@ body {
   background: linear-gradient(to right, #23dba1 0%, #66f5a6 28%, #66f5a6 51%, #66f5a6 73%, #23dba1 100%);
   padding: 25px 0;
   text-align: center;
+  color: #2c2c2c;
 }
 .menu .settings .settings-button {
   width: 90%;
@@ -71,6 +72,7 @@ body {
 }
 .menu .settings .settings-button:active {
   transform: translate(2px, 2px);
+  box-shadow: none;
 }
 .menu .settings .settings-button--pressed {
   box-shadow: inset 2px 2px 2px #7e7e7e;
@@ -311,6 +313,7 @@ body {
   height: 100%;
   padding: 2em 1em;
   background: linear-gradient(to right, #23dba1 0%, #66f5a6 28%, #66f5a6 51%, #66f5a6 73%, #23dba1 100%);
+  color: #2c2c2c;
 }
 @media screen and (min-width: 1100px) {
   .advancedOptions {
@@ -324,7 +327,6 @@ body {
 }
 .advancedOptions__option {
   padding: 1em 0;
-  color: #2c2c2c;
 }
 .advancedOptions__option li {
   text-align: left;
