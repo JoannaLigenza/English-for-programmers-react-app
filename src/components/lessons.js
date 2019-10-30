@@ -39,7 +39,6 @@ const Lessons = () => {
     const dictionary = getDictionary.dictionaryData.dictionary;
     const language = getSettings.settings.language;
     const speakRate = getSettings.settings.speakRate;
-    console.log("speakRate ", speakRate)
     // display words depends on lesson number
     const wordsInLesson = getSettings.settings.wordsInLesson;
     const displayFrom = (lessonNumber-1)*wordsInLesson;

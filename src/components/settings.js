@@ -5,6 +5,7 @@ import { SettingsContext } from '../contexts/SettingsContext.js';
 const Settings = () => {
     const visibility = useContext(VisibilityContext);
     const getSettings = useContext(SettingsContext);
+    console.log("visible ", visibility.isVisible)
     return (
         <div className={visibility.isVisible.isOptionsVisible ? "settings visible" : "settings hidden"}>
             <div className="settings__language-options">
@@ -23,8 +24,10 @@ const Settings = () => {
             </div>
             <div className="settings__advanced-options">
                 <h3>Zaawansowane opcje</h3>
-                <div>Pokaż</div>
-                <div>Ukryj</div>
+                <div className={ visibility.isVisible.areAdvanceOptionsVisible ? "settings-button settings-button--pressed" : "settings-button"}
+                    onClick={() => visibility.changeVisibility("areAdvanceOptionsVisible", true)}>Pokaż</div>
+                <div className={ visibility.isVisible.areAdvanceOptionsVisible ? "settings-button" : "settings-button settings-button--pressed"}
+                    onClick={() => visibility.changeVisibility("areAdvanceOptionsVisible", false)}>Ukryj</div>
             </div>
             <div className="settings__word-number">
                 <h3>Ilość słów w lekcji</h3>

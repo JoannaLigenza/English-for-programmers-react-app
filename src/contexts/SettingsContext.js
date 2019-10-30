@@ -16,7 +16,6 @@ saveDataInStorage();
 // get data from localstorage
 const language = JSON.parse(localStorage.getItem("language"));
 const speakRate = JSON.parse(localStorage.getItem("speakRate"));
-console.log("lang ", language)
 
 const SettingsContextProvider = (props) => {
     const [settings, changeSettings] = useState({
