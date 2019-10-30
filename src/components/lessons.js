@@ -5,6 +5,7 @@ import { VisibilityContext } from '../contexts/VisibilityContext.js';
 import { MainContentContext } from '../contexts/MainContentContext.js';
 import { DictionaryContext } from '../contexts/DictionaryContext.js';
 import { SettingsContext } from '../contexts/SettingsContext.js';
+import AdvancedOptions from './advancedOptions.js';
 
 // set speaking
 const speak = (text, lang, speed) => {
@@ -51,27 +52,29 @@ const Lessons = () => {
     }
 
     return (
-        <div className="mainContent lessons" style={{backgroundColor: `${backgroundColor}`}}>
-            <h2 className="mainContent__ovlpTitle">Lesson {lessonNumber}</h2>
-            <div className="mainContent__imageContainer" style={{backgroundImage: `url(${noteyellow})`}}>
-                <h3 className="mainContent__englishWord">{dictionary[words.currentWord].word}</h3>
-                <div className="mainContent__polishWord">{dictionary[words.currentWord].translation}</div>
-                <div className="mainContent__spelling">{dictionary[words.currentWord].spelling}</div>
-                <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
-                    onClick={() => speak(dictionary[words.currentWord].word, "en-GB", "fast")}/>
-            </div>
-            <div className="navigation">
-                <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord <= displayFrom ? "hidden" : "visible"}}>Prev</div>
-                <div className="button button--goToTest" style={{display: words.currentWord >= displayTo ? "block" : "none"}}
-                    onClick={() => {
-                        setContent.changeContent("Test");
-                        visibility.changeVisibility("activeOverlap", "Test");
-                    }}>
-                    Zrób test
+        <div className="mainContent" style={{backgroundColor: `${backgroundColor}`}}>
+            <div className="mainContent__lessons">
+                <h2 className="mainContent__ovlpTitle">Lesson {lessonNumber}</h2>
+                <div className="mainContent__imageContainer" style={{backgroundImage: `url(${noteyellow})`}}>
+                    <h3 className="mainContent__englishWord">{dictionary[words.currentWord].word}</h3>
+                    <div className="mainContent__polishWord">{dictionary[words.currentWord].translation}</div>
+                    <div className="mainContent__spelling">{dictionary[words.currentWord].spelling}</div>
+                    <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
+                        onClick={() => speak(dictionary[words.currentWord].word, "en-GB", "fast")}/>
                 </div>
-                <div className="navigation--right" onClick={() => changeWord("next")} style={{visibility: words.currentWord >= displayTo ? "hidden" : "visible"}}>Next</div>
+                <div className="navigation">
+                    <div className="navigation--left" onClick={() => changeWord("prev")} style={{visibility: words.currentWord <= displayFrom ? "hidden" : "visible"}}>Prev</div>
+                    <div className="button button--goToTest" style={{display: words.currentWord >= displayTo ? "block" : "none"}}
+                        onClick={() => {
+                            setContent.changeContent("Test");
+                            visibility.changeVisibility("activeOverlap", "Test");
+                        }}>
+                        Solve test
+                    </div>
+                    <div className="navigation--right" onClick={() => changeWord("next")} style={{visibility: words.currentWord >= displayTo ? "hidden" : "visible"}}>Next</div>
+                </div>
             </div>
-            
+            <AdvancedOptions wordIndex={words.currentWord}/>
         </div>
     )
 }

@@ -1,9 +1,13 @@
 @import "variables"; 
-// @import "mixins"; 
+@import "mixins"; 
 
 body {
     margin: 0;
     padding: 0;
+
+    @include mediaQuery(400px) {
+       // overflow-x: hidden;
+    }
     // background-color: $background-color;
 }
 
@@ -22,6 +26,10 @@ body {
 .hidden {
     transform: translateX(-100%);
     z-index: 1;
+    display: none;
+    @include mediaQuery(700px) {
+       display: block;
+    }
 }
 
 .visible {
@@ -32,3 +40,4 @@ body {
 @import "menu";
 @import "main";
 @import "lessons";
+@import "advancedOptions";

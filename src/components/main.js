@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { VisibilityContext } from '../contexts/VisibilityContext.js';
 import { MainContentContext } from '../contexts/MainContentContext.js';
-import Lessons from './lessons.js'
-import Reading from './reading.js'
-import Writing from './writing.js'
-import Listening from './listening.js'
-import Test from './test.js'
+import Lessons from './lessons.js';
+import Reading from './reading.js';
+import Writing from './writing.js';
+import Listening from './listening.js';
+import Test from './test.js';
 
 const Main = () => {
     const visibility = useContext(VisibilityContext);
