@@ -32,6 +32,7 @@ saveDataInStorage();
 // get data from localstorage
 const getDataFromStorage = JSON.parse(localStorage.getItem("dictionary"));
 const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
+console.log("less ", lessonNumber)
 
 
 const DictionaryContextProvider = (props) => {
