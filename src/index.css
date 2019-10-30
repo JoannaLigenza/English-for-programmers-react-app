@@ -51,7 +51,7 @@ body {
   width: 300px;
   height: 100%;
   z-index: 10;
-  background-color: yellow;
+  background: linear-gradient(to right, #23dba1 0%, #66f5a6 28%, #66f5a6 51%, #66f5a6 73%, #23dba1 100%);
 }
 .menu .showSettings {
   position: absolute;
@@ -60,10 +60,12 @@ body {
   border: 1px solid #fff;
   border-radius: 0 5px 5px 0;
   color: #fff;
+  cursor: pointer;
 }
 .menu .settingsOpened {
   left: 300px;
-  color: black;
+  border: 1px solid #2c2c2c;
+  color: #2c2c2c;
   z-index: 15;
 }
 .menu .ovlp {
@@ -213,6 +215,7 @@ body {
   position: absolute;
   bottom: 20%;
   right: 15%;
+  cursor: pointer;
 }
 .mainContent__imageContainer .mainContent__speaker-icon:active {
   transform: scale(1.1);

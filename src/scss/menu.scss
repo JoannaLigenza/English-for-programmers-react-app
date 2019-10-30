@@ -23,7 +23,7 @@
         width: $settingsWidth;
         height: 100%;
         z-index: 10;
-        background-color: yellow;
+        background: $background-color-advanced-options-col;
     }
 
     .showSettings {
@@ -33,11 +33,13 @@
         border: 1px solid $buttonsBorder;
         border-radius: 0 5px 5px 0;
         color: $buttonsBorder;
+        cursor: pointer;
     }
 
     .settingsOpened {
         left: $settingsWidth;
-        color: black;
+        border: 1px solid $advancedOptionsOptionColor;
+        color: $advancedOptionsOptionColor;
         z-index: 15;
     }
 

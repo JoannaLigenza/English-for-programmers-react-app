@@ -14,12 +14,12 @@
 
     &__desc {
         padding: 25px 0 0 0;
-        color: rgb(0, 51, 7);
+        color: $advancedOptionsDescColor;
     }
 
     &__option {
         padding: 1em 0;
-        color: rgb(44, 44, 44);
+        color: $advancedOptionsOptionColor;
 
         li {
             text-align: left;
