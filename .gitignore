@@ -24,4 +24,5 @@ yarn-error.log*
 
 # folders and files
 /img-sample
+/src/data/dictionary.json
 *.map
