@@ -10,9 +10,9 @@ const ListeningOvlp = () => {
         <div className={activeOverlap === "Listening" ? "ovlp ovlp--active" : "ovlp"} onClick={() => { 
             if (window.innerWidth < 700) { 
                 visibility.changeVisibility("main"); 
-                setContent.changeContent("Listening");
+                setContent.changeContent("setContentInOverlap", "Listening");
             } else {
-                setContent.changeContent("Listening");
+                setContent.changeContent("setContentInOverlap", "Listening");
                 visibility.changeVisibility("activeOverlap", "Listening");
             }
         }}>
