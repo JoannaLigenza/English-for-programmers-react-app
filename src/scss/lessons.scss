@@ -79,11 +79,7 @@
             position: absolute;
             bottom: 20%;
             right: 15%;
-            cursor: pointer;
-
-            &:active {
-                transform: scale(1.1);
-            }
+            @include speaker-icon;
         }
     }
 }
@@ -91,4 +87,8 @@
 .lessons {
     min-height: 100vh;
     // background-color: red;
+}
+
+.speaker-icon {
+    @include speaker-icon;
 }

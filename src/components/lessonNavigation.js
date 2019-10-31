@@ -15,7 +15,7 @@ const LessonNavigation = (props) => {
                 Prev
             </div>
             <div style={{display: props.displayLoudSpeaker === "yes" ? "block" : "none"}}>
-                <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
+                <img src={speaker} alt="speaker icon - press and listen" className="speaker-icon"
                         onClick={() => props.speakWord !== undefined ? speak(props.speakWord, language, speakRate) : null}
                         style={{position: "absolute"}}/>
             </div>
