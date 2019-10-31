@@ -45,7 +45,6 @@
             }
 
             &--pressed {
-                color: red;
                 @include settings-button--pressed;
             }
 
@@ -55,4 +54,16 @@
             }
         }
     }
+}
+
+.redColor {
+    color: red;
+}
+
+.greenColor {
+    color: green;
+}
+
+.grayColor {
+    color: $grayTextColor;
 }

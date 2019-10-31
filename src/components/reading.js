@@ -22,19 +22,24 @@ const Reading = () => {
     }
     const [words, setWords] = useState({
         currentWord: (lessonNumber-1)*wordsInLesson,
-        rightAnswer: "plik",
-        choosenAnswer: "none"
+        answer: "plik",
+        choosenAnswer: "none",
+        rightAnswer: "grayColor",
     });
-    console.log(words.choosenAnswer, words.rightAnswer);
+
     const changeWord = (action, set) => {
         // if (action === "prev") {
         //     setWords({...words, currentWord: words.currentWord - 1 })
         // }
         if (action === "next") {
-            setWords({...words, currentWord: words.currentWord + 1 })
+            setWords({...words, currentWord: words.currentWord + 1, choosenAnswer: "grayColor", });
         }
         if (action === "choosenAnswer") {
-            setWords({...words, choosenAnswer: set });
+            let rightAnswer = "redColor";
+            if (set === dictionary[words.currentWord].translation) {
+                rightAnswer = "greenColor";
+            }
+            setWords({...words, choosenAnswer: set, rightAnswer: rightAnswer });
         }
     }
     const chooseAnswers = () => {
@@ -52,11 +57,15 @@ const Reading = () => {
     }
     let answers = chooseAnswers();
     answers = answers.map( (answer, index) => {
-        return <div key={index} onClick={() => changeWord("choosenAnswer", "plik")}
+        console.log(words.rightAnswer, words.choosenAnswer, answer);
+        return <div key={index} onClick={() => changeWord("choosenAnswer", answer)}
                     className={ words.choosenAnswer === answer ? "oneAnswer-button oneAnswer-button--pressed" : "oneAnswer-button"}>
-                <p>{answer}</p>
+                <p className={ words.choosenAnswer === answer ? words.rightAnswer : "grayColor" } >
+                    {answer}
+                </p>
             </div>
     })
+    
     return (
         <div className="readingSection">
             <h2 className="readingSection__word">{dictionary[words.currentWord].word}</h2>

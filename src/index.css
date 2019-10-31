@@ -395,7 +395,6 @@ body {
   }
 }
 .readingSection__answers .oneAnswer-button--pressed {
-  color: red;
   box-shadow: inset 2px 2px 2px #7e7e7e;
 }
 .readingSection__answers .oneAnswer-button--pressed:active {
@@ -404,6 +403,18 @@ body {
 .readingSection__answers .oneAnswer-button p {
   display: table-cell;
   vertical-align: middle;
+}
+
+.redColor {
+  color: red;
+}
+
+.greenColor {
+  color: green;
+}
+
+.grayColor {
+  color: #2c2c2c;
 }
 
 /*# sourceMappingURL=index.css.map */

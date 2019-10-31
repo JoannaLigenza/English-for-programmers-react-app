@@ -16,7 +16,6 @@ const LessonNavigation = (props) => {
             </div>
             <div className="navigation--right" onClick={() => {
                     props.changeWord("next");
-                    props.changeWord("choosenAnswer", "none");
                 }}
                 style={{visibility: props.words.currentWord >= props.displayTo ? "hidden" : "visible"}}>
                 Next
