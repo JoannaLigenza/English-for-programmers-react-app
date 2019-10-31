@@ -7,28 +7,7 @@ import { DictionaryContext } from '../contexts/DictionaryContext.js';
 import { SettingsContext } from '../contexts/SettingsContext.js';
 import AdvancedOptions from './advancedOptions.js';
 import LessonNavigation from './lessonNavigation.js';
-
-// set speaking
-const speak = (text, lang, speed) => {
-    // if speaking is in progress don't invoke utterance again
-    if (speechSynthesis.speaking) {
-        return;
-    }
-    let rate = 1;
-    if (speed === "slow") {
-        if (lang === "en-GB") {
-            rate = 0.7;
-        }
-        if (lang === "en-US") {
-            rate = 0.4;
-        }
-    }
-    //speech functionality (utterance - przemowienie)
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang;
-    utterance.rate = rate;
-    speechSynthesis.speak(utterance);
-}
+import speak from '../sounds/speaker.js';
 
 const Lessons = () => {
     const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
@@ -71,7 +50,8 @@ const Lessons = () => {
                         onClick={() => speak(dictionary[words.currentWord].word, language, speakRate)}/>
                 </div>
                 <LessonNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
-                    setContent={setContent} visibility={visibility} goToOverlap="Reading" buttonText="Go practice" displayLeftArrow="yes"/>
+                    setContent={setContent} visibility={visibility} goToOverlap="Reading" buttonText="Go practice" displayLeftArrow="yes"
+                    displayLoudSpeaker="no" />
             </div>
             <AdvancedOptions wordIndex={words.currentWord}/>
         </div>

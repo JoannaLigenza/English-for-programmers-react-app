@@ -25,7 +25,7 @@ const Reading = () => {
     // state
     const [words, setWords] = useState({
         currentWord: (lessonNumber-1)*wordsInLesson,
-        answer: "plik",
+        answer: "",
         choosenAnswer: "none",
         rightAnswer: "grayColor",
         actualAnswers: actualAnswers
@@ -114,7 +114,7 @@ const Reading = () => {
             </div>
             <LessonNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
                 setContent={setContent} visibility={visibility} goToOverlap="Listening" buttonText="Go practice"
-                displayLeftArrow="no" getSettings={getSettings} rightAnswer={words.rightAnswer} />
+                displayLeftArrow="no" getSettings={getSettings} rightAnswer={words.rightAnswer} displayLoudSpeaker="no"/>
         </div>
     )
 }

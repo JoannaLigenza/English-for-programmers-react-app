@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import speaker from '../img/speaker.svg';
 import playSound from '../sounds/sounds.js';
+import speak from '../sounds/speaker.js';
+import { SettingsContext } from '../contexts/SettingsContext.js';
 
 const LessonNavigation = (props) => {
-    console.log(props.rightAnswer)
+    const getSettings = useContext(SettingsContext);
+    const language = getSettings.settings.language;
+    const speakRate = getSettings.settings.speakRate;
     return (
         <div className="navigation">
             <div className="navigation--left" onClick={() => props.changeWord("prev")} 
                 style={{visibility: props.words.currentWord <= props.displayFrom ? "hidden" : "visible", display: props.displayLeftArrow === "yes" ? "block" : "none"}}>
                 Prev
+            </div>
+            <div style={{display: props.displayLoudSpeaker === "yes" ? "block" : "none"}}>
+                <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
+                        onClick={() => props.speakWord !== undefined ? speak(props.speakWord, language, speakRate) : null}
+                        style={{position: "absolute"}}/>
             </div>
             <div className="button button--goToTest" style={{display: props.words.currentWord >= props.displayTo ? "block" : "none"}}
                 onClick={() => {
