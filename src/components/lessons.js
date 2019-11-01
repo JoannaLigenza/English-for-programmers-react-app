@@ -50,7 +50,7 @@ const Lessons = () => {
                         onClick={() => speak(dictionary[words.currentWord].word, language, speakRate)}/>
                 </div>
                 <LessonNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
-                    setContent={setContent} visibility={visibility} goToOverlap="Reading" buttonText="Go practice" displayLeftArrow="yes"
+                    setContent={setContent} visibility={visibility} goToOverlap="Reading" buttonText="Practice reading" displayLeftArrow="yes"
                     displayLoudSpeaker="no" />
             </div>
             <AdvancedOptions wordIndex={words.currentWord}/>

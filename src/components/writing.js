@@ -71,7 +71,8 @@ const Writing = () => {
             <h2 className="readingSection__word">{dictionary[words.currentWord].translation}</h2>
             <div className="readingSection__answers">
                 <form>
-                    <input type="text" onChange={(e)=> changeWord("setInputValue", e.target.value)}
+                    <label htmlFor="write-in-english">Napisz po angielsku:</label><br/>
+                    <input type="text" name="write-in-english" onChange={(e)=> changeWord("setInputValue", e.target.value)}
                         style={{borderColor: borderColor()}} className="text-input" />
                     <div className="input-button" onClick={() => changeWord("rightAnswer")}>Check answer</div>
                 </form>

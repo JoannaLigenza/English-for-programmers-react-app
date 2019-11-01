@@ -81,6 +81,7 @@ const Listening = () => {
             answers = actualAnswers;
         }
         setContent.changeContent("actualAnswers", answers);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [words.choosenAnswer]);
 
 
@@ -117,7 +118,7 @@ const Listening = () => {
                 {answers}
             </div>
             <LessonNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
-                setContent={setContent} visibility={visibility} goToOverlap="Writing" buttonText="Go practice"
+                setContent={setContent} visibility={visibility} goToOverlap="Writing" buttonText="Practice writing"
                 displayLeftArrow="no" getSettings={getSettings} rightAnswer={words.rightAnswer} displayLoudSpeaker="yes"
                 speakWord={dictionary[words.currentWord].word} />
         </div>

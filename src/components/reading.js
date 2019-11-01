@@ -114,7 +114,7 @@ const Reading = () => {
                 {answers}
             </div>
             <LessonNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
-                setContent={setContent} visibility={visibility} goToOverlap="Listening" buttonText="Go practice"
+                setContent={setContent} visibility={visibility} goToOverlap="Listening" buttonText="Practice listening"
                 displayLeftArrow="no" getSettings={getSettings} rightAnswer={words.rightAnswer} displayLoudSpeaker="no"/>
         </div>
     )
