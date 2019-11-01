@@ -253,6 +253,37 @@ body {
   transform: scale(1.1);
 }
 
+.text-input {
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 1em 0;
+  outline: none;
+}
+
+.input-button {
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #fff;
+  width: 100px;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #fff;
+  user-select: none;
+  width: 200px;
+  margin-bottom: 3em;
+  border: 1px solid #7e7e7e;
+  box-shadow: 2px 2px 2px #7e7e7e;
+}
+.input-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
 .navigation {
   margin: 50px 0;
   display: flex;

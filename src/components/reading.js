@@ -77,6 +77,7 @@ const Reading = () => {
             answers = actualAnswers;
         }
         setContent.changeContent("actualAnswers", answers);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [words.choosenAnswer]);
 
 
