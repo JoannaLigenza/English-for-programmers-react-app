@@ -26,6 +26,7 @@
             @include button;
             @include buttonClose;
             border: 1px solid $closeButtonsBorder;
+            z-index: 10;
 
             @include mediaQuery(700px) {
                 display: none;

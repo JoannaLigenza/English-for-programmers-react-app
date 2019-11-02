@@ -6,6 +6,9 @@ import Reading from './reading.js';
 import Writing from './writing.js';
 import Listening from './listening.js';
 import Test from './test.js';
+import TestOne from './testOne.js';
+import TestTwo from './testTwo.js';
+import TestThree from './testThree.js';
 
 const Main = () => {
     const visibility = useContext(VisibilityContext);
@@ -18,7 +21,10 @@ const Main = () => {
         reading: Reading, 
         writing: Writing,
         listening: Listening,
-        test: Test
+        test: Test,
+        testOne: TestOne,
+        testTwo: TestTwo,
+        testThree: TestThree
     }
     let DisplayContent = content.lessons;
 
@@ -32,6 +38,12 @@ const Main = () => {
         DisplayContent = content.listening;
     } else if (whichContentLoad === "Test") {
         DisplayContent = content.test;
+    } else if (whichContentLoad === "TestOne") {
+        DisplayContent = content.testOne;
+    } else if (whichContentLoad === "TestTwo") {
+        DisplayContent = content.testTwo;
+    } else if (whichContentLoad === "TestThree") {
+        DisplayContent = content.testThree;
     }
 
     return (

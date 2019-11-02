@@ -142,6 +142,7 @@ body {
   padding: 10px 20px;
   border-radius: 5px;
   border: 1px solid #2e2e2e;
+  z-index: 10;
 }
 @media screen and (min-width: 700px) {
   .main .mainContainer .button--close {
@@ -453,6 +454,33 @@ body {
 
 .grayColor {
   color: #2c2c2c;
+}
+
+.testSection {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #bdffc6;
+}
+.testSection__section {
+  height: calc(100vh / 3);
+  position: relative;
+}
+.testSection__section .testSection__content {
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+  padding: 2em;
+  border-bottom: 1px solid gray;
+  cursor: pointer;
+}
+@media screen and (min-width: 450px) {
+  .testSection__section .testSection__content {
+    width: 400px;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
