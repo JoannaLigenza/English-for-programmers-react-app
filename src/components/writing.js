@@ -34,7 +34,7 @@ const Writing = () => {
     // state modification
     const changeWord = (action, set) => {
         if (action === "next") {
-            setWords({...words, currentWord: words.currentWord + 1, rightAnswer: ""});
+            setWords({...words, currentWord: words.currentWord + 1, rightAnswer: "", inputValue: ""});
         }
         if (action === "rightAnswer") {
             if (dictionary[words.currentWord].word === words.inputValue) {
@@ -72,7 +72,7 @@ const Writing = () => {
             <div className="readingSection__answers">
                 <form>
                     <label htmlFor="write-in-english">Napisz po angielsku:</label><br/>
-                    <input type="text" name="write-in-english" onChange={(e)=> changeWord("setInputValue", e.target.value)}
+                    <input type="text" name="write-in-english" value={words.inputValue} onChange={(e)=> changeWord("setInputValue", e.target.value)}
                         style={{borderColor: borderColor()}} className="text-input" />
                     <div className="input-button" onClick={() => changeWord("rightAnswer")}>Check answer</div>
                 </form>
