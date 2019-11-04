@@ -6,9 +6,9 @@ import Reading from './reading.js';
 import Writing from './writing.js';
 import Listening from './listening.js';
 import Test from './test.js';
-import TestOne from './testOne.js';
-import TestTwo from './testTwo.js';
-import TestThree from './testThree.js';
+import TestWords from './testComponents/testWords.js';
+import TestRepeat from './testComponents/testRepeat.js';
+import TestFavourites from './testComponents/testFavourites.js';
 
 const Main = () => {
     const visibility = useContext(VisibilityContext);
@@ -22,9 +22,9 @@ const Main = () => {
         writing: Writing,
         listening: Listening,
         test: Test,
-        testOne: TestOne,
-        testTwo: TestTwo,
-        testThree: TestThree
+        testOne: TestWords,
+        testTwo: TestRepeat,
+        testThree: TestFavourites
     }
     let DisplayContent = content.lessons;
 

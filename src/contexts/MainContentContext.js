@@ -5,7 +5,9 @@ export const MainContentContext = createContext();
 const MainContentContextProvider = (props) => {
     const [content, setContent] = useState( {
         content: "none",
-        actualAnswers: ""
+        actualAnswers: "", 
+        numberOfAnswers: 6, 
+        actualTest: ""
     });
     const changeContent = (option, set) => {
         if (option === "setContentInOverlap") {
@@ -13,6 +15,9 @@ const MainContentContextProvider = (props) => {
         }
         if (option === "actualAnswers") {
             return setContent({...content, actualAnswers: set});
+        }
+        if (option === "actualTest") {
+            return setContent({...content, actualTest:  set});
         }
     }
     return (
