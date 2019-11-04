@@ -28,6 +28,7 @@
         padding: 25px 0;
         text-align: center;
         color: $grayTextColor;
+        transition-duration: 0.5s;
 
         .settings-button {
             @include settings-button;
@@ -41,15 +42,17 @@
     .showSettings {
         position: absolute;
         top: 0;
+        left: 0;
         padding: 10px 15px;
         border: 1px solid $buttonsBorder;
         border-radius: 0 5px 5px 0;
         color: $buttonsBorder;
         cursor: pointer;
+        transition-duration: 0.5s;
     }
 
     .settingsOpened {
-        left: $settingsWidth;
+        transform: translateX($settingsWidth);
         border: 1px solid $grayTextColor;
         color: $grayTextColor;
         z-index: 15;

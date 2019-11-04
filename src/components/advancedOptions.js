@@ -22,11 +22,11 @@ const AdvancedOptions = (props) => {
     return (
         <div className="advancedOptions" style={{display: areAdvanceOptionsVisible ? "block" : "none" }}>
             <h2> {dictionary[wordIndex].word} </h2>
-            <div className="advancedOptions__desc">Meaning:</div>
+            <div className="advancedOptions__desc">Meaning (znaczenie):</div>
             <h3 className="advancedOptions__option"> {dictionary[wordIndex].meaning} </h3>
-            <div className="advancedOptions__desc">Examples:</div>
+            <div className="advancedOptions__desc">Examples (przykłady):</div>
             <h3 className="advancedOptions__option advancedOptions__option--list"> <ul>{examples}</ul> </h3>
-            <div className="advancedOptions__desc">Parts of speech:</div>
+            <div className="advancedOptions__desc">Parts of speech (części mowy):</div>
             <h3 className="advancedOptions__option advancedOptions__option--list"> {partsOfSpeech} </h3>
         </div>
     )

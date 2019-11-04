@@ -8,13 +8,9 @@
     background: $background-color-advanced-options-col;
     color: $grayTextColor;
 
-    @include mediaQuery(1100px) {
-        width: 500px;
-        background: $background-color-advanced-options-row;
-    }
-
     &__desc {
         padding: 25px 0 0 0;
+        font-size: 1.2em;
         color: $greenTextColor;
     }
 
@@ -28,5 +24,6 @@
 
     &__option--list {
         margin: 0;
+        display: inline-block;
     }
 }
