@@ -14,7 +14,6 @@ const TestWords = () => {
     const getSettings = useContext(SettingsContext);
     const getDictionary = useContext(DictionaryContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
-    const actualAnswers = setContent.content.actualAnswers;
     // display words depends on lesson number
     const wordsInLesson = getSettings.settings.wordsInLesson;
     const displayFrom = (lessonNumber-1)*wordsInLesson;
@@ -28,7 +27,6 @@ const TestWords = () => {
         currentWord: (lessonNumber-1)*wordsInLesson,
         choosenAnswer: "none",
         rightAnswer: "grayColor",
-        actualAnswers: actualAnswers,
         actualTest: "",
     });
 
@@ -46,11 +44,11 @@ const TestWords = () => {
             }
             setWords({...words, choosenAnswer: set, rightAnswer: rightAnswer });
         }
-        if (action === "actualAnswers") {
-            setWords({...words, actualAnswers: set });
-        }
         if (action === "actualTest") {
             setWords({...words, actualTest: set });
+        }
+        if (action === "currentWord") {
+            setWords({...words, currentWord: (lessonNumber-1)*wordsInLesson, choosenAnswer: "none", rightAnswer: "grayColor", actualTest: "" });
         }
     }
 
@@ -84,7 +82,7 @@ const TestWords = () => {
     return (
         <div className="testSection" >
             <div>{getDictionary.dictionaryData.points}</div>
-            <DisplayContent currentWord={words.currentWord} choosenAnswer={words.choosenAnswer} actualAnswers={words.actualAnswers} 
+            <DisplayContent currentWord={words.currentWord} choosenAnswer={words.choosenAnswer}
             changeWord={changeWord} rightAnswer={words.rightAnswer} displayTo={displayTo} />
         </div>
     )
