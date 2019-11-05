@@ -36,6 +36,7 @@ const LessonNavigation = (props) => {
                 {props.buttonText}
             </div>
             <div className="navigation--right" onClick={() => {
+                console.log("props.rightAnswer ", props.rightAnswer)
                     // if props.rightAnswer or props.getSettings === undefined then this component is used by lessonComponent, else it is used by reading, listening, writing or test component
                     if (props.rightAnswer !== undefined) {
                         if (props.rightAnswer === "greenColor") {
