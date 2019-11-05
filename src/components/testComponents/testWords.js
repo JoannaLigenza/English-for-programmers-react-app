@@ -3,7 +3,7 @@ import { DictionaryContext } from '../../contexts/DictionaryContext.js';
 import { MainContentContext } from '../../contexts/MainContentContext.js';
 import { SettingsContext } from '../../contexts/SettingsContext.js';
 import { VisibilityContext } from '../../contexts/VisibilityContext.js';
-import LessonNavigation from '../lessonNavigation.js';
+import TestNavigation from './testNavigation.js';
 import TestOne from './testOne.js';
 import TestTwo from './testTwo.js';
 import TestThree from './testThree.js';
@@ -57,7 +57,6 @@ const TestWords = () => {
     const actualContent = () => {
         let displayContent;
         if (actualTest === "") {
-            console.log("none actualTest ", actualTest);
             const testNumber = Math.floor(Math.random()*5);
             const content = {
                 testOne: TestOne,
@@ -66,21 +65,22 @@ const TestWords = () => {
                 testFour: TestFour,
                 testFive: TestFive,
             }
-            displayContent = content.testOne;
-            if (testNumber  === 0) {
-                displayContent = content.testOne;
-            } else if (testNumber  === 1) {
-                displayContent = content.testTwo;
-            } else if (testNumber  === 2) {
-                displayContent = content.testThree;
-            } else if (testNumber  === 3) {
-                displayContent = content.testFour;
-            } else if (testNumber  === 4) {
-                displayContent = content.testFive;
-            }
-            setContent.changeContent("actualTest", displayContent);
+            displayContent = content.testTwo;
+            // if (testNumber  === 0) {
+            //     displayContent = content.testOne;
+            // } else if (testNumber  === 1) {
+            //     displayContent = content.testTwo;
+            // } else if (testNumber  === 2) {
+            //     displayContent = content.testThree;
+            // } else if (testNumber  === 3) {
+            //     displayContent = content.testFour;
+            // } else if (testNumber  === 4) {
+            //     displayContent = content.testFive;
+            // }
+            setContent.changeContent("actualTest", displayContent, testNumber);
+           // console.log("none actualTest ", actualTest);
         } else {
-            console.log("jes actualTest ", actualTest);
+            //console.log("jes actualTest ", actualTest);
             displayContent = actualTest;
             //console.log("not none")
         }
@@ -92,9 +92,10 @@ const TestWords = () => {
 
     return (
         <div className="testSection" >
+            <div>{getDictionary.dictionaryData.points}</div>
             <DisplayContent currentWord={words.currentWord} choosenAnswer={words.choosenAnswer} actualAnswers={words.actualAnswers} 
             changeWord={changeWord} rightAnswer={words.rightAnswer} />
-            <LessonNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
+            <TestNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
                 setContent={setContent} visibility={visibility} goToOverlap="Test" buttonText="Zobacz wynik"
                 displayLeftArrow="no" getSettings={getSettings} rightAnswer={words.rightAnswer} displayLoudSpeaker="no"/>
         </div>
