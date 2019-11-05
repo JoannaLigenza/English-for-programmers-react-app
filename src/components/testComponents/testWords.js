@@ -58,25 +58,19 @@ const TestWords = () => {
         let displayContent;
         if (actualTest === "") {
             const testNumber = Math.floor(Math.random()*5);
-            const content = {
-                testOne: TestOne,
-                testTwo: TestTwo,
-                testThree: TestThree,
-                testFour: TestFour,
-                testFive: TestFive,
+            console.log("testNumber, ", testNumber)
+            //displayContent = TestOne;
+            if (testNumber  === 0) {
+                displayContent = TestOne;
+            } else if (testNumber  === 1) {
+                displayContent = TestTwo;
+            } else if (testNumber  === 2) {
+                displayContent = TestThree;
+            } else if (testNumber  === 3) {
+                displayContent = TestFour;
+            } else if (testNumber  === 4) {
+                displayContent = TestFive;
             }
-            displayContent = content.testThree;
-            // if (testNumber  === 0) {
-            //     displayContent = content.testOne;
-            // } else if (testNumber  === 1) {
-            //     displayContent = content.testTwo;
-            // } else if (testNumber  === 2) {
-            //     displayContent = content.testThree;
-            // } else if (testNumber  === 3) {
-            //     displayContent = content.testFour;
-            // } else if (testNumber  === 4) {
-            //     displayContent = content.testFive;
-            // }
             setContent.changeContent("actualTest", displayContent, testNumber);
            // console.log("none actualTest ", actualTest);
         } else {
@@ -89,15 +83,12 @@ const TestWords = () => {
     
     let DisplayContent = actualContent();
 
-
+console.log("actualTestNumber ", setContent.content.actualTestNumber)
     return (
         <div className="testSection" >
             <div>{getDictionary.dictionaryData.points}</div>
             <DisplayContent currentWord={words.currentWord} choosenAnswer={words.choosenAnswer} actualAnswers={words.actualAnswers} 
             changeWord={changeWord} rightAnswer={words.rightAnswer} displayTo={displayTo} />
-            <TestNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
-                setContent={setContent} visibility={visibility} goToOverlap="Test" buttonText="Zobacz wynik"
-                displayLeftArrow="no" getSettings={getSettings} rightAnswer={words.rightAnswer} displayLoudSpeaker="no"/>
         </div>
     )
 }

@@ -46,7 +46,7 @@ const TestTwo = (props) => {
         }
         return borderColor;
     }
-    console.log("read only ", testTwo.readOnly);
+    console.log("test two",);
     return (
         <div className="testSection" >
            <h2 className="readingSection__word">{dictionary[props.currentWord].translation}</h2>

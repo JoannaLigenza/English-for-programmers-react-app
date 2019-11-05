@@ -8,7 +8,7 @@ const GetAnswers = (props) => {
     const getDictionary = useContext(DictionaryContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
     const actualAnswers = setContent.content.actualAnswers;
-    console.log("bzbz ", props.choosenAnswer)
+
     // getting each answer from actualAnswers and returning it all with specific options
     const getAnswers = () => {
         let answers = actualAnswers;
