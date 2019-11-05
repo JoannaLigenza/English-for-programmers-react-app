@@ -7,11 +7,13 @@ const TestNavigation = (props) => {
                 onClick={() => {
                     
                 }}>
-                {props.buttonText}
+                Zobacz wynik
             </div>
             <div className="navigation--right" onClick={() => {
                     props.changeWord("next");
-                    props.changetestTwo("next");
+                    if (props.changetestTwo !== undefined) {
+                        props.changetestTwo("next");
+                    }
                 }}
                 style={{visibility: props.currentWord >= props.displayTo ? "hidden" : "visible"}}>
                 Next

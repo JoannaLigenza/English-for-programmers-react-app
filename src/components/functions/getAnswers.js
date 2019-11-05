@@ -8,7 +8,7 @@ const GetAnswers = (props) => {
     const getDictionary = useContext(DictionaryContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
     const actualAnswers = setContent.content.actualAnswers;
-
+    console.log("bzbz ", props.choosenAnswer)
     // getting each answer from actualAnswers and returning it all with specific options
     const getAnswers = () => {
         let answers = actualAnswers;
@@ -17,12 +17,30 @@ const GetAnswers = (props) => {
         }
         answers = answers.map( (answer, index) => {
             return <div key={index} onClick={() => {
-                                props.changeWord("choosenAnswer", answer, props.translate); 
-                                // if choosen answer is equal current word translation, then play right sound, else play wrong sound
-                                if (dictionary[props.currentWord][props.translate] === answer) {
-                                    playSound("rightSound");
+                                // if this component is used in test, then block other answers after choosing one answer. Answer can be choosed only once
+                                // else answer can be choosed many times
+                                if (props.test !== undefined && props.test === "yes") {
+                                    if (props.choosenAnswer === "none") {
+                                        // set answer
+                                        props.changeWord("choosenAnswer", answer, props.translate); 
+                                        // if choosen answer is equal current word translation, then play right sound, else play wrong sound
+                                        if (dictionary[props.currentWord][props.translate] === answer) {
+                                            playSound("rightSound");
+                                            getDictionary.changeDictionaryData("points");
+                                        } else {
+                                            playSound("wrongSound");
+                                        }
+                                    }
                                 } else {
-                                    playSound("wrongSound");
+                                    // set answer
+                                    props.changeWord("choosenAnswer", answer, props.translate); 
+                                    // if choosen answer is equal current word translation, then play right sound, else play wrong sound
+                                    if (dictionary[props.currentWord][props.translate] === answer) {
+                                        playSound("rightSound");
+                                        getDictionary.changeDictionaryData("points");
+                                    } else {
+                                        playSound("wrongSound");
+                                    }
                                 }
                             }}
                         className={ props.choosenAnswer === answer ? "oneAnswer-button oneAnswer-button--pressed" : "oneAnswer-button"}>

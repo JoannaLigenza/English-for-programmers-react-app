@@ -3,6 +3,7 @@ import { DictionaryContext } from '../../contexts/DictionaryContext.js';
 import { MainContentContext } from '../../contexts/MainContentContext.js';
 import { chooseAnswers } from '../functions/chooseAnswers.js';
 import GetAnswers from '../functions/getAnswers.js';
+import TestNavigation from './testNavigation.js';
 
 const TestFive = (props) => {
     const getDictionary = useContext(DictionaryContext);
@@ -10,7 +11,6 @@ const TestFive = (props) => {
     const dictionary = getDictionary.dictionaryData.dictionary;
     const numberOfAnswers = setContent.content.numberOfAnswers;
     const actualAnswers = setContent.content.actualAnswers;
-    // display words depends on lesson number
 
     useEffect(() => {
         let answers;
@@ -31,7 +31,9 @@ const TestFive = (props) => {
         <div className="testSection" >
             <h2 className="readingSection__word">{dictionary[props.currentWord].translation}</h2>
             <GetAnswers currentWord={props.currentWord} choosenAnswer={props.choosenAnswer} actualAnswers={props.actualAnswers} 
-                        changeWord={props.changeWord} rightAnswer={props.rightAnswer} translate="word" />
+                        changeWord={props.changeWord} rightAnswer={props.rightAnswer} translate="word" test="yes"/>
+            <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord}
+                displayTo={props.displayTo} />
         </div>
     )
 }

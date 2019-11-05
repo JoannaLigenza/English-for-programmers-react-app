@@ -1,21 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { DictionaryContext } from '../../contexts/DictionaryContext.js';
-import { SettingsContext } from '../../contexts/SettingsContext.js';
 import TestNavigation from './testNavigation.js';
 import playSound from '../../sounds/sounds.js';
 
 const TestTwo = (props) => {
-    const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
-    const getSettings = useContext(SettingsContext);
     const getDictionary = useContext(DictionaryContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
-    // display words depends on lesson number
-    const wordsInLesson = getSettings.settings.wordsInLesson;
-    const displayFrom = (lessonNumber-1)*wordsInLesson;
-    let displayTo = (displayFrom + wordsInLesson)-1;
-    if ( displayTo > (dictionary.length)-1 ) {
-        displayTo = dictionary.length-1;
-    }
 
     // state
     const [testTwo, setestTwo] = useState({
@@ -69,7 +59,7 @@ const TestTwo = (props) => {
                 </form>
             </div>
             <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord} changetestTwo={changetestTwo}
-                displayTo={displayTo} goToOverlap="Test" buttonText="Zobacz wynik"/>
+                displayTo={props.displayTo} />
         </div>
     )
 }

@@ -65,7 +65,7 @@ const TestWords = () => {
                 testFour: TestFour,
                 testFive: TestFive,
             }
-            displayContent = content.testTwo;
+            displayContent = content.testThree;
             // if (testNumber  === 0) {
             //     displayContent = content.testOne;
             // } else if (testNumber  === 1) {
@@ -94,7 +94,7 @@ const TestWords = () => {
         <div className="testSection" >
             <div>{getDictionary.dictionaryData.points}</div>
             <DisplayContent currentWord={words.currentWord} choosenAnswer={words.choosenAnswer} actualAnswers={words.actualAnswers} 
-            changeWord={changeWord} rightAnswer={words.rightAnswer} />
+            changeWord={changeWord} rightAnswer={words.rightAnswer} displayTo={displayTo} />
             <TestNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
                 setContent={setContent} visibility={visibility} goToOverlap="Test" buttonText="Zobacz wynik"
                 displayLeftArrow="no" getSettings={getSettings} rightAnswer={words.rightAnswer} displayLoudSpeaker="no"/>

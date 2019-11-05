@@ -4,7 +4,9 @@ import { SettingsContext } from '../../contexts/SettingsContext.js';
 import { MainContentContext } from '../../contexts/MainContentContext.js';
 import { chooseAnswers } from '../functions/chooseAnswers.js';
 import GetAnswers from '../functions/getAnswers.js';
+import TestNavigation from './testNavigation.js';
 import speak from '../../sounds/speaker.js';
+import speaker from '../../img/speaker.svg';
 
 
 const TestThree = (props) => {
@@ -21,7 +23,7 @@ const TestThree = (props) => {
         let answers;
         if (props.choosenAnswer === "none") {
             // choose 6 random answers
-            answers = chooseAnswers(props.currentWord, dictionary, numberOfAnswers, "word");
+            answers = chooseAnswers(props.currentWord, dictionary, numberOfAnswers, "translation");
             speak(dictionary[props.currentWord].word, language, speakRate);
         } else {
             // get actual choosen answer from mainContext
@@ -35,9 +37,13 @@ const TestThree = (props) => {
     console.log("test 3")
     return (
         <div className="testSection" >
-            <h2 className="readingSection__word">{dictionary[props.currentWord].spelling}</h2>
+            <h2 className="readingSection__word" style={{ marginBottom: 0}}>{dictionary[props.currentWord].spelling}</h2>
+            <img src={speaker} alt="speaker icon - press and listen" className="speaker-icon" style={{position: "relative", top: -45, left: -150}}
+                        onClick={() => speak(dictionary[props.currentWord].word, language, speakRate)}/>
             <GetAnswers currentWord={props.currentWord} choosenAnswer={props.choosenAnswer} actualAnswers={props.actualAnswers} 
-                        changeWord={props.changeWord} rightAnswer={props.rightAnswer} translate="word" />
+                        changeWord={props.changeWord} rightAnswer={props.rightAnswer} translate="translation" test="yes" />
+            <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord}
+            displayTo={props.displayTo} />
         </div>
     )
 }
