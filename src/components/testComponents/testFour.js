@@ -14,13 +14,11 @@ const TestFour = (props) => {
     const sentence = dictionary[props.currentWord].examples[1][0];
 
     let displaySentence = sentence.split(" ").map(word => {
-        //console.log("bzbz ",word, dictionary[props.currentWord].word)
         if (word === dictionary[props.currentWord].word) {
             word = "______";
         }
         return word;
     });
-    //console.log(displaySentence)
     displaySentence = displaySentence.join(" ");
 
     useEffect(() => {
@@ -37,7 +35,7 @@ const TestFour = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.choosenAnswer]);
 
-    console.log("test four");
+
     return (
         <div className="testSection" >
             <h2 className="readingSection__word">{displaySentence}</h2>

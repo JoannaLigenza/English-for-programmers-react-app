@@ -26,7 +26,7 @@ const TestOne = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.choosenAnswer]);
 
-    console.log("test one");
+
     return (
         <div className="testSection" >
             <h2 className="readingSection__word">{dictionary[props.currentWord].word}</h2>

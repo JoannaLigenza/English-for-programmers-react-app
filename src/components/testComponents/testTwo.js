@@ -8,29 +8,32 @@ const TestTwo = (props) => {
     const dictionary = getDictionary.dictionaryData.dictionary;
 
     // state
-    const [testTwo, setestTwo] = useState({
+    const [testTwo, setTestTwo] = useState({
         inputValue: "",
         rightAnswer: "",
-        readOnly: false
+        readOnly: false,
+        pointsAdded: false
     });
 
     // state modification
     const changetestTwo = (action, set) => {
         if (action === "rightAnswer") {
             if (dictionary[props.currentWord].word === testTwo.inputValue) {
-                setestTwo({...testTwo, rightAnswer: "greenColor", readOnly: true });
+                if (!testTwo.pointsAdded) {
+                    getDictionary.changeDictionaryData("points");
+                }
+                setTestTwo({...testTwo, rightAnswer: "greenColor", readOnly: true, pointsAdded: true });
                 props.changeWord("choosenAnswer", testTwo.inputValue, "word");
-                getDictionary.changeDictionaryData("points");
             } else {
-                setestTwo({...testTwo, rightAnswer: "redColor", readOnly: true });
+                setTestTwo({...testTwo, rightAnswer: "redColor", readOnly: true });
                 props.changeWord("choosenAnswer", testTwo.inputValue, "word");
             }
         }
         if (action === "setInputValue") {
-            setestTwo({...testTwo, inputValue: set, rightAnswer: "" });
+            setTestTwo({...testTwo, inputValue: set, rightAnswer: "" });
         }
         if (action === "next") {
-            setestTwo({...testTwo, inputValue: "", rightAnswer: "", readOnly: false });
+            setTestTwo({...testTwo, inputValue: "", rightAnswer: "", readOnly: false, pointsAdded: false });
         }
     }
 
@@ -46,7 +49,7 @@ const TestTwo = (props) => {
         }
         return borderColor;
     }
-    console.log("test two",);
+
     return (
         <div className="testSection" >
            <h2 className="readingSection__word">{dictionary[props.currentWord].translation}</h2>

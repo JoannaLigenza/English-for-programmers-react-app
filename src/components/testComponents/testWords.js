@@ -1,9 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { DictionaryContext } from '../../contexts/DictionaryContext.js';
 import { MainContentContext } from '../../contexts/MainContentContext.js';
 import { SettingsContext } from '../../contexts/SettingsContext.js';
-import { VisibilityContext } from '../../contexts/VisibilityContext.js';
-import TestNavigation from './testNavigation.js';
 import TestOne from './testOne.js';
 import TestTwo from './testTwo.js';
 import TestThree from './testThree.js';
@@ -12,13 +10,11 @@ import TestFive from './testFive.js';
 
 const TestWords = () => {
     const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
-    const visibility = useContext(VisibilityContext);
     const setContent = useContext(MainContentContext);
     const getSettings = useContext(SettingsContext);
     const getDictionary = useContext(DictionaryContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
     const actualAnswers = setContent.content.actualAnswers;
-    const actualTest = setContent.content.actualTest;
     // display words depends on lesson number
     const wordsInLesson = getSettings.settings.wordsInLesson;
     const displayFrom = (lessonNumber-1)*wordsInLesson;
@@ -32,13 +28,14 @@ const TestWords = () => {
         currentWord: (lessonNumber-1)*wordsInLesson,
         choosenAnswer: "none",
         rightAnswer: "grayColor",
-        actualAnswers: actualAnswers
+        actualAnswers: actualAnswers,
+        actualTest: "",
     });
 
     // state modification
     const changeWord = (action, set, translate) => {
         if (action === "next") {
-            setWords({...words, currentWord: words.currentWord + 1, choosenAnswer: "none", rightAnswer: "grayColor" });
+            setWords({...words, currentWord: words.currentWord + 1, choosenAnswer: "none", rightAnswer: "grayColor", actualTest: "" });
             setContent.changeContent("actualTest", "");
         }
         if (action === "choosenAnswer") {
@@ -52,14 +49,15 @@ const TestWords = () => {
         if (action === "actualAnswers") {
             setWords({...words, actualAnswers: set });
         }
+        if (action === "actualTest") {
+            setWords({...words, actualTest: set });
+        }
     }
 
-    const actualContent = () => {
-        let displayContent;
-        if (actualTest === "") {
+    useEffect(() => {
+        if (words.actualTest === "") {
+            let displayContent;
             const testNumber = Math.floor(Math.random()*5);
-            console.log("testNumber, ", testNumber)
-            //displayContent = TestOne;
             if (testNumber  === 0) {
                 displayContent = TestOne;
             } else if (testNumber  === 1) {
@@ -71,19 +69,18 @@ const TestWords = () => {
             } else if (testNumber  === 4) {
                 displayContent = TestFive;
             }
-            setContent.changeContent("actualTest", displayContent, testNumber);
-           // console.log("none actualTest ", actualTest);
-        } else {
-            //console.log("jes actualTest ", actualTest);
-            displayContent = actualTest;
-            //console.log("not none")
-        }
-        return displayContent;
-    }
-    
-    let DisplayContent = actualContent();
+            changeWord("actualTest", displayContent);
+        }         
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [words.actualTest]);
 
-console.log("actualTestNumber ", setContent.content.actualTestNumber)
+    let DisplayContent = words.actualTest;
+
+    if (words.actualTest === "") {
+        DisplayContent = TestOne;
+    }
+
+
     return (
         <div className="testSection" >
             <div>{getDictionary.dictionaryData.points}</div>
