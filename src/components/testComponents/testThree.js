@@ -34,13 +34,12 @@ const TestThree = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.choosenAnswer]);
 
-    console.log("test 3")
     return (
         <div className="testSection" >
             <h2 className="readingSection__word" style={{ marginBottom: 0}}>{dictionary[props.currentWord].spelling}</h2>
             <img src={speaker} alt="speaker icon - press and listen" className="speaker-icon" style={{position: "relative", top: -45, left: -150}}
                         onClick={() => speak(dictionary[props.currentWord].word, language, speakRate)}/>
-            <GetAnswers currentWord={props.currentWord} choosenAnswer={props.choosenAnswer} actualAnswers={props.actualAnswers} 
+            <GetAnswers currentWord={props.currentWord} choosenAnswer={props.choosenAnswer}
                         changeWord={props.changeWord} rightAnswer={props.rightAnswer} translate="translation" test="yes" />
             <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord} displayTo={props.displayTo} />
         </div>

@@ -39,7 +39,7 @@ const TestFour = (props) => {
     return (
         <div className="testSection" >
             <h2 className="readingSection__word">{displaySentence}</h2>
-            <GetAnswers currentWord={props.currentWord} choosenAnswer={props.choosenAnswer} actualAnswers={props.actualAnswers} 
+            <GetAnswers currentWord={props.currentWord} choosenAnswer={props.choosenAnswer}
                         changeWord={props.changeWord} rightAnswer={props.rightAnswer} translate="word" test="yes"/>
             <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord}
                 displayTo={props.displayTo} />
