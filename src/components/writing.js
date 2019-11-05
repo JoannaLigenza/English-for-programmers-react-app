@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { DictionaryContext } from '../contexts/DictionaryContext.js';
 import { SettingsContext } from '../contexts/SettingsContext.js';
 import { VisibilityContext } from '../contexts/VisibilityContext.js';
@@ -13,7 +13,6 @@ const Writing = () => {
     const getSettings = useContext(SettingsContext);
     const getDictionary = useContext(DictionaryContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
-    //const actualAnswers = setContent.content.actualAnswers;
     // display words depends on lesson number
     const wordsInLesson = getSettings.settings.wordsInLesson;
     const displayFrom = (lessonNumber-1)*wordsInLesson;
@@ -28,7 +27,6 @@ const Writing = () => {
         answer: "",
         inputValue: "",
         rightAnswer: "",
-        //actualAnswers: actualAnswers
     });
 
     // state modification
@@ -61,11 +59,6 @@ const Writing = () => {
         return borderColor;
     }
 
-    useEffect(() => {
-        console.log("test zmieniam sie")
-    }, [words.rightAnswer]);
-
-    console.log("wrw ", words.inputValue, words.rightAnswer)
     return (
         <div className="readingSection">
             <h2 className="readingSection__word">{dictionary[words.currentWord].translation}</h2>
