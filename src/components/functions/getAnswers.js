@@ -37,7 +37,6 @@ const GetAnswers = (props) => {
                                     // if choosen answer is equal current word translation, then play right sound, else play wrong sound
                                     if (dictionary[props.currentWord][props.translate] === answer) {
                                         playSound("rightSound");
-                                        getDictionary.changeDictionaryData("points");
                                     } else {
                                         playSound("wrongSound");
                                     }

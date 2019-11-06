@@ -49,7 +49,7 @@ const TestTwo = (props) => {
         }
         return borderColor;
     }
-
+    
     return (
         <div className="testSection" >
            <h2 className="readingSection__word">{dictionary[props.currentWord].translation}</h2>
@@ -62,7 +62,7 @@ const TestTwo = (props) => {
                 </form>
             </div>
             <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord} changetestTwo={changetestTwo}
-                displayTo={props.displayTo} />
+                displayTo={props.displayTo} rightAnswer={props.rightAnswer} actualTestNumber={props.actualTestNumber} />
         </div>
     )
 }

@@ -41,7 +41,8 @@ const TestThree = (props) => {
                         onClick={() => speak(dictionary[props.currentWord].word, language, speakRate)}/>
             <GetAnswers currentWord={props.currentWord} choosenAnswer={props.choosenAnswer}
                         changeWord={props.changeWord} rightAnswer={props.rightAnswer} translate="translation" test="yes" />
-            <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord} displayTo={props.displayTo} />
+            <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord} displayTo={props.displayTo} 
+                            rightAnswer={props.rightAnswer} actualTestNumber={props.actualTestNumber} />
         </div>
     )
 }

@@ -9,6 +9,7 @@ import Test from './test.js';
 import TestWords from './testComponents/testWords.js';
 import TestRepeat from './testComponents/testRepeat.js';
 import TestFavourites from './testComponents/testFavourites.js';
+import Score from'./testComponents/score.js';
 
 const Main = () => {
     const visibility = useContext(VisibilityContext);
@@ -24,7 +25,8 @@ const Main = () => {
         test: Test,
         testOne: TestWords,
         testTwo: TestRepeat,
-        testThree: TestFavourites
+        testThree: TestFavourites,
+        score: Score
     }
     let DisplayContent = content.lessons;
 
@@ -44,6 +46,8 @@ const Main = () => {
         DisplayContent = content.testTwo;
     } else if (whichContentLoad === "TestThree") {
         DisplayContent = content.testThree;
+    } else if (whichContentLoad === "Score") {
+        DisplayContent = content.score;
     }
 
     return (

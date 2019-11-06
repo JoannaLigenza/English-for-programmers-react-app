@@ -46,17 +46,22 @@ const DictionaryContextProvider = (props) => {
         points: points
     });
 
-    const changeDictionaryData = (option, set) => {
+    const changeDictionaryData = (option, set, set2) => {
         if (option === "notPassedWords") {
             const notPassedWords = dictionaryData.notPassedWords;
-            notPassedWords.push(set);
+            notPassedWords.push([set, set2]);
             return setDictionaryData({...dictionaryData, notPassedWords: notPassedWords})
         }
         if (option === "points") {
             return setDictionaryData({...dictionaryData, points: dictionaryData.points + 1})
         }
+        // if (option === "notPassedWords") {
+        //     console.log("set " , set, set2)
+        //     const newWord = dictionaryData.notPassedWords[set] = set2;
+        //     return setDictionaryData({...dictionaryData, notPassedWords: {...dictionaryData.notPassedWords, set: set2}})
+        // }
     }
-    
+    console.log("object ", dictionaryData.notPassedWords)
     return (
         <DictionaryContext.Provider value={{ dictionaryData, changeDictionaryData }} >
             {props.children}

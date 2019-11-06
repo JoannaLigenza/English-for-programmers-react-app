@@ -28,12 +28,13 @@ const TestWords = () => {
         choosenAnswer: "none",
         rightAnswer: "grayColor",
         actualTest: "",
+        actualTestNumber: ""
     });
 
     // state modification
     const changeWord = (action, set, translate) => {
         if (action === "next") {
-            setWords({...words, currentWord: words.currentWord + 1, choosenAnswer: "none", rightAnswer: "grayColor", actualTest: "" });
+            setWords({...words, currentWord: words.currentWord + 1, choosenAnswer: "none", rightAnswer: "grayColor", actualTest: "", actualTestNumber: "" });
             setContent.changeContent("actualTest", "");
         }
         if (action === "choosenAnswer") {
@@ -45,10 +46,10 @@ const TestWords = () => {
             setWords({...words, choosenAnswer: set, rightAnswer: rightAnswer });
         }
         if (action === "actualTest") {
-            setWords({...words, actualTest: set });
+            setWords({...words, actualTest: set, actualTestNumber: translate});
         }
         if (action === "currentWord") {
-            setWords({...words, currentWord: (lessonNumber-1)*wordsInLesson, choosenAnswer: "none", rightAnswer: "grayColor", actualTest: "" });
+            setWords({...words, currentWord: (lessonNumber-1)*wordsInLesson, choosenAnswer: "none", rightAnswer: "grayColor", actualTest: "", actualTestNumber: "" });
         }
     }
 
@@ -67,7 +68,7 @@ const TestWords = () => {
             } else if (testNumber  === 4) {
                 displayContent = TestFive;
             }
-            changeWord("actualTest", displayContent);
+            changeWord("actualTest", displayContent, testNumber);
         }         
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [words.actualTest]);
@@ -78,11 +79,11 @@ const TestWords = () => {
         DisplayContent = TestOne;
     }
 
-
+    //console.log(words.actualTestNumber)
     return (
         <div className="testSection" >
             <div>{getDictionary.dictionaryData.points}</div>
-            <DisplayContent currentWord={words.currentWord} choosenAnswer={words.choosenAnswer}
+            <DisplayContent currentWord={words.currentWord} choosenAnswer={words.choosenAnswer} actualTestNumber={words.actualTestNumber}
             changeWord={changeWord} rightAnswer={words.rightAnswer} displayTo={displayTo} />
         </div>
     )

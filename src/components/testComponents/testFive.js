@@ -31,8 +31,8 @@ const TestFive = (props) => {
             <h2 className="readingSection__word">{dictionary[props.currentWord].translation}</h2>
             <GetAnswers currentWord={props.currentWord} choosenAnswer={props.choosenAnswer}
                         changeWord={props.changeWord} rightAnswer={props.rightAnswer} translate="word" test="yes"/>
-            <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord}
-                displayTo={props.displayTo} />
+            <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord} rightAnswer={props.rightAnswer}
+                displayTo={props.displayTo} actualTestNumber={props.actualTestNumber} />
         </div>
     )
 }
