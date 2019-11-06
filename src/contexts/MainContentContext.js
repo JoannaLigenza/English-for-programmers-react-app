@@ -12,7 +12,7 @@ const MainContentContextProvider = (props) => {
     });
     const changeContent = (option, set) => {
         if (option === "setContentInOverlap") {
-            return setContent({...content, content: set});
+            return setContent({...content, content: set, testLoop: 1});
         }
         if (option === "actualAnswers") {
             return setContent({...content, actualAnswers: set});
