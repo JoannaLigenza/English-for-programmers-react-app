@@ -13,10 +13,21 @@ const TestNavigation = (props) => {
             <div className="button button--goToTest" 
                 style={{display: (props.currentWord >= props.displayTo && testLoop >= testEachWordXTimes) ? "block" : "none"}}
                 onClick={() => {
+                    // if answer is incorrect, write it to notPassedWords array (in repetitionWords option) and then write all incorrect answers in storage
                     if (props.rightAnswer !== "greenColor") {
-                        getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord].word, props.actualTestNumber );
+                        getDictionary.changeDictionaryData("repetitionWords", dictionary[props.currentWord].word, props.actualTestNumber );
+                    } else {
+                        getDictionary.changeDictionaryData("repetitionWords");
                     }
+                    // load score component
                     setContent.changeContent("setContentInOverlap", "Score");
+                    // count points from test
+                    const storagePoints = JSON.parse(localStorage.getItem("points"));
+                    const incorrectAnswers = getDictionary.dictionaryData.notPassedWords.length;
+                    const points = setContent.content.numberOfAnswers - incorrectAnswers;
+                    const allPoints = storagePoints + points;
+                    // save points in localstorage
+                    localStorage.setItem("points", JSON.stringify(allPoints));
                 }}>
                 Zobacz wynik
             </div>
@@ -27,7 +38,9 @@ const TestNavigation = (props) => {
                     // if test loop ends then set another loop
                     if (props.currentWord === (props.displayTo )) {
                         props.changeWord("currentWord");
+                        // add another test loop
                         setContent.changeContent("testLoop");
+                        // if answer is incorrect, write it to notPassedWords array
                         if (props.rightAnswer !== "greenColor") {
                             getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord].word, props.actualTestNumber );
                         }
@@ -35,6 +48,7 @@ const TestNavigation = (props) => {
                         if (props.rightAnswer !== "greenColor") {
                             getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord].word, props.actualTestNumber );
                         }
+                        // go to the next word in test
                         props.changeWord("next");
                     }
                 }}
