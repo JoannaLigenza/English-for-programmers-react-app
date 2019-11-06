@@ -79,7 +79,7 @@ const TestWords = () => {
         DisplayContent = TestOne;
     }
 
-    //console.log(words.actualTestNumber)
+   // console.log("lessonNumber ", getDictionary.dictionaryData.lessonNumber)
     return (
         <div className="testSection" >
             <div>{getDictionary.dictionaryData.points}</div>

@@ -12,22 +12,21 @@ const TestNavigation = (props) => {
         <div className="navigation">
             <div className="button button--goToTest" 
                 style={{display: (props.currentWord >= props.displayTo && testLoop >= testEachWordXTimes) ? "block" : "none"}}
-                onClick={() => {
-                    // if answer is incorrect, write it to notPassedWords array (in repetitionWords option) and then write all incorrect answers in storage
+                onClick={ async () => {
+                    // if answer is incorrect, write it to notPassedWords array
                     if (props.rightAnswer !== "greenColor") {
-                        getDictionary.changeDictionaryData("repetitionWords", dictionary[props.currentWord].word, props.actualTestNumber );
-                    } else {
-                        getDictionary.changeDictionaryData("repetitionWords");
+                        await getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord].word, props.actualTestNumber );
                     }
                     // load score component
                     setContent.changeContent("setContentInOverlap", "Score");
                     // count points from test
-                    const storagePoints = JSON.parse(localStorage.getItem("points"));
-                    const incorrectAnswers = getDictionary.dictionaryData.notPassedWords.length;
-                    const points = setContent.content.numberOfAnswers - incorrectAnswers;
-                    const allPoints = storagePoints + points;
+                    const storagePoints = await JSON.parse(localStorage.getItem("points"));
+                    const incorrectAnswers = await getDictionary.dictionaryData.notPassedWords.length;
+                    const points = await setContent.content.numberOfAnswers - incorrectAnswers;
+                    const allPoints = await storagePoints + points;
                     // save points in localstorage
                     localStorage.setItem("points", JSON.stringify(allPoints));
+                    getDictionary.changeDictionaryData("repetitionWords");
                 }}>
                 Zobacz wynik
             </div>

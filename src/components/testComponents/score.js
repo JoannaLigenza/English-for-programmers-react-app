@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { DictionaryContext } from '../../contexts/DictionaryContext.js';
 import { MainContentContext } from '../../contexts/MainContentContext.js';
 
@@ -8,6 +8,13 @@ const Score = () => {
     const storagePoints = JSON.parse(localStorage.getItem("points"));
     const incorrectAnswers = getDictionary.dictionaryData.notPassedWords.length;
     const points = setContent.content.numberOfAnswers - incorrectAnswers;
+
+    useEffect(() => {
+        // returning function from useEffect makes that it's content is called just before score component is being unmount
+        return () => {
+            getDictionary.changeDictionaryData("notPassedWordsZero");
+        }
+    },[incorrectAnswers]);
 
     return (
         <div className="testSection" >
