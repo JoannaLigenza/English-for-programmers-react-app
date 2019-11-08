@@ -1,33 +1,21 @@
 import React, { useContext, useState } from 'react';
 import speaker from '../img/speaker.svg';
 import noteyellow from '../img/noteyellow.svg';
-import { VisibilityContext } from '../contexts/VisibilityContext.js';
-import { MainContentContext } from '../contexts/MainContentContext.js';
-import { DictionaryContext } from '../contexts/DictionaryContext.js';
 import { SettingsContext } from '../contexts/SettingsContext.js';
 import AdvancedOptions from './advancedOptions.js';
 import LessonNavigation from './lessonNavigation.js';
 import speak from '../sounds/speaker.js';
 
-const Lessons = () => {
-    const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
+const Lessons = (props) => {
+    const lessonNumber = props.lessonNumber;
     const backgroundColor = "white";
-    const visibility = useContext(VisibilityContext);
-    const setContent = useContext(MainContentContext);
-    const getDictionary = useContext(DictionaryContext);
     const getSettings = useContext(SettingsContext);
-    const dictionary = getDictionary.dictionaryData.dictionary;
+    const dictionary = props.dictionary;
     const language = getSettings.settings.language;
     const speakRate = getSettings.settings.speakRate;
-    // display words depends on lesson number
-    const wordsInLesson = getSettings.settings.wordsInLesson;
-    const displayFrom = (lessonNumber-1)*wordsInLesson;
-    let displayTo = (displayFrom + wordsInLesson)-1;
-    if ( displayTo > (dictionary.length)-1 ) {
-        displayTo = dictionary.length-1;
-    }
+
     const [words, setWords] = useState({
-        currentWord: (lessonNumber-1)*wordsInLesson,
+        currentWord: (lessonNumber-1)*props.wordsInLesson,
     });
     const changeWord = (action) => {
         if (action === "prev") {
@@ -36,6 +24,14 @@ const Lessons = () => {
         if (action === "next") {
             setWords({...words, currentWord: words.currentWord + 1 })
         }
+    }
+
+    if (words.currentWord > (dictionary.length-1)) {
+        return (
+            <div className="mainContent" style={{backgroundColor: `${backgroundColor}`}}>
+                Congratulations, you have passed all tests! :)
+            </div>
+        )
     }
 
     return (
@@ -49,9 +45,9 @@ const Lessons = () => {
                     <img src={speaker} alt="speaker icon - press and listen" className="mainContent__speaker-icon"
                         onClick={() => speak(dictionary[words.currentWord].word, language, speakRate)}/>
                 </div>
-                <LessonNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
-                    setContent={setContent} visibility={visibility} goToOverlap="Reading" buttonText="Practice reading" displayLeftArrow="yes"
-                    displayLoudSpeaker="no" />
+                <LessonNavigation words={words} changeWord={changeWord} displayFrom={props.displayFrom} displayTo={props.displayTo} 
+                    setContent={props.setContent} visibility={props.visibility} goToOverlap="Reading" buttonText="Practice reading" 
+                    displayLeftArrow="yes" displayLoudSpeaker="no" />
             </div>
             <AdvancedOptions wordIndex={words.currentWord}/>
         </div>

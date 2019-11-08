@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { VisibilityContext } from '../contexts/VisibilityContext.js';
 import { SettingsContext } from '../contexts/SettingsContext.js';
+import { MainContentContext } from '../contexts/MainContentContext.js';
 
 const Settings = () => {
     const visibility = useContext(VisibilityContext);
     const getSettings = useContext(SettingsContext);
+    const setContent = useContext(MainContentContext);
     return (
         <div className={visibility.isVisible.isOptionsVisible ? "settings visible" : "settings hidden"}>
             <div className="settings__language-options">
@@ -31,15 +33,30 @@ const Settings = () => {
             <div className="settings__word-number">
                 <h3>Ilość słów w lekcji</h3>
                 <div className={ getSettings.settings.wordsInLesson === 3 ? "settings-button settings-button--pressed" : "settings-button"}
-                    onClick={() => getSettings.setSettings("wordsInLesson", 3)}>3</div>
+                    onClick={() => {
+                        getSettings.setSettings("wordsInLesson", 3); 
+                        setContent.changeContent("setContentInOverlap", "Test"); 
+                    }}>3</div>
                 <div className={ getSettings.settings.wordsInLesson === 5 ? "settings-button settings-button--pressed" : "settings-button"}
-                    onClick={() => getSettings.setSettings("wordsInLesson", 5)}>5</div>
+                    onClick={() => {
+                        getSettings.setSettings("wordsInLesson", 5);
+                        setContent.changeContent("setContentInOverlap", "Test");
+                    }}>5</div>
                 <div className={ getSettings.settings.wordsInLesson === 10 ? "settings-button settings-button--pressed" : "settings-button"}
-                    onClick={() => getSettings.setSettings("wordsInLesson", 10)}>10</div>
+                    onClick={() => {
+                        getSettings.setSettings("wordsInLesson", 10);
+                        setContent.changeContent("setContentInOverlap", "Test");
+                    }}>10</div>
                 <div className={ getSettings.settings.wordsInLesson === 20 ? "settings-button settings-button--pressed" : "settings-button"}
-                    onClick={() => getSettings.setSettings("wordsInLesson", 20)}>20</div>
+                    onClick={() => {
+                        getSettings.setSettings("wordsInLesson", 20);
+                        setContent.changeContent("setContentInOverlap", "Test");
+                    }}>20</div>
                 <div className={ getSettings.settings.wordsInLesson === 30 ? "settings-button settings-button--pressed" : "settings-button"}
-                    onClick={() => getSettings.setSettings("wordsInLesson", 30)}>30</div>
+                    onClick={() => {
+                        getSettings.setSettings("wordsInLesson", 30);
+                        setContent.changeContent("setContentInOverlap", "Test");
+                    }}>30</div>
             </div>
         </div>
     )

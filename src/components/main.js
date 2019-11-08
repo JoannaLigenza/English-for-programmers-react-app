@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { VisibilityContext } from '../contexts/VisibilityContext.js';
 import { MainContentContext } from '../contexts/MainContentContext.js';
+import { DictionaryContext } from '../contexts/DictionaryContext.js';
+import { SettingsContext } from '../contexts/SettingsContext.js';
 import Lessons from './lessons.js';
 import Reading from './reading.js';
 import Writing from './writing.js';
@@ -15,6 +17,17 @@ const Main = () => {
     const visibility = useContext(VisibilityContext);
     const setContent = useContext(MainContentContext);
     const whichContentLoad = setContent.content.content;
+    const getDictionary = useContext(DictionaryContext);
+    const getSettings = useContext(SettingsContext);
+    const dictionary = getDictionary.dictionaryData.dictionary;
+    // display words depends on lesson number
+    const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
+    const wordsInLesson = getSettings.settings.wordsInLesson;
+    const displayFrom = (lessonNumber-1)*wordsInLesson;
+    let displayTo = (displayFrom + wordsInLesson)-1;
+    if ( displayTo > (dictionary.length)-1 ) {
+        displayTo = dictionary.length-1;
+    }
 
     // setting main content depends on setContent value (<DisplayContent />)
     const content = {
@@ -57,7 +70,8 @@ const Main = () => {
                     visibility.changeVisibility("main");
                     setContent.changeContent("none"); }
                 }>X</div>
-                <DisplayContent />
+                <DisplayContent visibility={visibility} setContent={setContent} displayFrom={displayFrom} displayTo={displayTo}
+                        lessonNumber={lessonNumber} dictionary={dictionary} wordsInLesson={wordsInLesson} getSettings={getSettings} />
             </div>
         </div>
     )

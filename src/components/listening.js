@@ -1,36 +1,23 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { DictionaryContext } from '../contexts/DictionaryContext.js';
-import { SettingsContext } from '../contexts/SettingsContext.js';
-import { VisibilityContext } from '../contexts/VisibilityContext.js';
-import { MainContentContext } from '../contexts/MainContentContext.js';
+import React, { useState, useEffect } from 'react';
 import { chooseAnswers } from './functions/chooseAnswers.js';
 import GetAnswers from './functions/getAnswers.js';
 import LessonNavigation from './lessonNavigation.js';
 import speak from '../sounds/speaker.js';
 
-const Listening = () => {
+const Listening = (props) => {
     const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
-    const visibility = useContext(VisibilityContext);
-    const setContent = useContext(MainContentContext);
-    const getSettings = useContext(SettingsContext);
-    const getDictionary = useContext(DictionaryContext);
-    const dictionary = getDictionary.dictionaryData.dictionary;
+    const setContent = props.setContent;
+    const getSettings = props.getSettings;
+    const dictionary = props.dictionary
     const actualAnswers = setContent.content.actualAnswers;
     const language = getSettings.settings.language;
     const speakRate = getSettings.settings.speakRate;
     const numberOfAnswers = setContent.content.numberOfAnswers;
-    // display words depends on lesson number
     const wordsInLesson = getSettings.settings.wordsInLesson;
-    const displayFrom = (lessonNumber-1)*wordsInLesson;
-    let displayTo = (displayFrom + wordsInLesson)-1;
-    if ( displayTo > (dictionary.length)-1 ) {
-        displayTo = dictionary.length-1;
-    }
 
     // state
     const [words, setWords] = useState({
         currentWord: (lessonNumber-1)*wordsInLesson,
-        answer: "plik",
         choosenAnswer: "none",
         rightAnswer: "grayColor",
         actualAnswers: actualAnswers
@@ -74,8 +61,8 @@ const Listening = () => {
             <h2 className="readingSection__word">{dictionary[words.currentWord].spelling}</h2>
             <GetAnswers currentWord={words.currentWord} choosenAnswer={words.choosenAnswer} actualAnswers={words.actualAnswers} 
                         changeWord={changeWord} rightAnswer={words.rightAnswer} translate="translation" />
-            <LessonNavigation words={words} changeWord={changeWord} displayFrom={displayFrom} displayTo={displayTo} 
-                setContent={setContent} visibility={visibility} goToOverlap="Writing" buttonText="Practice writing"
+            <LessonNavigation words={words} changeWord={changeWord} displayFrom={props.displayFrom} displayTo={props.displayTo}  
+                setContent={props.setContent} visibility={props.visibility} goToOverlap="Writing" buttonText="Practice writing"
                 displayLeftArrow="no" getSettings={getSettings} rightAnswer={words.rightAnswer} displayLoudSpeaker="yes"
                 speakWord={dictionary[words.currentWord].word} />
         </div>

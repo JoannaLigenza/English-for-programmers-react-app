@@ -11,7 +11,6 @@ const data = () => {
         const random = Math.floor(Math.random()*getDataFromJson.length);
         shuffledData.push(getDataFromJson[random]);
         getDataFromJson.splice(random, 1);
-        
     }
     return shuffledData;
 };
@@ -42,7 +41,7 @@ const DictionaryContextProvider = (props) => {
     const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
     const points = JSON.parse(localStorage.getItem("points"));
     const repetitionWords = JSON.parse(localStorage.getItem("repetitionWords"));
-    console.log("lessonNumber2 ", lessonNumber)
+
     // state
     const [dictionaryData, setDictionaryData] = useState({
         dictionary: getDataFromStorage,
@@ -50,7 +49,7 @@ const DictionaryContextProvider = (props) => {
         notPassedWords: [],
         points: points,
     });
-    console.log("lessonNumber3 ", dictionaryData.lessonNumber)
+
     const changeDictionaryData = (option, set, set2) => {
         if (option === "notPassedWords") {
             const notPassedWords = dictionaryData.notPassedWords;

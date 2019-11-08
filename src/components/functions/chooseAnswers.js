@@ -12,7 +12,6 @@ export const chooseAnswers = (currentWord, dictionary, numberOfAnswers, answerOp
         } else {
             const random = Math.floor(Math.random()*(dictionary.length-10));
             answersSet.add(dictionary[random][answerOption]);
-            //console.log(dictionary[random]["translation"])
         }
     }
     const answers = [...answersSet];
