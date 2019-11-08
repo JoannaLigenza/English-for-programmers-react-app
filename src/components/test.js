@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import { MainContentContext } from '../contexts/MainContentContext.js';
 
 const Test = () => {
+    const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
     const setContent = useContext(MainContentContext);
     return (
         <div className="testSection" >
             <div className="testSection__section">
                 <div className="testSection__content" onClick={() => setContent.changeContent("setContentInOverlap", "TestOne")}>
-                    Test your knowledge from lesson 1 <br/>
-                    (Testuj wiedzę z lekcji 1)
+                    Test your knowledge from lesson {lessonNumber} <br/>
+                    (Testuj wiedzę z lekcji {lessonNumber})
                 </div>
             </div>
             <div className="testSection__section">

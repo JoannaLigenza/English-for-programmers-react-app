@@ -1,14 +1,11 @@
 import React, { useContext } from 'react';
 import { MainContentContext } from '../../contexts/MainContentContext.js';
 import { DictionaryContext } from '../../contexts/DictionaryContext.js';
-import { SettingsContext } from '../../contexts/SettingsContext.js';
 
 const TestNavigation = (props) => {
     const setContent = useContext(MainContentContext);
-    const getSettings = useContext(SettingsContext);
     const getDictionary = useContext(DictionaryContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
-    const wordsInLesson = getSettings.settings.wordsInLesson;
     const testEachWordXTimes = setContent.content.testEachWordXTimes;
     const testLoop = setContent.content.testLoop;
     return (
@@ -18,13 +15,12 @@ const TestNavigation = (props) => {
                 onClick={ async () => {
                     // if answer is incorrect, write it to notPassedWords array
                     if (props.rightAnswer !== "greenColor") {
-                        await getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord].word, props.actualTestNumber );
+                        await getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord], props.actualTestNumber );
                     }
                     // load score component
                     setContent.changeContent("setContentInOverlap", "Score");
                     // count points from test
                     const storagePoints = await JSON.parse(localStorage.getItem("points"));
-                    const incorrectAnswers = await getDictionary.dictionaryData.notPassedWords.length;
                     const points = getDictionary.dictionaryData.points;
                     const allPoints = await storagePoints + points;
                     // save points in localstorage
@@ -44,11 +40,11 @@ const TestNavigation = (props) => {
                         setContent.changeContent("testLoop");
                         // if answer is incorrect, write it to notPassedWords array
                         if (props.rightAnswer !== "greenColor") {
-                            getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord].word, props.actualTestNumber );
+                            getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord], props.actualTestNumber );
                         }
                     } else {
                         if (props.rightAnswer !== "greenColor") {
-                            getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord].word, props.actualTestNumber );
+                            getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord], props.actualTestNumber );
                         }
                         // go to the next word in test
                         props.changeWord("next");
