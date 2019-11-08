@@ -79,6 +79,14 @@ const TestWords = () => {
         DisplayContent = TestOne;
     }
 
+    if (words.currentWord > (dictionary.length-1)) {
+        return (
+            <div className="mainContent">
+                Congratulations, you have passed all tests! :)
+            </div>
+        )
+    }
+
     return (
         <div className="testSection" >
             <div>{getDictionary.dictionaryData.points}</div>

@@ -46,6 +46,14 @@ const Writing = (props) => {
         return borderColor;
     }
 
+    if (words.currentWord > (dictionary.length-1)) {
+        return (
+            <div className="mainContent" >
+                Congratulations, you have passed all tests! :)
+            </div>
+        )
+    }
+
     return (
         <div className="readingSection">
             <h2 className="readingSection__word">{dictionary[words.currentWord].translation}</h2>

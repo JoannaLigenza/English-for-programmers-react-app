@@ -43,18 +43,28 @@ const Listening = (props) => {
     // 1. reading random answers from just generated answers or mainContentContext  2. saving random answers in mainContentContext
     useEffect(() => {
         let answers;
-        if (words.choosenAnswer === "none") {
-            // choose 6 random answers
-            answers = chooseAnswers(words.currentWord, dictionary, numberOfAnswers, "translation");
-            speak(dictionary[words.currentWord].word, language, speakRate);
-        } else {
-            // get actual choosen answer from mainContext
-            answers = actualAnswers;
+        if (words.currentWord <= (dictionary.length-1)) {
+            if (words.choosenAnswer === "none") {
+                // choose 6 random answers
+                answers = chooseAnswers(words.currentWord, dictionary, numberOfAnswers, "translation");
+                speak(dictionary[words.currentWord].word, language, speakRate);
+            } else {
+                // get actual choosen answer from mainContext
+                answers = actualAnswers;
+            }
+            // saving answers in mainContentContext
+            setContent.changeContent("actualAnswers", answers);
         }
-        // saving answers in mainContentContext
-        setContent.changeContent("actualAnswers", answers);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [words.choosenAnswer]);
+
+    if (words.currentWord > (dictionary.length-1)) {
+        return (
+            <div className="mainContent" >
+                Congratulations, you have passed all tests! :)
+            </div>
+        )
+    }
 
     return (
         <div className="readingSection">
