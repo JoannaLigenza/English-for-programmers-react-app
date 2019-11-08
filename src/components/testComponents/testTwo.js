@@ -18,15 +18,18 @@ const TestTwo = (props) => {
     // state modification
     const changetestTwo = (action, set) => {
         if (action === "rightAnswer") {
+            // if answer is correct
             if (dictionary[props.currentWord].word === testTwo.inputValue) {
-                if (!testTwo.pointsAdded) {
-                    getDictionary.changeDictionaryData("points");
+                // if there are no points added yet after clicking check button and tested word is not passed then add point
+                if (!testTwo.pointsAdded && dictionary[props.currentWord].passed === "") {
+                    getDictionary.changeDictionaryData("points", "yes", dictionary[props.currentWord].id);
                 }
                 setTestTwo({...testTwo, rightAnswer: "greenColor", readOnly: true, pointsAdded: true });
                 props.changeWord("choosenAnswer", testTwo.inputValue, "word");
             } else {
                 setTestTwo({...testTwo, rightAnswer: "redColor", readOnly: true });
                 props.changeWord("choosenAnswer", testTwo.inputValue, "word");
+                getDictionary.changeDictionaryData("points", "no", dictionary[props.currentWord].id);
             }
         }
         if (action === "setInputValue") {

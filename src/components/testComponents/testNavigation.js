@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import { MainContentContext } from '../../contexts/MainContentContext.js';
 import { DictionaryContext } from '../../contexts/DictionaryContext.js';
+import { SettingsContext } from '../../contexts/SettingsContext.js';
 
 const TestNavigation = (props) => {
     const setContent = useContext(MainContentContext);
+    const getSettings = useContext(SettingsContext);
     const getDictionary = useContext(DictionaryContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
+    const wordsInLesson = getSettings.settings.wordsInLesson;
     const testEachWordXTimes = setContent.content.testEachWordXTimes;
     const testLoop = setContent.content.testLoop;
     return (
@@ -22,7 +25,7 @@ const TestNavigation = (props) => {
                     // count points from test
                     const storagePoints = await JSON.parse(localStorage.getItem("points"));
                     const incorrectAnswers = await getDictionary.dictionaryData.notPassedWords.length;
-                    const points = await setContent.content.numberOfAnswers - incorrectAnswers;
+                    const points = getDictionary.dictionaryData.points;
                     const allPoints = await storagePoints + points;
                     // save points in localstorage
                     localStorage.setItem("points", JSON.stringify(allPoints));

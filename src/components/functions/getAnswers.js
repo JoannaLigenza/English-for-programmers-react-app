@@ -23,12 +23,16 @@ const GetAnswers = (props) => {
                                     if (props.choosenAnswer === "none") {
                                         // set answer
                                         props.changeWord("choosenAnswer", answer, props.translate); 
-                                        // if choosen answer is equal current word translation, then play right sound, else play wrong sound
+                                        // if choosen answer is equal current word translation, then add one point and play right sound, else play wrong sound
                                         if (dictionary[props.currentWord][props.translate] === answer) {
                                             playSound("rightSound");
-                                            getDictionary.changeDictionaryData("points");
+                                            // if tested word is not passed then add point
+                                            if (dictionary[props.currentWord].passed === "") {
+                                                getDictionary.changeDictionaryData("points", "yes", dictionary[props.currentWord].id);
+                                            }
                                         } else {
                                             playSound("wrongSound");
+                                            getDictionary.changeDictionaryData("points", "no", dictionary[props.currentWord].id);
                                         }
                                     }
                                 } else {
