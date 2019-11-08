@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import { DictionaryContext } from '../../contexts/DictionaryContext.js';
 import { MainContentContext } from '../../contexts/MainContentContext.js';
 import { chooseAnswers } from '../functions/chooseAnswers.js';
 import GetAnswers from '../functions/getAnswers.js';
@@ -7,8 +6,7 @@ import TestNavigation from './testNavigation.js';
 
 const TestOne = (props) => {
     const setContent = useContext(MainContentContext);
-    const getDictionary = useContext(DictionaryContext);
-    const dictionary = getDictionary.dictionaryData.dictionary;
+    const dictionary = props.dictionary;
     const numberOfAnswers = setContent.content.numberOfAnswers;
     const actualAnswers = setContent.content.actualAnswers;
 

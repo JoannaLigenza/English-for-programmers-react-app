@@ -6,8 +6,12 @@ import playSound from '../../sounds/sounds.js';
 const GetAnswers = (props) => {
     const setContent = useContext(MainContentContext);
     const getDictionary = useContext(DictionaryContext);
-    const dictionary = getDictionary.dictionaryData.dictionary;
+    let dictionaryWord = getDictionary.dictionaryData.dictionary[props.currentWord];
+    if (props.isRepetitionTest !== undefined) {
+        dictionaryWord = props.isRepetitionTest[props.currentWord][0];
+    }
     const actualAnswers = setContent.content.actualAnswers;
+    console.log(dictionaryWord)
 
     // getting each answer from actualAnswers and returning it all with specific options
     const getAnswers = () => {
@@ -24,22 +28,22 @@ const GetAnswers = (props) => {
                                         // set answer
                                         props.changeWord("choosenAnswer", answer, props.translate); 
                                         // if choosen answer is equal current word translation, then add one point and play right sound, else play wrong sound
-                                        if (dictionary[props.currentWord][props.translate] === answer) {
+                                        if (dictionaryWord[props.translate] === answer) {
                                             playSound("rightSound");
                                             // if tested word is not passed then add point
-                                            if (dictionary[props.currentWord].passed === "") {
-                                                getDictionary.changeDictionaryData("points", "yes", dictionary[props.currentWord].id);
+                                            if (dictionaryWord.passed === "") {
+                                                getDictionary.changeDictionaryData("points", "yes", dictionaryWord.id);
                                             }
                                         } else {
                                             playSound("wrongSound");
-                                            getDictionary.changeDictionaryData("points", "no", dictionary[props.currentWord].id);
+                                            getDictionary.changeDictionaryData("points", "no", dictionaryWord.id);
                                         }
                                     }
                                 } else {
                                     // set answer
                                     props.changeWord("choosenAnswer", answer, props.translate); 
                                     // if choosen answer is equal current word translation, then play right sound, else play wrong sound
-                                    if (dictionary[props.currentWord][props.translate] === answer) {
+                                    if (dictionaryWord[props.translate] === answer) {
                                         playSound("rightSound");
                                     } else {
                                         playSound("wrongSound");

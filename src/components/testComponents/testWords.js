@@ -86,12 +86,12 @@ const TestWords = () => {
             </div>
         )
     }
-console.log("points ", getDictionary.dictionaryData.points);
+
     return (
         <div className="testSection" >
             <div>{getDictionary.dictionaryData.points}</div>
             <DisplayContent currentWord={words.currentWord} choosenAnswer={words.choosenAnswer} actualTestNumber={words.actualTestNumber}
-            changeWord={changeWord} rightAnswer={words.rightAnswer} displayTo={displayTo} />
+            changeWord={changeWord} rightAnswer={words.rightAnswer} displayTo={displayTo} dictionary={dictionary}/>
         </div>
     )
 }
