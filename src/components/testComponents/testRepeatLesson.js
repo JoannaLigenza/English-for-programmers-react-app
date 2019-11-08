@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { SettingsContext } from '../../contexts/SettingsContext.js';
-import AdvancedOptions from '../advancedOptions.js';
-import LessonNavigation from '../lessonNavigation.js';
+import { VisibilityContext } from '../../contexts/VisibilityContext.js';
 import speak from '../../sounds/speaker.js';
 import speaker from '../../img/speaker.svg';
 import noteyellow from '../../img/noteyellow.svg';
@@ -13,6 +12,8 @@ const TestRepeatLesson = (props) => {
     const speakRate = getSettings.settings.speakRate;
     const currentWord = props.currentWord;
     const words = JSON.parse(localStorage.getItem("repetitionWords"));
+    const visibility = useContext(VisibilityContext);
+    const areAdvanceOptionsVisible = visibility.isVisible.areAdvanceOptionsVisible
 
     if (words.length === 0)  {
         return (
@@ -21,6 +22,15 @@ const TestRepeatLesson = (props) => {
             </div>
         )
     }
+
+    const examples = words[currentWord][0].examples.map( (example, index) => {
+        //return {example[0]} ({example[1]})
+        return <li key={index}> {example[0].charAt(0).toUpperCase() + example[0].slice(1)} ({example[1].charAt(0).toUpperCase() + example[1].slice(1)}) </li>
+    });
+
+    const partsOfSpeech = words[currentWord][0].partOfspeech.map ((part, index) => {
+        return <p key={index}>{part[0]}: {part[1]}</p>
+    } );
 
     return (
         <div className="mainContent" >
@@ -54,7 +64,17 @@ const TestRepeatLesson = (props) => {
                 </div>
 
             </div>
-            <AdvancedOptions wordIndex={currentWord}/>
+
+            {/* // AdvancedOptions */}
+            <div className="advancedOptions" style={{display: areAdvanceOptionsVisible ? "block" : "none" }}>
+                <h2> {words[currentWord][0].word} </h2>
+                <div className="advancedOptions__desc">Meaning (znaczenie):</div>
+                <h3 className="advancedOptions__option"> {words[currentWord][0].meaning} </h3>
+                <div className="advancedOptions__desc">Examples (przykłady):</div>
+                <h3 className="advancedOptions__option advancedOptions__option--list"> <ul>{examples}</ul> </h3>
+                <div className="advancedOptions__desc">Parts of speech (części mowy):</div>
+                <h3 className="advancedOptions__option advancedOptions__option--list"> {partsOfSpeech} </h3>
+            </div>
         </div>
     )
 }
