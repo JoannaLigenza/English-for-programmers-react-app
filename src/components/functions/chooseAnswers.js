@@ -10,7 +10,7 @@ export const chooseAnswers = (currentWord, dictionary, numberOfAnswers, answerOp
         if (i === randomI) {
             answersSet.add(dictionary[firstWord][answerOption]);
         } else {
-            const random = Math.floor(Math.random()*(dictionary.length-10));
+            const random = Math.floor(Math.random()*(dictionary.length));
             answersSet.add(dictionary[random][answerOption]);
         }
     }
