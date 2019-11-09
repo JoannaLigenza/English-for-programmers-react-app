@@ -62,9 +62,12 @@ const DictionaryContextProvider = (props) => {
             return setDictionaryData({...dictionaryData, notPassedWords: notPassedWords});
         }
         if (option === "notPassedWordsZero") {
-            const notPassedWords = dictionaryData.notPassedWords;
-            notPassedWords.push([set, set2]);
-            return setDictionaryData({...dictionaryData, notPassedWords: [], points: 0 });
+            return setDictionaryData({...dictionaryData, notPassedWords: [], points: 0, repetitionWords: repetitionWords });
+        }
+        if (option === "notPassedWordsRemove") {
+            repetitionWords.splice(set, 1);
+            localStorage.setItem("repetitionWords", JSON.stringify(repetitionWords));
+            return setDictionaryData({...dictionaryData, repetitionWords: repetitionWords });
         }
         if (option === "points") {
             let points = dictionaryData.points;
@@ -85,15 +88,15 @@ const DictionaryContextProvider = (props) => {
         if (option === "repetitionWords") {
             const lessonNum = lessonNumber + 1;
             let notPassedWords = dictionaryData.notPassedWords;
-            const repetitionWords = dictionaryData.repetitionWords;
+            const newRepetitionWords = repetitionWords;
             notPassedWords.forEach(element => {
-                repetitionWords.push(element);
+                newRepetitionWords.push(element);
             });
-            // save repetitionWords in localstorage
-            localStorage.setItem("repetitionWords", JSON.stringify(repetitionWords));
+            // save newRepetitionWords in localstorage
+            localStorage.setItem("repetitionWords", JSON.stringify(newRepetitionWords));
             localStorage.setItem("lessonNumber", JSON.stringify(lessonNum));
             
-            return setDictionaryData({...dictionaryData, repetitionWords: repetitionWords });
+            return setDictionaryData({...dictionaryData, repetitionWords: newRepetitionWords });
         }
     }
 

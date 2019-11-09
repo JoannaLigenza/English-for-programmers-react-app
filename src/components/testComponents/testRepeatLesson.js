@@ -11,7 +11,7 @@ const TestRepeatLesson = (props) => {
     const language = getSettings.settings.language;
     const speakRate = getSettings.settings.speakRate;
     const currentWord = props.currentWord;
-    const words = JSON.parse(localStorage.getItem("repetitionWords"));
+    const words = props.words;
     const visibility = useContext(VisibilityContext);
     const areAdvanceOptionsVisible = visibility.isVisible.areAdvanceOptionsVisible
 

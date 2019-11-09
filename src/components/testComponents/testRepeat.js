@@ -23,23 +23,22 @@ const TestRepeat = () => {
     const [repetition, setRepetition] = useState({
         content: TestRepeatLesson,
         currentWord: 0,
-        actualTest: "one",
         choosenAnswer: "none",
         rightAnswer: "grayColor",
     });
     
     const testRepeat = (option, set, translate) => {
         if (option === "setContent") {
-            setRepetition({...repetition, content: set, currentWord: 0})
+            setRepetition({...repetition, content: set, currentWord: 0, rightAnswer: "grayColor", choosenAnswer: "none"});
         }
         if (option === "setCurrentWord") {
-            setRepetition({...repetition, currentWord: repetition.currentWord + set, choosenAnswer: "none", rightAnswer: "grayColor"})
-        }
-        if (option === "actualTest") {
-            setRepetition({...repetition, actualTest: set});
+            let currentWord = repetition.currentWord;
+            if (repetition.rightAnswer !== "greenColor") {
+                currentWord = repetition.currentWord + set;
+            }
+            setRepetition({...repetition, currentWord: currentWord, choosenAnswer: "none", rightAnswer: "grayColor"});
         }
         if (option === "choosenAnswer") {
-            console.log(set, words[repetition.currentWord][0][translate]);
             let rightAnswer = "redColor";
             // here can be: dictionary[words.currentWord].words or dictionary[words.currentWord].translation
             if (set === words[repetition.currentWord][0][translate]) {
@@ -50,21 +49,23 @@ const TestRepeat = () => {
     }
 
     useEffect(() => {
-        let answers;
-        if (repetition.choosenAnswer === "none") {
-            // choose 6 random answers
-            answers = chooseAnswers(repetition.currentWord, dictionary, numberOfAnswers, "translation", words);
-        } else {
-            // get actual choosen answer from mainContext
-            answers = actualAnswers;
-        }
-        // saving answers in mainContentContext
-        setContent.changeContent("actualAnswers", answers);
+        if (words.length !== 0) {
+            let answers;
+            if (repetition.choosenAnswer === "none") {
+                // choose 6 random answers
+                answers = chooseAnswers(repetition.currentWord, dictionary, numberOfAnswers, "translation", words);
+            } else {
+                // get actual choosen answer from mainContext
+                answers = actualAnswers;
+            }
+            // saving answers in mainContentContext
+            setContent.changeContent("actualAnswers", answers);
+            }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [repetition.choosenAnswer]);
     
     const RepetitionContent = repetition.content;
-    //console.log(repetition.currentWord)
+
     return (
         <div className="testSection" >
             <h3>Repetition</h3>
@@ -74,7 +75,8 @@ const TestRepeat = () => {
             </div> 
             <div className="repetition-content">
                 <RepetitionContent currentWord={repetition.currentWord} testRepeat={testRepeat} TestRepeatTest={TestRepeatTest} 
-                actualTest={repetition.actualTest} choosenAnswer={repetition.choosenAnswer} rightAnswer={repetition.rightAnswer} />
+                TestRepeatLesson={TestRepeatLesson} choosenAnswer={repetition.choosenAnswer} 
+                rightAnswer={repetition.rightAnswer} words={words} />
             </div>
         </div>
     )

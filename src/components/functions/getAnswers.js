@@ -11,7 +11,6 @@ const GetAnswers = (props) => {
         dictionaryWord = props.isRepetitionTest[props.currentWord][0];
     }
     const actualAnswers = setContent.content.actualAnswers;
-    console.log(dictionaryWord)
 
     // getting each answer from actualAnswers and returning it all with specific options
     const getAnswers = () => {
@@ -20,7 +19,7 @@ const GetAnswers = (props) => {
             answers = [];
         }
         answers = answers.map( (answer, index) => {
-            return <div key={index} onClick={() => {
+            return <div key={index} onClick={ () => {
                                 // if this component is used in test, then block other answers after choosing one answer. Answer can be choosed only once
                                 // else answer can be choosed many times
                                 if (props.test !== undefined && props.test === "yes") {
@@ -33,6 +32,10 @@ const GetAnswers = (props) => {
                                             // if tested word is not passed then add point
                                             if (dictionaryWord.passed === "") {
                                                 getDictionary.changeDictionaryData("points", "yes", dictionaryWord.id);
+                                            }
+                                            // if this component is used by repetition component
+                                            if (props.isRepetitionTest !== undefined) {
+                                                getDictionary.changeDictionaryData("points", "repetition", dictionaryWord.id);
                                             }
                                         } else {
                                             playSound("wrongSound");

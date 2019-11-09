@@ -86,7 +86,7 @@ const TestWords = () => {
             </div>
         )
     }
-
+    
     return (
         <div className="testSection" >
             <div>{getDictionary.dictionaryData.points}</div>
