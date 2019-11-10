@@ -81,8 +81,8 @@ const TestWords = () => {
 
     if (words.currentWord > (dictionary.length-1)) {
         return (
-            <div className="mainContent">
-                Congratulations, you have passed all tests! :)
+            <div className="testSection">
+                <p className="all-tests-passed">Congratulations, you have passed all tests! :) </p>
             </div>
         )
     }

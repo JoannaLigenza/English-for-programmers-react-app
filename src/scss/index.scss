@@ -35,6 +35,11 @@ body {
     //transform: translateX(0);
 }
 
+.all-tests-passed {
+    text-align: center;
+    margin-top: 100px;
+}
+
 @import "menu";
 @import "main";
 @import "lessons";

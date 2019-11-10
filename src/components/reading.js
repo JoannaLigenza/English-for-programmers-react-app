@@ -56,7 +56,7 @@ const Reading = (props) => {
 
     if (words.currentWord > (dictionary.length-1)) {
         return (
-            <div className="mainContent" >
+            <div className="all-tests-passed">
                 Congratulations, you have passed all tests! :)
             </div>
         )
