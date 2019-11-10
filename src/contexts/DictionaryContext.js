@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext } from 'react';
-import { MainContentContext } from './MainContentContext.js';
 import Data from '../data/dictionary.json';
 
 export const DictionaryContext = createContext();
@@ -43,10 +42,6 @@ const DictionaryContextProvider = (props) => {
     const points = JSON.parse(localStorage.getItem("points"));
     const repetitionWords = JSON.parse(localStorage.getItem("repetitionWords"));
 
-    const setContent = useContext(MainContentContext);
-    const testEachWordXTimes = setContent.content.testEachWordXTimes;
-    const testLoop = setContent.content.testLoop;
-
     // state
     const [dictionaryData, setDictionaryData] = useState({
         dictionary: getDataFromStorage,
@@ -70,20 +65,25 @@ const DictionaryContextProvider = (props) => {
             return setDictionaryData({...dictionaryData, repetitionWords: repetitionWords });
         }
         if (option === "points") {
-            let points = dictionaryData.points;
-            if (set === "yes") {
-                points = dictionaryData.points + 1;
-            }
+            const points = dictionaryData.points + 1;
+            return setDictionaryData({...dictionaryData, points: points})
+        }
+        if (option === "passed") {
             const newDictionary = dictionaryData.dictionary.map(word => {
                 let newWord = word;
-                // set2 is current word id       // add "yes" only if word is testet the last time in test (each word is tested few times)
-                if (set2 === word.id && testLoop === testEachWordXTimes) {
-                    newWord.passed = set;
+                // set2 is current word id
+                if (set2 === word.id) {
+                    // set is information if word is passed
+                    if (newWord.passed === "no") {
+                        newWord.passed = "no";
+                    } else {
+                        newWord.passed = set;
+                    }
                 }
                 return newWord;
             });
             localStorage.setItem("dictionary", JSON.stringify(newDictionary));
-            return setDictionaryData({...dictionaryData, points, dictionary: newDictionary})
+            return setDictionaryData({...dictionaryData, dictionary: newDictionary})
         }
         if (option === "repetitionWords") {
             const lessonNum = lessonNumber + 1;

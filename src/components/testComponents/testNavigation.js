@@ -16,6 +16,9 @@ const TestNavigation = (props) => {
                     // if answer is incorrect, write it to notPassedWords array
                     if (props.rightAnswer !== "greenColor") {
                         await getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord], props.actualTestNumber );
+                        getDictionary.changeDictionaryData("passed", "no", dictionary[props.currentWord].id );
+                    } else {
+                        getDictionary.changeDictionaryData("passed", "yes", dictionary[props.currentWord].id );
                     }
                     // load score component
                     setContent.changeContent("setContentInOverlap", "Score");
@@ -29,22 +32,28 @@ const TestNavigation = (props) => {
                 }}>
                 Zobacz wynik
             </div>
-            <div className="navigation--right" onClick={() => {
+            <div className="navigation--right" onClick={async () => {
                     if (props.changetestTwo !== undefined) {
                         props.changetestTwo("next");
                     }
-                    // if test loop ends then set another loop
+                    // if test loop ends then set another loop, unless it is the last loop, then hide arrow
                     if (props.currentWord === (props.displayTo )) {
                         props.changeWord("currentWord");
                         // add another test loop
                         setContent.changeContent("testLoop");
                         // if answer is incorrect, write it to notPassedWords array
                         if (props.rightAnswer !== "greenColor") {
-                            getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord], props.actualTestNumber );
+                            await getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord], props.actualTestNumber );
+                            getDictionary.changeDictionaryData("passed", "no", dictionary[props.currentWord].id );
+                        } else {
+                            getDictionary.changeDictionaryData("passed", "yes", dictionary[props.currentWord].id );
                         }
                     } else {
                         if (props.rightAnswer !== "greenColor") {
-                            getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord], props.actualTestNumber );
+                            await getDictionary.changeDictionaryData("notPassedWords", dictionary[props.currentWord], props.actualTestNumber );
+                            getDictionary.changeDictionaryData("passed", "no", dictionary[props.currentWord].id );
+                        } else {
+                            getDictionary.changeDictionaryData("passed", "yes", dictionary[props.currentWord].id );
                         }
                         // go to the next word in test
                         props.changeWord("next");

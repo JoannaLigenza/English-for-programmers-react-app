@@ -29,17 +29,13 @@ const GetAnswers = (props) => {
                                         // if choosen answer is equal current word translation, then add one point and play right sound, else play wrong sound
                                         if (dictionaryWord[props.translate] === answer) {
                                             playSound("rightSound");
-                                            // if tested word is not passed then add point
-                                            if (dictionaryWord.passed === "") {
-                                                getDictionary.changeDictionaryData("points", "yes", dictionaryWord.id);
-                                            }
-                                            // if this component is used by repetition component
                                             if (props.isRepetitionTest !== undefined) {
-                                                getDictionary.changeDictionaryData("points", "repetition", dictionaryWord.id);
+                                                getDictionary.changeDictionaryData("passed", "yes", dictionaryWord.id );
+                                            } else {
+                                                getDictionary.changeDictionaryData("points");
                                             }
                                         } else {
                                             playSound("wrongSound");
-                                            getDictionary.changeDictionaryData("points", "no", dictionaryWord.id);
                                         }
                                     }
                                 } else {
