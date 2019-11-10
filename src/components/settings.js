@@ -8,7 +8,7 @@ const Settings = () => {
     const getSettings = useContext(SettingsContext);
     const setContent = useContext(MainContentContext);
     return (
-        <div className={visibility.isVisible.isOptionsVisible ? "settings visible" : "settings hidden"}>
+        <div className={visibility.isVisible.isOptionsVisible ? "settings" : "settings hidden"}>
             <div className="settings__language-options">
                 <h3>Język:</h3>
                 <div className={ getSettings.settings.language === "en-GB" ? "settings-button settings-button--pressed" : "settings-button"}
