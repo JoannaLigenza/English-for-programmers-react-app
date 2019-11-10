@@ -50,10 +50,27 @@ const TestRepeat = () => {
 
     useEffect(() => {
         if (words.length !== 0) {
+            let testNumber = words[repetition.currentWord][1];
             let answers;
             if (repetition.choosenAnswer === "none") {
                 // choose 6 random answers
-                answers = chooseAnswers(repetition.currentWord, dictionary, numberOfAnswers, "translation", words);
+                if (testNumber === 0) {
+                    answers = chooseAnswers(repetition.currentWord, dictionary, numberOfAnswers, "translation", words);
+                }
+                if (testNumber === 1) {
+                    //testTwo doesn't have random answers, it has writing answer
+                    answers = "";
+                }
+                if (testNumber === 2) {
+                    answers = chooseAnswers(repetition.currentWord, dictionary, numberOfAnswers, "translation", words);
+                }
+                if (testNumber === 3) {
+                    answers = chooseAnswers(repetition.currentWord, dictionary, numberOfAnswers, "word", words);
+                }
+                if (testNumber === 4) {
+                    answers = chooseAnswers(repetition.currentWord, dictionary, numberOfAnswers, "word", words);
+                } 
+                //answers = chooseAnswers(repetition.currentWord, dictionary, numberOfAnswers, "word", words);
             } else {
                 // get actual choosen answer from mainContext
                 answers = actualAnswers;

@@ -1,29 +1,79 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { MainContentContext } from '../../contexts/MainContentContext.js';
 import { DictionaryContext } from '../../contexts/DictionaryContext.js';
+import { SettingsContext } from '../../contexts/SettingsContext.js';
 import GetAnswers from '../functions/getAnswers.js';
 import playSound from '../../sounds/sounds.js';
+import speak from '../../sounds/speaker.js';
+import speaker from '../../img/speaker.svg';
 
 
 const TestRepeatTest = (props) => {
     //const setContent = useContext(MainContentContext);
     const words = props.words;
     const getDictionary = useContext(DictionaryContext);
-    const setContent = useContext(MainContentContext);
+    const getSettings = useContext(SettingsContext);
+    //const setContent = useContext(MainContentContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
     const currentWord = props.currentWord;
-    console.log("words.length ", words.length, currentWord);
+    const sentence = dictionary[props.currentWord].examples[1][0];
+    const language = getSettings.settings.language;
+    const speakRate = getSettings.settings.speakRate;
+
     const noWordToRepeat = () => {
         return (
             <div className="mainContent" >
                 You have no words to repeat :)
             </div>
         )
-    }   
-    if (words.length === 0)  {
-        noWordToRepeat();
-    }    
+    }
 
+    // state - to testTwo
+    const [testTwoState, setTestTwo] = useState({
+        inputValue: "",
+        rightAnswer: "",
+        readOnly: false,
+    });
+
+    // state modification - to testTwo
+    const changetestTwo = (action, set) => {
+        if (action === "readOnly") {
+            setTestTwo({...testTwoState, readOnly: set });
+        }
+        if (action === "setInputValue") {
+            setTestTwo({...testTwoState, inputValue: set, rightAnswer: "" });
+        }
+        if (action === "next") {
+            console.log("next")
+            setTestTwo({...testTwoState, inputValue: "", rightAnswer: "", readOnly: false, pointsAdded: false });
+        }
+        console.log("weszlo, ",  action);
+    }
+
+    // function to testTwo
+    const borderColor = () => {
+        let borderColor = "gray";
+        if (props.rightAnswer === "greenColor") {
+            borderColor = "green";
+            playSound("rightSound");
+        }
+        if (props.rightAnswer === "redColor") {
+            borderColor = "red";
+            playSound("wrongSound");
+        }
+        return borderColor;
+    }
+
+    // function to testFour
+    let displaySentence = sentence.split(" ").map(word => {
+        if (word === dictionary[props.currentWord].word) {
+            word = "______";
+        }
+        return word;
+    });
+    displaySentence = displaySentence.join(" ");
+
+    // to all tests
     const setNavigation = () => {
         return (
             <div className="navigation">
@@ -51,7 +101,8 @@ const TestRepeatTest = (props) => {
                             if (props.rightAnswer === "greenColor") {
                                 getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord);
                             }
-                            props.testRepeat("setCurrentWord", 1)
+                            props.testRepeat("setCurrentWord", 1);
+                            changetestTwo("next");
                         } else {
                             playSound("wrongSound");
                         }
@@ -65,9 +116,6 @@ const TestRepeatTest = (props) => {
     const navigation = setNavigation();
 
     const testOne = () => {
-        // if (words[currentWord] === undefined) {         // sprawdz to !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //     return noWordToRepeat();
-        // }
         return (
             <div className="testSection" >
                 <h2 className="readingSection__word">{words[currentWord][0].word}</h2>
@@ -78,11 +126,86 @@ const TestRepeatTest = (props) => {
         )
     }
 
+    const testTwo = () => {
+        console.log(props.rightAnswer, borderColor())
+        return (
+            <div className="testSection" >
+                <h2 className="readingSection__word">{words[currentWord][0].translation}</h2>
+                <div className="readingSection__answers">
+                    <form>
+                        <label htmlFor="write-in-english">Napisz po angielsku:</label><br/>
+                        <input type="text" name="write-in-english" value={testTwoState.inputValue} onChange={(e)=> changetestTwo("setInputValue", e.target.value)}
+                            style={{borderColor: borderColor()}} className="text-input" readOnly={testTwoState.readOnly}/>
+                        <div className="input-button" onClick={() => {
+                            props.testRepeat("choosenAnswer", testTwoState.inputValue, "word");
+                            changetestTwo("readOnly", true);
+                        }}>Check answer</div>
+                    </form>
+                </div>
+                {navigation}
+            </div>
+        )
+    }
+
+    const testThree = () => {
+        if (props.choosenAnswer === "none") {
+            speak(words[currentWord][0].word, language, speakRate);
+        }
+        return (
+            <div className="testSection" >
+                <h2 className="readingSection__word" style={{ marginBottom: 0}}>{words[currentWord][0].spelling}</h2>
+                <img src={speaker} alt="speaker icon - press and listen" className="speaker-icon" style={{position: "relative", top: -45, left: -150}}
+                            onClick={() => speak(words[currentWord][0].word, language, speakRate)}/>
+                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
+                           changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="translation" test="yes"/>
+                {navigation}
+            </div>
+        )
+    }
+
+    const testFour = () => {
+        return (
+            <div className="testSection" >
+                <h2 className="readingSection__word">{displaySentence}</h2>
+                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
+                           changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="word" test="yes"/>
+                {navigation}
+            </div>
+        )
+    }
+
+    const testFive = () => {
+        return (
+            <div className="testSection" >
+                <h2 className="readingSection__word">{words[currentWord][0].translation}</h2>
+                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
+                            changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="word" test="yes"/>
+                {navigation}
+            </div>
+        )
+    }
+    
     // number of test for word in repetition
-    let displayContent = testOne();
-    // if (props.words[currentWord][1] === 1) {
-    //     displayContent = testOne();
-    // }
+    let displayContent;
+    if (words.length > 0)  {
+        if (props.words[currentWord][1] === 0) {
+            displayContent = testOne();
+        }
+        if (props.words[currentWord][1] === 1) {
+            displayContent = testTwo();
+        }
+        if (props.words[currentWord][1] === 2) {
+            displayContent = testThree();
+        }
+        if (props.words[currentWord][1] === 3) {
+            displayContent = testFour();
+        }
+        if (props.words[currentWord][1] === 4) {
+            displayContent = testFive();
+        }
+    } else {
+        displayContent = noWordToRepeat();
+    }
     
 
     return (
