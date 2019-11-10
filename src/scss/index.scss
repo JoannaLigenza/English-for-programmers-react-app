@@ -25,16 +25,14 @@ body {
 
 .hidden {
     transform: translateX(-100%);
-    z-index: 1;
-    display: none;
+    //display: none;
     @include mediaQuery(700px) {
        display: block;
     }
 }
 
 .visible {
-    transform: translateX(0);
-    z-index: 15;
+    //transform: translateX(0);
 }
 
 @import "menu";

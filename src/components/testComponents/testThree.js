@@ -38,7 +38,7 @@ const TestThree = (props) => {
         <div className="testSection" >
             <img src={speaker} alt="speaker icon - press and listen" className="speaker-icon"
                         onClick={() => speak(dictionary[props.currentWord].word, language, speakRate)}/>
-            <h2 className="readingSection__word" style={{ marginBottom: 0}}>{dictionary[props.currentWord].spelling}</h2>
+            <h2 className="readingSection__word">{dictionary[props.currentWord].spelling}</h2>
             <GetAnswers currentWord={props.currentWord} choosenAnswer={props.choosenAnswer}
                         changeWord={props.changeWord} rightAnswer={props.rightAnswer} translate="translation" test="yes" />
             <TestNavigation currentWord={props.currentWord} changeWord={props.changeWord} displayTo={props.displayTo} 

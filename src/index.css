@@ -16,18 +16,11 @@ body {
 
 .hidden {
   transform: translateX(-100%);
-  z-index: 1;
-  display: none;
 }
 @media screen and (min-width: 700px) {
   .hidden {
     display: block;
   }
-}
-
-.visible {
-  transform: translateX(0);
-  z-index: 15;
 }
 
 .menu {
@@ -380,8 +373,7 @@ body {
 @media screen and (min-width: 700px) {
   .readingSection__word {
     font-size: 1.5em;
-    margin: 20px 0;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 }
 .readingSection__answers {
