@@ -1,0 +1,43 @@
+@import "variables"; 
+@import "mixins"; 
+
+.testSection {
+    min-height: 100vh;
+
+    .speaker-icon{
+        position: absolute; 
+        top: 5px;
+        left: 5px;
+    }
+
+    .repetition__button {
+        @include settings-button;
+        border: 1px solid $closeButtonsBorder;
+        box-shadow: 2px 2px 2px $buttonShadow;
+        margin: 20px 10px;
+
+        @include mediaQuery(700px) {
+            margin: 50px 10px;
+        }
+    }
+
+    .repetition__button-clicked {
+        @include settings-button--pressed;
+        box-shadow: inset 2px 2px 2px $buttonShadow;
+    }
+}
+
+.display-points {
+    padding: 10px;
+}
+
+.score {
+    margin-top: 50px;
+    &__element--button {
+        @include settings-button;
+        border: 1px solid $closeButtonsBorder;
+        box-shadow: 2px 2px 2px $buttonShadow;
+        width: 200px;
+        margin-top: 50px;
+    }
+}

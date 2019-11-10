@@ -57,6 +57,7 @@ const Main = () => {
         DisplayContent = content.testOne;
     } else if (whichContentLoad === "TestTwo") {
         DisplayContent = content.testTwo;
+        console.log("to tu test two")
     } else if (whichContentLoad === "TestThree") {
         DisplayContent = content.testThree;
     } else if (whichContentLoad === "Score") {

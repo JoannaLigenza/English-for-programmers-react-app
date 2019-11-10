@@ -17,7 +17,7 @@ const TestRepeatLesson = (props) => {
 
     if (words.length === 0)  {
         return (
-            <div className="mainContent" >
+            <div>
                 You have no words to repeat :)
             </div>
         )

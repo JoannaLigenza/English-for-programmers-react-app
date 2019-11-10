@@ -22,7 +22,7 @@ const TestRepeatTest = (props) => {
 
     const noWordToRepeat = () => {
         return (
-            <div className="mainContent" >
+            <div>
                 You have no words to repeat :)
             </div>
         )
@@ -44,24 +44,8 @@ const TestRepeatTest = (props) => {
             setTestTwo({...testTwoState, inputValue: set, rightAnswer: "" });
         }
         if (action === "next") {
-            console.log("next")
             setTestTwo({...testTwoState, inputValue: "", rightAnswer: "", readOnly: false, pointsAdded: false });
         }
-        console.log("weszlo, ",  action);
-    }
-
-    // function to testTwo
-    const borderColor = () => {
-        let borderColor = "gray";
-        if (props.rightAnswer === "greenColor") {
-            borderColor = "green";
-            playSound("rightSound");
-        }
-        if (props.rightAnswer === "redColor") {
-            borderColor = "red";
-            playSound("wrongSound");
-        }
-        return borderColor;
     }
 
     // function to testFour
@@ -117,7 +101,7 @@ const TestRepeatTest = (props) => {
 
     const testOne = () => {
         return (
-            <div className="testSection" >
+            <div>
                 <h2 className="readingSection__word">{words[currentWord][0].word}</h2>
                 <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
                             changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="translation" test="yes"/>
@@ -127,15 +111,14 @@ const TestRepeatTest = (props) => {
     }
 
     const testTwo = () => {
-        console.log(props.rightAnswer, borderColor())
         return (
-            <div className="testSection" >
+            <div>
                 <h2 className="readingSection__word">{words[currentWord][0].translation}</h2>
                 <div className="readingSection__answers">
                     <form>
                         <label htmlFor="write-in-english">Napisz po angielsku:</label><br/>
                         <input type="text" name="write-in-english" value={testTwoState.inputValue} onChange={(e)=> changetestTwo("setInputValue", e.target.value)}
-                            style={{borderColor: borderColor()}} className="text-input" readOnly={testTwoState.readOnly}/>
+                            style={{borderColor: props.rightAnswer}} className="text-input" readOnly={testTwoState.readOnly}/>
                         <div className="input-button" onClick={() => {
                             props.testRepeat("choosenAnswer", testTwoState.inputValue, "word");
                             changetestTwo("readOnly", true);
@@ -152,9 +135,9 @@ const TestRepeatTest = (props) => {
             speak(words[currentWord][0].word, language, speakRate);
         }
         return (
-            <div className="testSection" >
+            <div>
                 <h2 className="readingSection__word" style={{ marginBottom: 0}}>{words[currentWord][0].spelling}</h2>
-                <img src={speaker} alt="speaker icon - press and listen" className="speaker-icon" style={{position: "relative", top: -45, left: -150}}
+                <img src={speaker} alt="speaker icon - press and listen" className="speaker-icon"
                             onClick={() => speak(words[currentWord][0].word, language, speakRate)}/>
                 <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
                            changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="translation" test="yes"/>
@@ -165,7 +148,7 @@ const TestRepeatTest = (props) => {
 
     const testFour = () => {
         return (
-            <div className="testSection" >
+            <div>
                 <h2 className="readingSection__word">{displaySentence}</h2>
                 <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
                            changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="word" test="yes"/>
@@ -176,7 +159,7 @@ const TestRepeatTest = (props) => {
 
     const testFive = () => {
         return (
-            <div className="testSection" >
+            <div>
                 <h2 className="readingSection__word">{words[currentWord][0].translation}</h2>
                 <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
                             changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="word" test="yes"/>
@@ -209,7 +192,7 @@ const TestRepeatTest = (props) => {
     
 
     return (
-        <div className="testSection" >
+        <div>
             {displayContent}
         </div>
     )

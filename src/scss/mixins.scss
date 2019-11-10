@@ -36,6 +36,7 @@
     cursor: pointer;
     box-shadow: 2px 2px 2px #fff;
     user-select: none;
+    outline: none;
 
     &:active{
         transform: translate(2px, 2px);

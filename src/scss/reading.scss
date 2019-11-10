@@ -7,8 +7,11 @@
 
     &__word {
         margin: 10px 0;
+        padding: 20px 5px 5px 5px;
+        font-size: 1.2em;
 
         @include mediaQuery(700px) {
+            font-size: 1.5em;
             margin: 20px 0;
             margin-bottom: 50px;
         }

@@ -24,20 +24,21 @@ const Score = () => {
         <div className="testSection" >
             <div className="score">
                 <div className="score__element">
-                    <h4>Prawidłowe odpowiedzi: </h4>
-                    <div>{points}</div>
+                    <h4>Prawidłowe odpowiedzi: {points}</h4>
                 </div>
                 <div className="score__element">
-                    <h4>Punkty łącznie: </h4>
-                    <div>{storagePoints}</div>
+                    <h4>Punkty łącznie: {storagePoints}</h4>
                 </div>
                 <div className="score__element">
-                    <h4>Nieprawidłowe odpowiedzi </h4>
-                    <div>{incorrectAnswers}</div>
+                    <h4>Nieprawidłowe odpowiedzi: {incorrectAnswers}</h4>
                 </div>
-                <div className="score__element--button">
-                    <div>Zobacz nieprawidlowe odpowiedzi</div>
-                    <div>Zrób powtórkę </div>
+                <div className="score__element">
+                    <div className="score__element--button" onClick={() => setContent.changeContent("setContentInOverlap", "TestTwo")}> 
+                        Powtórka 
+                    </div>
+                    <div className="score__element--button" onClick={() => setContent.changeContent("setContentInOverlap", "TestOne")}> 
+                        Kolejny test 
+                    </div>
                 </div>
                 
             </div>

@@ -4,11 +4,6 @@ import { DictionaryContext } from '../../contexts/DictionaryContext.js';
 import { chooseAnswers } from '../functions/chooseAnswers.js';
 import TestRepeatLesson from './testRepeatLesson.js';
 import TestRepeatTest from './testRepeatTest.js';
-import TestOne from './testOne.js';
-import TestTwo from './testTwo.js';
-import TestThree from './testThree.js';
-import TestFour from './testFour.js';
-import TestFive from './testFive.js';
 
 const TestRepeat = () => {
     const words = JSON.parse(localStorage.getItem("repetitionWords"));
@@ -87,8 +82,14 @@ const TestRepeat = () => {
         <div className="testSection" >
             <h3>Repetition</h3>
             <div className="repetiton-option">
-                <button className="repetition__button--lesson" onClick={() => testRepeat("setContent", TestRepeatLesson)}>Lesson</button>
-                <button className="repetition__button--test" onClick={() => testRepeat("setContent", TestRepeatTest)}>Test</button>
+                <button onClick={() => testRepeat("setContent", TestRepeatLesson)}
+                    className={repetition.content === TestRepeatLesson ? "repetition__button repetition__button-clicked" : "repetition__button" }>
+                    Lesson
+                </button>
+                <button onClick={() => testRepeat("setContent", TestRepeatTest)}
+                    className={repetition.content === TestRepeatTest ? "repetition__button repetition__button-clicked" : "repetition__button" }>
+                    Test
+                </button>
             </div> 
             <div className="repetition-content">
                 <RepetitionContent currentWord={repetition.currentWord} testRepeat={testRepeat} TestRepeatTest={TestRepeatTest} 

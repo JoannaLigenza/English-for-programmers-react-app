@@ -71,6 +71,7 @@ body {
   cursor: pointer;
   box-shadow: 2px 2px 2px #fff;
   user-select: none;
+  outline: none;
 }
 .menu .settings .settings-button:active {
   transform: translate(2px, 2px);
@@ -273,6 +274,7 @@ body {
   cursor: pointer;
   box-shadow: 2px 2px 2px #fff;
   user-select: none;
+  outline: none;
   width: 200px;
   margin-bottom: 3em;
   border: 1px solid #7e7e7e;
@@ -372,9 +374,12 @@ body {
 }
 .readingSection__word {
   margin: 10px 0;
+  padding: 20px 5px 5px 5px;
+  font-size: 1.2em;
 }
 @media screen and (min-width: 700px) {
   .readingSection__word {
+    font-size: 1.5em;
     margin: 20px 0;
     margin-bottom: 50px;
   }
@@ -404,6 +409,7 @@ body {
   cursor: pointer;
   box-shadow: 2px 2px 2px #fff;
   user-select: none;
+  outline: none;
   box-shadow: 2px 2px 2px #7e7e7e;
   width: 130px;
   height: 130px;
@@ -475,6 +481,80 @@ body {
   .testSection__section .testSection__content {
     width: 400px;
   }
+}
+
+.testSection {
+  min-height: 100vh;
+}
+.testSection .speaker-icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.testSection .repetition__button {
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #fff;
+  width: 100px;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #fff;
+  user-select: none;
+  outline: none;
+  border: 1px solid #2e2e2e;
+  box-shadow: 2px 2px 2px #7e7e7e;
+  margin: 20px 10px;
+}
+.testSection .repetition__button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+@media screen and (min-width: 700px) {
+  .testSection .repetition__button {
+    margin: 50px 10px;
+  }
+}
+.testSection .repetition__button-clicked {
+  box-shadow: inset 2px 2px 2px #7e7e7e;
+  box-shadow: inset 2px 2px 2px #7e7e7e;
+}
+.testSection .repetition__button-clicked:active {
+  transform: unset;
+}
+
+.display-points {
+  padding: 10px;
+}
+
+.score {
+  margin-top: 50px;
+}
+.score__element--button {
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #fff;
+  width: 100px;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #fff;
+  user-select: none;
+  outline: none;
+  border: 1px solid #2e2e2e;
+  box-shadow: 2px 2px 2px #7e7e7e;
+  width: 200px;
+  margin-top: 50px;
+}
+.score__element--button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=index.css.map */
