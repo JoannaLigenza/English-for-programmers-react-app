@@ -25,7 +25,7 @@ body {
 
 .all-tests-passed {
   text-align: center;
-  margin-top: 100px;
+  padding-top: 100px;
 }
 
 .menu {
@@ -113,7 +113,7 @@ body {
 }
 
 .main {
-  background-color: #fff;
+  background-color: #a3ffba;
   position: absolute;
   left: 0;
   width: 100vw;
@@ -291,7 +291,7 @@ body {
 }
 .navigation--left, .navigation--right {
   padding: 15px;
-  background-color: #A3C6FF;
+  background-color: #23dba2;
   position: relative;
   user-select: none;
 }
@@ -310,7 +310,7 @@ body {
   height: 0;
   border-top: 60px solid transparent;
   border-bottom: 60px solid transparent;
-  border-right: 55px solid #A3C6FF;
+  border-right: 55px solid #23dba2;
 }
 .navigation--right::after {
   content: "";
@@ -321,7 +321,7 @@ body {
   height: 0;
   border-top: 60px solid transparent;
   border-bottom: 60px solid transparent;
-  border-left: 55px solid #A3C6FF;
+  border-left: 55px solid #23dba2;
 }
 .navigation .button--goToTest {
   position: absolute;
@@ -457,7 +457,6 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-color: #bdffc6;
 }
 .testSection__section {
   height: calc(100vh / 3);

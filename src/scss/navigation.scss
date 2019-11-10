@@ -9,7 +9,7 @@
 
     &--left, &--right{
         padding: 15px;
-        background-color: #A3C6FF;
+        background-color: $background-color-menu;
         position: relative;
         user-select: none;
 
@@ -31,7 +31,7 @@
         height: 0;
         border-top: 60px solid transparent;
         border-bottom: 60px solid transparent; 
-        border-right: 55px solid #A3C6FF; 
+        border-right: 55px solid $background-color-menu; 
     }
 
     &--right::after {
@@ -43,7 +43,7 @@
         height: 0;
         border-top: 60px solid transparent;
         border-bottom: 60px solid transparent; 
-        border-left: 55px solid #A3C6FF; 
+        border-left: 55px solid $background-color-menu; 
     }
 
     .button--goToTest {
