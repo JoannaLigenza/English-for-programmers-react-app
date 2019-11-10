@@ -8,7 +8,6 @@ import speak from '../sounds/speaker.js';
 
 const Lessons = (props) => {
     const lessonNumber = props.lessonNumber;
-    const backgroundColor = "white";
     const getSettings = useContext(SettingsContext);
     const dictionary = props.dictionary;
     const language = getSettings.settings.language;
@@ -35,7 +34,7 @@ const Lessons = (props) => {
     }
 
     return (
-        <div className="mainContent" style={{backgroundColor: `${backgroundColor}`}}>
+        <div className="mainContent">
             <div className="mainContent__lessons">
                 <h2 className="mainContent__ovlpTitle">Lesson {lessonNumber}</h2>
                 <div className="mainContent__imageContainer" style={{backgroundImage: `url(${noteyellow})`}}>
