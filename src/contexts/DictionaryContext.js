@@ -60,9 +60,20 @@ const DictionaryContextProvider = (props) => {
             return setDictionaryData({...dictionaryData, notPassedWords: [], points: 0, repetitionWords: repetitionWords });
         }
         if (option === "notPassedWordsRemove") {
+            // set "repetition" value to "passed" key for removed word
+             const newDictionary = dictionaryData.dictionary.map(word => {
+                let newWord = word;
+                // set2 is current word id
+                if (set2 === word.id) {
+                    newWord.passed = "repetition";
+                }
+                return newWord;
+            });
+            localStorage.setItem("dictionary", JSON.stringify(newDictionary));
+
             repetitionWords.splice(set, 1);
             localStorage.setItem("repetitionWords", JSON.stringify(repetitionWords));
-            return setDictionaryData({...dictionaryData, repetitionWords: repetitionWords });
+            return setDictionaryData({...dictionaryData, repetitionWords: repetitionWords, dictionary: newDictionary });
         }
         if (option === "points") {
             const points = dictionaryData.points + 1;

@@ -83,7 +83,9 @@ const TestRepeatTest = (props) => {
                         if (props.rightAnswer !== "grayColor") {
                             // if choosen answer is right answer then delete this word from repetitionWords array
                             if (props.rightAnswer === "greenColor") {
-                                getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord);
+                                getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord, words[currentWord][0].id);
+                                //getDictionary.changeDictionaryData("passed", "repetition", words[currentWord][0].id );
+                                // przy wyrzucaniu z 
                             }
                             props.testRepeat("setCurrentWord", 1);
                             changetestTwo("next");
