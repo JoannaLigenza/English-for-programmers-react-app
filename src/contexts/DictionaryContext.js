@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState } from 'react';
 import Data from '../data/dictionary.json';
 
 export const DictionaryContext = createContext();
@@ -31,6 +31,9 @@ const saveDataInStorage = () => {
     if (localStorage.getItem("repetitionWords") === null) {
         localStorage.setItem("repetitionWords", JSON.stringify([]));
     }
+    if (localStorage.getItem("favourites") === null) {
+        localStorage.setItem("favourites", JSON.stringify([]));
+    }
 }
 saveDataInStorage();
 
@@ -41,13 +44,14 @@ const DictionaryContextProvider = (props) => {
     const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
     const points = JSON.parse(localStorage.getItem("points"));
     const repetitionWords = JSON.parse(localStorage.getItem("repetitionWords"));
+    const favourites = JSON.parse(localStorage.getItem("favourites"));
 
     // state
     const [dictionaryData, setDictionaryData] = useState({
         dictionary: getDataFromStorage,
-        repetitionWords: repetitionWords,
-        notPassedWords: [],
-        points: points,
+        repetitionWords: repetitionWords,           // this is array with all words with wrong answers
+        notPassedWords: [],                         // this is used to count wrong answers in one test
+        points: points,                             // counts points during test
     });
 
     const changeDictionaryData = (option, set, set2) => {
@@ -101,7 +105,7 @@ const DictionaryContextProvider = (props) => {
                 return newWord;
             });
             localStorage.setItem("dictionary", JSON.stringify(newDictionary));
-            return setDictionaryData({...dictionaryData, dictionary: newDictionary})
+            return setDictionaryData({...dictionaryData, dictionary: newDictionary});
         }
         if (option === "repetitionWords") {
             const lessonNum = lessonNumber + 1;
@@ -115,6 +119,26 @@ const DictionaryContextProvider = (props) => {
             localStorage.setItem("lessonNumber", JSON.stringify(lessonNum));
             
             return setDictionaryData({...dictionaryData, repetitionWords: newRepetitionWords });
+        }
+        if (option === "favourites") {
+            let newFavourites = favourites;
+            const newDictionary = dictionaryData.dictionary.map(word => {
+                let newWord = word;
+                // set is word from dictionary (object)
+                if (set.id === word.id) {
+                    if (set.favourites === "no") {
+                        newWord.favourites = "yes";
+                        newFavourites.push(word);
+                    } else {
+                        newWord.favourites = "no";
+                        newFavourites = newFavourites.filter(favourite => favourite.id !== set.id);
+                    }
+                }
+                return newWord;
+            });
+            localStorage.setItem("dictionary", JSON.stringify(newDictionary));
+            localStorage.setItem("favourites", JSON.stringify(newFavourites));
+            return setDictionaryData({...dictionaryData, dictionary: newDictionary});
         }
     }
 

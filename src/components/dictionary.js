@@ -8,6 +8,7 @@ import checkboxYellow from '../img/checkbox-yellow.svg';
 import checkboxRed from '../img/checkbox-red.svg';
 import checkboxGray from '../img/checkbox-gray.svg';
 import star from '../img/star.svg';
+import starEmpty from '../img/star-empty.svg';
 import speaker from '../img/speaker.svg';
 import speak from '../sounds/speaker.js';
 
@@ -34,11 +35,23 @@ const Dictionary = (props) => {
         return img;
     }
 
+    const starImg = (isInFavourites) => {
+        let img = starEmpty;
+        if (isInFavourites === 'yes') {
+            img = star;
+        }
+        return img;
+    }
+
+    const addToFavourites = (word) => {
+        getDictionary.changeDictionaryData("favourites", word);
+    }
+
     const displayDictionary = dictionary.map(word => {
         return (
             <li key={word.id} className="dictionary-list-element">
-                <div className="add-to-favourites">
-                    <img src={star} alt="star-favourites icon" />
+                <div className="dictionary-list-element__add-to-favourites">
+                    <img src={starImg(word.favourites)} alt="star-favourites icon" onClick={() => addToFavourites(word)}/>
                 </div>
                 <div className="dictionary-list-element__word">
                     <div className="dictionary-list-element__word--word">{word.word}</div>

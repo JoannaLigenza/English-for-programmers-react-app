@@ -15,10 +15,19 @@
         padding: 5px 5px;
         background-color: white;
 
+        &__add-to-favourites {
+            cursor: pointer;
+
+            &:active {
+                transform: scale(1.1);
+            }
+        }
+
         &__word {
             display: flex;
             flex-direction: column;
             width: 100%;
+            padding-left: 5px;
 
             &--word {
                 font-size: 1.2em;

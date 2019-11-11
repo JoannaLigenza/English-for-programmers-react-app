@@ -572,10 +572,17 @@ body {
   padding: 5px 5px;
   background-color: white;
 }
+.dictionarySection .dictionary-list-element__add-to-favourites {
+  cursor: pointer;
+}
+.dictionarySection .dictionary-list-element__add-to-favourites:active {
+  transform: scale(1.1);
+}
 .dictionarySection .dictionary-list-element__word {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding-left: 5px;
 }
 .dictionarySection .dictionary-list-element__word--word {
   font-size: 1.2em;
