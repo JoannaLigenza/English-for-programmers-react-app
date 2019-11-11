@@ -28,6 +28,10 @@ body {
   padding-top: 100px;
 }
 
+.add-to-favourites {
+  padding: 5px;
+}
+
 .menu {
   width: 100vw;
   height: 100%;
@@ -551,6 +555,44 @@ body {
 .score__element--button:active {
   transform: translate(2px, 2px);
   box-shadow: none;
+}
+
+.dictionarySection {
+  padding-top: 40px;
+  background-color: #fff;
+}
+@media screen and (min-width: 700px) {
+  .dictionarySection {
+    padding-top: 0;
+  }
+}
+.dictionarySection .dictionary-list-element {
+  list-style: none;
+  display: flex;
+  padding: 5px 5px;
+  background-color: white;
+}
+.dictionarySection .dictionary-list-element__word {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.dictionarySection .dictionary-list-element__word--word {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.dictionarySection .dictionary-list-element__speak-passed {
+  display: flex;
+}
+.dictionarySection .dictionary-list-element__speak-passed .checkBox {
+  position: relative;
+  width: 45px;
+  padding-left: 10px;
+}
+.dictionarySection .dictionary-list-element__speak-passed .checkBox img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /*# sourceMappingURL=index.css.map */

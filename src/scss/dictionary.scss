@@ -1,0 +1,45 @@
+@import "variables"; 
+@import "mixins"; 
+
+.dictionarySection {
+    padding-top: 40px;
+    background-color: $background-color-dictionary;
+
+    @include mediaQuery(700px) {
+       padding-top: 0;
+    }
+
+    .dictionary-list-element {
+        list-style: none;
+        display: flex;
+        padding: 5px 5px;
+        background-color: white;
+
+        &__word {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            &--word {
+                font-size: 1.2em;
+                font-weight: bold;
+            }
+        }
+
+        &__speak-passed {
+            display: flex;
+
+            .checkBox {
+                position: relative;
+                width: $checkBoxWidth;
+                padding-left: 10px;
+
+                img {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+}

@@ -36,6 +36,10 @@ body {
     padding-top: 100px;
 }
 
+.add-to-favourites {
+    padding: 5px;
+}
+
 @import "menu";
 @import "main";
 @import "lessons";
@@ -44,3 +48,4 @@ body {
 @import "reading";
 @import "test";
 @import "testsSection";
+@import "dictionary";

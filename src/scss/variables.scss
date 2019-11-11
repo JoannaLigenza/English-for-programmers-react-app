@@ -2,7 +2,7 @@ $background-color-menu: #23dba2;
 $background-color-ovlp: radial-gradient(ellipse at center, #66f5a7 0%,#66f5a7 36%,#23dba2 64%,#23dba2 100%);
 $background-color-ovlp-hover: radial-gradient(ellipse at center, #66f5a7 0%,#66f5a7 36%,#23dba2 64%,#fff 100%);
 $background-color-main: rgb(163, 255, 186);
-//$background-color-advanced-options-row: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(102,245,166,1) 35%, rgba(102,245,166,1) 51%, rgba(102,245,166,1) 73%, rgba(35,219,161,1) 100%);
+$background-color-dictionary: #fff;
 $background-color-advanced-options-col:  linear-gradient(to right, rgba(35,219,161,1) 0%, rgba(102,245,166,1) 28%, rgba(102,245,166,1) 51%, rgba(102,245,166,1) 73%, rgba(35,219,161,1) 100%);
 $settingsWidth: 300px;
 $buttonsBorder: #fff;
@@ -10,4 +10,5 @@ $whiteText: #fff;
 $closeButtonsBorder: rgb(46, 46, 46);
 $greenTextColor: rgb(0, 51, 7);
 $grayTextColor: rgb(44, 44, 44);
-$buttonShadow: rgb(126, 126, 126)
+$buttonShadow: rgb(126, 126, 126);
+$checkBoxWidth: 45px;   // checkbox img width is 25px
