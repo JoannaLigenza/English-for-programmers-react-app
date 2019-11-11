@@ -568,6 +568,9 @@ body {
 }
 .dictionarySection .dictionary-list-element {
   list-style: none;
+  border-bottom: 1px solid gray;
+}
+.dictionarySection .dictionary-list-element__top {
   display: flex;
   align-items: center;
   padding: 5px;
@@ -585,6 +588,7 @@ body {
   flex-direction: column;
   width: 100%;
   padding-left: 15px;
+  cursor: pointer;
 }
 .dictionarySection .dictionary-list-element__word--word {
   font-size: 1.2em;
@@ -602,6 +606,9 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+.dictionary-hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=index.css.map */

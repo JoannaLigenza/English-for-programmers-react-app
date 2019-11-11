@@ -11,11 +11,15 @@
 
     .dictionary-list-element {
         list-style: none;
-        display: flex;
-        align-items: center;
-        padding: 5px;
-        padding-left: 10px;
-        background-color: white;
+        border-bottom: 1px solid gray;
+
+        &__top {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            padding-left: 10px;
+            background-color: white;
+        }
 
         &__add-to-favourites {
             cursor: pointer;
@@ -30,6 +34,7 @@
             flex-direction: column;
             width: 100%;
             padding-left: 15px;
+            cursor: pointer;
 
             &--word {
                 font-size: 1.2em;
@@ -52,5 +57,13 @@
                 }
             }
         }
+        
+        &__bottom {
+
+        }
     }
+}
+
+.dictionary-hidden {
+    display: none;
 }
