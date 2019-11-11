@@ -6,6 +6,7 @@ import ReadingOvlp from './ovlpReading.js';
 import ListeningOvlp from './ovlpListening.js';
 import WritingOvlp from './ovlpWriting.js';
 import TestOvlp from './ovlpTest.js';
+import DictionaryOvlp from "./ovlpDictionary.js";
 
 const Menu = () => {
     const visibility = useContext(VisibilityContext);
@@ -21,6 +22,7 @@ const Menu = () => {
             <ListeningOvlp />
             <WritingOvlp />
             <TestOvlp />
+            <DictionaryOvlp />
         </div>
     )
 }

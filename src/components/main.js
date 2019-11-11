@@ -8,6 +8,7 @@ import Reading from './reading.js';
 import Writing from './writing.js';
 import Listening from './listening.js';
 import Test from './test.js';
+import Dictionary from './dictionary.js';
 import TestWords from './testComponents/testWords.js';
 import TestRepeat from './testComponents/testRepeat.js';
 import TestFavourites from './testComponents/testFavourites.js';
@@ -36,6 +37,7 @@ const Main = () => {
         writing: Writing,
         listening: Listening,
         test: Test,
+        dictionary: Dictionary,
         testOne: TestWords,
         testTwo: TestRepeat,
         testThree: TestFavourites,
@@ -53,6 +55,8 @@ const Main = () => {
         DisplayContent = content.listening;
     } else if (whichContentLoad === "Test") {
         DisplayContent = content.test;
+    } else if (whichContentLoad === "Dictionary") {
+        DisplayContent = content.dictionary;
     } else if (whichContentLoad === "TestOne") {
         DisplayContent = content.testOne;
     } else if (whichContentLoad === "TestTwo") {
