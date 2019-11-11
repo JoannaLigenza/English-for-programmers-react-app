@@ -60,11 +60,18 @@ const DictionaryContextProvider = (props) => {
             return setDictionaryData({...dictionaryData, notPassedWords: [], points: 0, repetitionWords: repetitionWords });
         }
         if (option === "notPassedWordsRemove") {
+            console.log("state ", dictionaryData.repetitionWords);
+            console.log("storage ", repetitionWords);
+            // check if in repetitionWords array is another the same word. If yes, length of isWordInRepetitionWord === 2, if no, length === 1
+            const isWordInRepetitionWord = repetitionWords.filter(word => {
+                return word[0].word === set2.word;
+            })
+            console.log("word ", isWordInRepetitionWord.length);
             // set "repetition" value to "passed" key for removed word
-             const newDictionary = dictionaryData.dictionary.map(word => {
+            const newDictionary = dictionaryData.dictionary.map(word => {
                 let newWord = word;
-                // set2 is current word id
-                if (set2 === word.id) {
+                // set2 is current word
+                if (set2.id === word.id && isWordInRepetitionWord.length <= 1) {
                     newWord.passed = "repetition";
                 }
                 return newWord;

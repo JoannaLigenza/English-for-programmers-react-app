@@ -68,7 +68,8 @@ const TestRepeatTest = (props) => {
                         if (props.rightAnswer !== "grayColor") {
                             // if choosen answer is right answer then delete this word from repetitionWords array
                             if (props.rightAnswer === "greenColor") {
-                                getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord);
+                                // arguments: name of option, current word (number), word from repetitionWords array (object)
+                                getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord, words[currentWord][0]);
                             }
                             props.testRepeat("setContent", props.TestRepeatLesson);
                             getDictionary.changeDictionaryData("notPassedWordsZero");
@@ -83,9 +84,8 @@ const TestRepeatTest = (props) => {
                         if (props.rightAnswer !== "grayColor") {
                             // if choosen answer is right answer then delete this word from repetitionWords array
                             if (props.rightAnswer === "greenColor") {
-                                getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord, words[currentWord][0].id);
-                                //getDictionary.changeDictionaryData("passed", "repetition", words[currentWord][0].id );
-                                // przy wyrzucaniu z 
+                                // arguments: name of option, current word (number), word from repetitionWords array (object)
+                                getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord, words[currentWord][0]);
                             }
                             props.testRepeat("setCurrentWord", 1);
                             changetestTwo("next");
@@ -113,6 +113,13 @@ const TestRepeatTest = (props) => {
     }
 
     const testTwo = () => {
+        let borderColor = "gray"
+        if (props.rightAnswer === "redColor"){
+            borderColor = "red";
+        }
+        if (props.rightAnswer === "greenColor"){
+            borderColor = "green";
+        }
         return (
             <div>
                 <h2 className="readingSection__word">{words[currentWord][0].translation}</h2>
@@ -120,7 +127,7 @@ const TestRepeatTest = (props) => {
                     <form>
                         <label htmlFor="write-in-english">Napisz po angielsku:</label><br/>
                         <input type="text" name="write-in-english" value={testTwoState.inputValue} onChange={(e)=> changetestTwo("setInputValue", e.target.value)}
-                            style={{borderColor: props.rightAnswer}} className="text-input" readOnly={testTwoState.readOnly}/>
+                            style={{borderColor: borderColor}} className="text-input" readOnly={testTwoState.readOnly}/>
                         <div className="input-button" onClick={() => {
                             props.testRepeat("choosenAnswer", testTwoState.inputValue, "word");
                             changetestTwo("readOnly", true);
