@@ -83,6 +83,7 @@ const TestWords = () => {
         return (
             <div className="testSection">
                 <p className="all-tests-passed">Congratulations, you have passed all tests! :) </p>
+                <div className="display-points">Your have: {getDictionary.dictionaryData.points} points</div>
             </div>
         )
     }
