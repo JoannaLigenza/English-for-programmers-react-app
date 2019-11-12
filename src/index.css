@@ -495,6 +495,7 @@ body {
 
 .testSection {
   min-height: 100vh;
+  text-align: center;
 }
 .testSection .speaker-icon {
   position: absolute;
@@ -565,6 +566,10 @@ body {
 .score__element--button:active {
   transform: translate(2px, 2px);
   box-shadow: none;
+}
+
+.no-repeat {
+  padding-top: 50px;
 }
 
 .dictionarySection {

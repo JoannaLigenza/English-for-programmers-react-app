@@ -7,19 +7,19 @@ const Test = () => {
     return (
         <div className="testSection" >
             <div className="testSection__section">
-                <div className="testSection__content" onClick={() => setContent.changeContent("setContentInOverlap", "TestOne")}>
+                <div className="testSection__content" onClick={() => setContent.changeContent("setContentInOverlap", "TestWords")}>
                     Test your knowledge from lesson {lessonNumber} <br/>
                     (Testuj wiedzę z lekcji {lessonNumber})
                 </div>
             </div>
             <div className="testSection__section">
-                <div className="testSection__content" onClick={() => setContent.changeContent("setContentInOverlap", "TestTwo")}>
+                <div className="testSection__content" onClick={() => setContent.changeContent("setContentInOverlap", "Repetition")}>
                     Repetition <br/>
                     (Powtórzenie)
                 </div>
             </div>
             <div className="testSection__section">
-                <div className="testSection__content" onClick={() => setContent.changeContent("setContentInOverlap", "TestThree")}>
+                <div className="testSection__content" onClick={() => setContent.changeContent("setContentInOverlap", "Repetition-favourites")}>
                     Test words from favourites list <br/>
                     (Testuj słowa z listy ulubionych)
                 </div>

@@ -1,4 +1,4 @@
-export const chooseAnswers = (currentWord, dictionary, numberOfAnswers, answerOption, words) => {
+export const chooseAnswers = (currentWord, dictionary, numberOfAnswers, answerOption, words, whichTest) => {
     const firstWord = currentWord;
     let answersSet = new Set();
     const randomI = Math.floor(Math.random()*numberOfAnswers);
@@ -8,9 +8,14 @@ export const chooseAnswers = (currentWord, dictionary, numberOfAnswers, answerOp
             break;
         }
         if (i === randomI) {
-            // if words is NOT undefined it means, that this component is used by repetition component - testRepeatTest.js, else it is used by any other component
+            // if words is NOT undefined it means, that this component is used by repetition component - testRepeat.js, else it is used by any other component
             if (words !== undefined) {
-                answersSet.add(words[firstWord][0][answerOption]);
+                if (whichTest === "repetition") {
+                    answersSet.add(words[firstWord][0][answerOption]);
+                } 
+                if (whichTest === "favourites") {
+                    answersSet.add(words[firstWord][answerOption]);
+                } 
             } else {
                 answersSet.add(dictionary[firstWord][answerOption]);
             }

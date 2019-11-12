@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { MainContentContext } from '../../contexts/MainContentContext.js';
 import { DictionaryContext } from '../../contexts/DictionaryContext.js';
 import { SettingsContext } from '../../contexts/SettingsContext.js';
+import { MainContentContext } from '../../contexts/MainContentContext.js';
 import GetAnswers from '../functions/getAnswers.js';
 import playSound from '../../sounds/sounds.js';
 import speak from '../../sounds/speaker.js';
@@ -9,23 +9,26 @@ import speaker from '../../img/speaker.svg';
 
 
 const TestRepeatTest = (props) => {
-    //const setContent = useContext(MainContentContext);
     const words = props.words;
     const getDictionary = useContext(DictionaryContext);
     const getSettings = useContext(SettingsContext);
-    //const setContent = useContext(MainContentContext);
-    const dictionary = getDictionary.dictionaryData.dictionary;
+    const setContent = useContext(MainContentContext);
     const currentWord = props.currentWord;
-    const sentence = dictionary[props.currentWord].examples[1][0];
     const language = getSettings.settings.language;
     const speakRate = getSettings.settings.speakRate;
+    let oneWord;
+    let sentence;
 
-    const noWordToRepeat = () => {
-        return (
-            <div>
-                You have no words to repeat :)
-            </div>
-        )
+    if (words.length > 0) {        
+        // if - this component is used by favourites test component, else - it is used by repetition test component
+        // favourites is array with objects, repetition is multidimensional array
+        if (props.isFavourites !== undefined) {
+            oneWord = words[currentWord]; 
+            sentence = words[currentWord].examples[1][0];
+        } else {
+            oneWord = words[currentWord][0]; 
+            sentence = words[currentWord][0].examples[1][0];
+        }
     }
 
     // state - to testTwo
@@ -50,7 +53,7 @@ const TestRepeatTest = (props) => {
 
     // function to testFour
     let displaySentence = sentence.split(" ").map(word => {
-        if (word === dictionary[props.currentWord].word) {
+        if (word === oneWord.word) {
             word = "______";
         }
         return word;
@@ -68,10 +71,19 @@ const TestRepeatTest = (props) => {
                         if (props.rightAnswer !== "grayColor") {
                             // if choosen answer is right answer then delete this word from repetitionWords array
                             if (props.rightAnswer === "greenColor") {
-                                // arguments: name of option, current word (number), word from repetitionWords array (object)
-                                getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord, words[currentWord][0]);
+                                // if this component is used by repetition component, then delete word from repetitonWords array,
+                                // if it is used by favourites components, then don't remove anything
+                                if (props.isFavourites === undefined) {
+                                    // arguments: name of option, current word (number), word from repetitionWords array (object)
+                                    getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord, oneWord);
+                                }
                             }
-                            props.testRepeat("setContent", props.TestRepeatLesson);
+                            // if it's not test of favourites words, but repeat test, set content to repeatLesson
+                            if (props.isFavourites === undefined) {
+                                props.testRepeat("setContent", props.TestRepeatLesson);
+                            } else {
+                                setContent.changeContent("setContentInOverlap", "Test");
+                            }
                             getDictionary.changeDictionaryData("notPassedWordsZero");
                         } else {
                             playSound("wrongSound");
@@ -84,8 +96,12 @@ const TestRepeatTest = (props) => {
                         if (props.rightAnswer !== "grayColor") {
                             // if choosen answer is right answer then delete this word from repetitionWords array
                             if (props.rightAnswer === "greenColor") {
-                                // arguments: name of option, current word (number), word from repetitionWords array (object)
-                                getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord, words[currentWord][0]);
+                                // if this component is used by repetition component, then delete word from repetitonWords array,
+                                // if it is used by favourites components, then don't remove anything
+                                if (props.isFavourites === undefined) {
+                                    // arguments: name of option, current word (number), word from repetitionWords array (object)
+                                    getDictionary.changeDictionaryData("notPassedWordsRemove", currentWord, oneWord);
+                                }
                             }
                             props.testRepeat("setCurrentWord", 1);
                             changetestTwo("next");
@@ -104,9 +120,9 @@ const TestRepeatTest = (props) => {
     const testOne = () => {
         return (
             <div>
-                <h2 className="readingSection__word">{words[currentWord][0].word}</h2>
-                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
-                            changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="translation" test="yes"/>
+                <h2 className="readingSection__word">{oneWord.word}</h2>
+                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words} isFavourites={props.isFavourites}
+                            changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="translation" test="yes" />
                 {navigation}
             </div>
         )
@@ -116,13 +132,15 @@ const TestRepeatTest = (props) => {
         let borderColor = "gray"
         if (props.rightAnswer === "redColor"){
             borderColor = "red";
+            playSound("wrongSound");
         }
         if (props.rightAnswer === "greenColor"){
             borderColor = "green";
+            playSound("rightSound");
         }
         return (
             <div>
-                <h2 className="readingSection__word">{words[currentWord][0].translation}</h2>
+                <h2 className="readingSection__word">{oneWord.translation}</h2>
                 <div className="readingSection__answers">
                     <form>
                         <label htmlFor="write-in-english">Napisz po angielsku:</label><br/>
@@ -141,14 +159,14 @@ const TestRepeatTest = (props) => {
 
     const testThree = () => {
         if (props.choosenAnswer === "none") {
-            speak(words[currentWord][0].word, language, speakRate);
+            speak(oneWord.word, language, speakRate);
         }
         return (
             <div>
-                <h2 className="readingSection__word" style={{ marginBottom: 0}}>{words[currentWord][0].spelling}</h2>
+                <h2 className="readingSection__word" style={{ marginBottom: 0}}>{oneWord.spelling}</h2>
                 <img src={speaker} alt="speaker icon - press and listen" className="speaker-icon"
-                            onClick={() => speak(words[currentWord][0].word, language, speakRate)}/>
-                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
+                            onClick={() => speak(oneWord.word, language, speakRate)}/>
+                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words} isFavourites={props.isFavourites}
                            changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="translation" test="yes"/>
                 {navigation}
             </div>
@@ -159,7 +177,7 @@ const TestRepeatTest = (props) => {
         return (
             <div>
                 <h2 className="readingSection__word">{displaySentence}</h2>
-                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
+                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words} isFavourites={props.isFavourites}
                            changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="word" test="yes"/>
                 {navigation}
             </div>
@@ -169,37 +187,37 @@ const TestRepeatTest = (props) => {
     const testFive = () => {
         return (
             <div>
-                <h2 className="readingSection__word">{words[currentWord][0].translation}</h2>
-                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words}
+                <h2 className="readingSection__word">{oneWord.translation}</h2>
+                <GetAnswers currentWord={currentWord} choosenAnswer={props.choosenAnswer} isRepetitionTest={words} isFavourites={props.isFavourites}
                             changeWord={props.testRepeat} rightAnswer={props.rightAnswer} translate="word" test="yes"/>
                 {navigation}
             </div>
         )
     }
-    
-    // number of test for word in repetition
-    let displayContent;
-    if (words.length > 0)  {
-        if (props.words[currentWord][1] === 0) {
+
+    const content = () => {
+        let displayContent;
+        if (props.testNumber === 0) {
             displayContent = testOne();
         }
-        if (props.words[currentWord][1] === 1) {
+        if (props.testNumber === 1) {
             displayContent = testTwo();
         }
-        if (props.words[currentWord][1] === 2) {
+        if (props.testNumber === 2) {
             displayContent = testThree();
         }
-        if (props.words[currentWord][1] === 3) {
+        if (props.testNumber === 3) {
             displayContent = testFour();
         }
-        if (props.words[currentWord][1] === 4) {
+        if (props.testNumber === 4) {
             displayContent = testFive();
         }
-    } else {
-        displayContent = noWordToRepeat();
+        return displayContent;
     }
     
-
+    // number of test for word in repetition
+    const displayContent = content();
+    
     return (
         <div>
             {displayContent}

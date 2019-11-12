@@ -13,15 +13,7 @@ const TestRepeatLesson = (props) => {
     const currentWord = props.currentWord;
     const words = props.words;
     const visibility = useContext(VisibilityContext);
-    const areAdvanceOptionsVisible = visibility.isVisible.areAdvanceOptionsVisible
-
-    if (words.length === 0)  {
-        return (
-            <div>
-                You have no words to repeat :)
-            </div>
-        )
-    }
+    const areAdvanceOptionsVisible = visibility.isVisible.areAdvanceOptionsVisible;
 
     const examples = words[currentWord][0].examples.map( (example, index) => {
         //return {example[0]} ({example[1]})

@@ -11,7 +11,6 @@ import Test from './test.js';
 import Dictionary from './dictionary.js';
 import TestWords from './testComponents/testWords.js';
 import TestRepeat from './testComponents/testRepeat.js';
-import TestFavourites from './testComponents/testFavourites.js';
 import Score from'./testComponents/score.js';
 
 const Main = () => {
@@ -38,11 +37,12 @@ const Main = () => {
         listening: Listening,
         test: Test,
         dictionary: Dictionary,
-        testOne: TestWords,
-        testTwo: TestRepeat,
-        testThree: TestFavourites,
+        testWords: TestWords,
+        repetition: TestRepeat,
+        repetitionFavourites: TestRepeat,
         score: Score
     }
+    let whichTestComponentIsActive;
     let DisplayContent = content.lessons;
 
     if (whichContentLoad === "Lessons") {
@@ -57,12 +57,14 @@ const Main = () => {
         DisplayContent = content.test;
     } else if (whichContentLoad === "Dictionary") {
         DisplayContent = content.dictionary;
-    } else if (whichContentLoad === "TestOne") {
-        DisplayContent = content.testOne;
-    } else if (whichContentLoad === "TestTwo") {
-        DisplayContent = content.testTwo;
-    } else if (whichContentLoad === "TestThree") {
-        DisplayContent = content.testThree;
+    } else if (whichContentLoad === "TestWords") {
+        DisplayContent = content.testWords;
+    } else if (whichContentLoad === "Repetition") {
+        DisplayContent = content.repetition;
+        whichTestComponentIsActive = "repetition";
+    } else if (whichContentLoad === "Repetition-favourites") {
+        DisplayContent = content.repetitionFavourites;
+        whichTestComponentIsActive = "favourites";
     } else if (whichContentLoad === "Score") {
         DisplayContent = content.score;
     }
@@ -76,7 +78,8 @@ const Main = () => {
                     setContent.changeContent("none"); }
                 }>X</div>
                 <DisplayContent visibility={visibility} setContent={setContent} displayFrom={displayFrom} displayTo={displayTo}
-                        lessonNumber={lessonNumber} dictionary={dictionary} wordsInLesson={wordsInLesson} getSettings={getSettings} />
+                        lessonNumber={lessonNumber} dictionary={dictionary} wordsInLesson={wordsInLesson} getSettings={getSettings} 
+                        whichTest={whichTestComponentIsActive}/>
             </div>
         </div>
     )

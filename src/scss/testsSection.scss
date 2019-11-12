@@ -3,6 +3,7 @@
 
 .testSection {
     min-height: 100vh;
+    text-align: center;
 
     .speaker-icon{
         position: absolute; 
@@ -40,4 +41,8 @@
         width: 200px;
         margin-top: 50px;
     }
+}
+
+.no-repeat {
+    padding-top: 50px;
 }

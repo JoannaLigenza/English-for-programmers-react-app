@@ -10,6 +10,9 @@ const GetAnswers = (props) => {
     if (props.isRepetitionTest !== undefined) {
         dictionaryWord = props.isRepetitionTest[props.currentWord][0];
     }
+    if (props.isFavourites !== undefined) {
+        dictionaryWord = props.isRepetitionTest[props.currentWord];
+    }
     const actualAnswers = setContent.content.actualAnswers;
 
     // getting each answer from actualAnswers and returning it all with specific options

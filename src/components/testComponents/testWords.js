@@ -10,6 +10,7 @@ import TestFive from './testFive.js';
 
 const TestWords = () => {
     const lessonNumber = JSON.parse(localStorage.getItem("lessonNumber"));
+    const points = JSON.parse(localStorage.getItem("points"));
     const setContent = useContext(MainContentContext);
     const getSettings = useContext(SettingsContext);
     const getDictionary = useContext(DictionaryContext);
@@ -83,7 +84,7 @@ const TestWords = () => {
         return (
             <div className="testSection">
                 <p className="all-tests-passed">Congratulations, you have passed all tests! :) </p>
-                <div className="display-points">Your have: {getDictionary.dictionaryData.points} points</div>
+                <div className="display-points">You have: {points} points</div>
             </div>
         )
     }
