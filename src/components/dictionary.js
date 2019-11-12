@@ -34,16 +34,24 @@ const Dictionary = (props) => {
         }
     }
 
+    let color = "gray";
+
     const checkBoxImg = (passed) => {
         let img = checkboxGray;
         if (passed === "yes") {
             img = checkboxGreen;
+            color = "green";
         }
         if (passed === "no") {
             img = checkboxRed;
+            color = "red";
         }
         if (passed === "repetition") {
             img = checkboxYellow;
+            color = "#FFE100";  // yellow
+        }
+        if (passed === "") {
+            color = "gray"; 
         }
         return img;
     }
@@ -56,7 +64,27 @@ const Dictionary = (props) => {
         return img;
     }
 
+    const passed = (passed) => {
+        let text = "not tested yet";
+        if (passed === "yes") {
+            text = passed;
+        } 
+        if (passed === "no") {
+            text = passed;
+        }
+        if (passed === "repetition") {
+            text = "yes, in repetition";
+        }
+        return text;
+    }
+
     const displayDictionary = dictionary.map(word => {
+        const examples = word.examples.map(example => {
+             return <li key={word.id}> {example[0].charAt(0).toUpperCase() + example[0].slice(1)} ({example[1].charAt(0).toUpperCase() + example[1].slice(1)}) </li>
+        })
+        const partsOfSpeech = word.partOfspeech.map(part => {
+            return <p key={word.id}>{part[0]}: {part[1]}</p>
+        })
         return (
             <li key={word.id} className="dictionary-list-element">
                 {/* visible part of list element */}
@@ -83,7 +111,16 @@ const Dictionary = (props) => {
 
                 {/* hidden part of list element */}
                 <div className={state.whichWordOptionsAreVisible === word.id ? "dictionary-list-element__bottom" : "dictionary-list-element__bottom dictionary-hidden"}>
-                    hidden
+                    <div className="dictionary-list-element__desc">Spelling (wymowa):</div>
+                    <h3 className="dictionary-list-element__option"> {word.spelling} </h3>
+                    <div className="dictionary-list-element__desc">Meaning (znaczenie):</div>
+                    <h3 className="dictionary-list-element__option"> {word.meaning} </h3>
+                    <div className="dictionary-list-element__desc">Examples (przykłady):</div>
+                    <h3 className="dictionary-list-element__option"> <ul>{examples}</ul> </h3>
+                    <div className="dictionary-list-element__desc">Parts of speech (części mowy):</div>
+                    <h3 className="dictionary-list-element__option"> {partsOfSpeech} </h3>
+                    <div className="dictionary-list-element__desc">Passed (zaliczone):</div>
+                    <h3 className="dictionary-list-element__option" style={{color: color}}> {passed(word.passed)} </h3>
                 </div>
             </li>
         )

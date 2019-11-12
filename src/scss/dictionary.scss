@@ -58,13 +58,28 @@
                 img {
                     position: absolute;
                     top: 50%;
+                    left: 10px;
                     transform: translateY(-50%);
                 }
             }
         }
-        
-        &__bottom {
 
+        &__bottom {
+            text-align: center;
+        }
+        
+        &__desc {
+            color: $greenTextColor;
+            padding-top: 30px;
+        }
+
+        &__option {
+            color: $grayTextColor;
+            padding: 0 5px;
+
+            li {
+                text-align: left;
+            }
         }
     }
 }

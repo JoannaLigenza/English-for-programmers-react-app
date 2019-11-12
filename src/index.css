@@ -606,8 +606,24 @@ body {
 .dictionarySection .dictionary-list-element__speak-passed .checkBox img {
   position: absolute;
   top: 50%;
+  left: 10px;
   transform: translateY(-50%);
 }
+.dictionarySection .dictionary-list-element__bottom {
+  text-align: center;
+}
+.dictionarySection .dictionary-list-element__desc {
+  color: #003307;
+  padding-top: 30px;
+}
+.dictionarySection .dictionary-list-element__option {
+  color: #2c2c2c;
+  padding: 0 5px;
+}
+.dictionarySection .dictionary-list-element__option li {
+  text-align: left;
+}
+
 .dictionary-hidden {
   display: none;
 }
