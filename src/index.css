@@ -573,7 +573,6 @@ body {
 .dictionarySection .dictionary-list-element__top {
   display: flex;
   align-items: center;
-  padding: 5px;
   padding-left: 10px;
   background-color: white;
 }
@@ -584,9 +583,8 @@ body {
   transform: scale(1.1);
 }
 .dictionarySection .dictionary-list-element__word {
-  display: flex;
-  flex-direction: column;
   width: 100%;
+  height: 100%;
   padding-left: 15px;
   cursor: pointer;
 }
@@ -594,13 +592,16 @@ body {
   font-size: 1.2em;
   font-weight: bold;
 }
+.dictionarySection .dictionary-list-element__word .arrow-down-icon {
+  position: relative;
+  left: 50%;
+}
 .dictionarySection .dictionary-list-element__speak-passed {
   display: flex;
 }
 .dictionarySection .dictionary-list-element__speak-passed .checkBox {
   position: relative;
   width: 45px;
-  padding-left: 10px;
 }
 .dictionarySection .dictionary-list-element__speak-passed .checkBox img {
   position: absolute;

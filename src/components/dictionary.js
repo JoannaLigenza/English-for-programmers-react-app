@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { VisibilityContext } from '../contexts/VisibilityContext.js';
-import { MainContentContext } from '../contexts/MainContentContext.js';
+// import { VisibilityContext } from '../contexts/VisibilityContext.js';
+// import { MainContentContext } from '../contexts/MainContentContext.js';
 import { DictionaryContext } from '../contexts/DictionaryContext.js';
 import { SettingsContext } from '../contexts/SettingsContext.js';
 import checkboxGreen from '../img/checkbox-green.svg';
@@ -9,12 +9,13 @@ import checkboxRed from '../img/checkbox-red.svg';
 import checkboxGray from '../img/checkbox-gray.svg';
 import star from '../img/star.svg';
 import starEmpty from '../img/star-empty.svg';
+import arrowDown from '../img/arrow-down.svg';
 import speaker from '../img/speaker.svg';
 import speak from '../sounds/speaker.js';
 
 const Dictionary = (props) => {
-    const visibility = useContext(VisibilityContext);
-    const setContent = useContext(MainContentContext);
+    // const visibility = useContext(VisibilityContext);
+    // const setContent = useContext(MainContentContext);
     const getSettings = useContext(SettingsContext);
     const getDictionary = useContext(DictionaryContext);
     const dictionary = getDictionary.dictionaryData.dictionary;
@@ -67,6 +68,7 @@ const Dictionary = (props) => {
                     <div className="dictionary-list-element__word" onClick={() => changeWordOptionVisibility(word.id)}>
                         <div className="dictionary-list-element__word--word">{word.word}</div>
                         <div>{word.translation}</div>
+                        <img src={arrowDown} alt="arrow-down icon" className="arrow-down-icon"/>
                     </div>
                     <div className="dictionary-list-element__speak-passed">
                         <div className="">
