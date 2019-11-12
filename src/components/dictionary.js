@@ -79,11 +79,11 @@ const Dictionary = (props) => {
     }
 
     const displayDictionary = dictionary.map(word => {
-        const examples = word.examples.map(example => {
-             return <li key={word.id}> {example[0].charAt(0).toUpperCase() + example[0].slice(1)} ({example[1].charAt(0).toUpperCase() + example[1].slice(1)}) </li>
+        const examples = word.examples.map((example, index) => {
+             return <li key={`example${index}`}> {example[0].charAt(0).toUpperCase() + example[0].slice(1)} ({example[1].charAt(0).toUpperCase() + example[1].slice(1)}) </li>
         })
-        const partsOfSpeech = word.partOfspeech.map(part => {
-            return <p key={word.id}>{part[0]}: {part[1]}</p>
+        const partsOfSpeech = word.partOfspeech.map((part, index) => {
+            return <p key={`part${index}`}>{part[0]}: {part[1]}</p>
         })
         return (
             <li key={word.id} className="dictionary-list-element">
