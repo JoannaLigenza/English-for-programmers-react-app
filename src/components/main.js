@@ -68,7 +68,8 @@ const Main = () => {
     }
 
     return (
-        <div className={visibility.isVisible.isMainVisible ? "main visible" : "main hidden"} >
+        <div className={visibility.isVisible.isMainVisible ? "main" : "main display-none"} >
+        {/* <div className={visibility.isVisible.isMainVisible ? "main visible" : "main hidden"} > */}
             <div className="mainContainer">
                 <div className="button--close" onClick={() => {
                     visibility.changeVisibility("main");

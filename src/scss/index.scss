@@ -31,6 +31,13 @@ body {
     }
 }
 
+.display-none {
+    display: none;
+    @include mediaQuery(700px) {
+       display: block;
+    }
+}
+
 .all-tests-passed {
     text-align: center;
     padding-top: 100px;
