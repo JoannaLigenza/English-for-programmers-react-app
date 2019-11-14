@@ -15,6 +15,7 @@ const speak = (text, lang, speed) => {
     }
     //speech functionality (utterance - przemowienie)
     const utterance = new SpeechSynthesisUtterance(text);
+    // const voices = speechSynthesis.getVoices();
     utterance.lang = lang;
     utterance.rate = rate;
     speechSynthesis.speak(utterance);

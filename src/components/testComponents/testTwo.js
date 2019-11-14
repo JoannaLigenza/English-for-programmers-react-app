@@ -24,7 +24,6 @@ const TestTwo = (props) => {
                 if (!testTwo.pointsAdded) {
                     getDictionary.changeDictionaryData("points");
                 }
-                console.log("nn ", getDictionary.dictionaryData.points)
                 setTestTwo({...testTwo, rightAnswer: "greenColor", readOnly: true, pointsAdded: true });
                 props.changeWord("choosenAnswer", testTwo.inputValue, "word");
             } else {
