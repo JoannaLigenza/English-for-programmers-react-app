@@ -33,10 +33,10 @@ const Score = () => {
                     <h4>Nieprawidłowe odpowiedzi: {incorrectAnswers}</h4>
                 </div>
                 <div className="score__element">
-                    <div className="score__element--button" onClick={() => setContent.changeContent("setContentInOverlap", "TestTwo")}> 
+                    <div className="score__element--button" onClick={() => setContent.changeContent("setContentInOverlap", "Repetition")}> 
                         Powtórka 
                     </div>
-                    <div className="score__element--button" onClick={() => setContent.changeContent("setContentInOverlap", "TestOne")}> 
+                    <div className="score__element--button" onClick={() => setContent.changeContent("setContentInOverlap", "TestWords")}> 
                         Kolejny test 
                     </div>
                 </div>
